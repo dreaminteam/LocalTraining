@@ -1,26 +1,33 @@
 package task_6;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class NotepadService {
 
 	public static void main(String[] args) {
-		NotepadService notepadService = new NotepadService();
+		NotepadService service = new NotepadService();
+		Notepad notepad = service.createNotepad("My first Notepad");
 
-		Notepad notepad = notepadService.createNotepad("my notepad");
-		notepadService.addRecord(notepad, "1");
-		notepadService.addRecord(notepad, "2");
-		notepadService.addRecord(notepad, "3");
-		notepadService.addRecord(notepad, "4");
-		notepadService.addRecord(notepad, "5");
-		notepadService.addRecord(notepad, "6");
-		notepadService.addRecord(notepad, "7");
-		notepadService.addRecord(notepad, "8");
-		notepadService.addRecord(notepad, "9");
-		notepadService.addRecord(notepad, "10");
-		notepadService.updateContentRecordInNotepad(notepad, 0, "newContent");
-		notepadService.delRecordFromNotepad(notepad, 0);
-		notepadService.printNotepadList(notepad);
+		Record r1 = new Record("1", "my 1-th record");
+		Record r2 = new Record("2", "my 2-th record");
+		Record r3 = new Record("3", "my 3-th record");
+		Record r4 = new Record("4", "my 4-th record");
+		Record r5 = new Record("5", "my 5-th record");
+
+		service.addRecord(notepad, r1);
+		service.addRecord(notepad, r2);
+		service.addRecord(notepad, r3);
+		service.addRecord(notepad, r4);
+		service.addRecord(notepad, r5);
+		service.addRecord(notepad, r1);
+
+		// System.out.println(Arrays.toString(notepad.getRecords()));
+		// System.out.println(notepad.getRecords()[0].getTitle().contains("1"));
+		// System.out.println(service.getFirstRecordByTitle(notepad, "8"));
+		System.out.println(Arrays.toString(service.getRecordByTitle(notepad, "59")));
 
 	}
 
@@ -28,52 +35,71 @@ public class NotepadService {
 		return new Notepad(name);
 	}
 
-	public void addRecord(Notepad notepad, String titleOfRecord) {
+	public void addRecord(Notepad notepad, Record record) {
 		int numberNextRecord = notepad.getTotalOfRecords();
 
 		if (checkSizeRecords(notepad)) {
-			notepad.getRecords()[numberNextRecord] = new Record(titleOfRecord);
+			notepad.getRecords()[numberNextRecord] = record;
 		} else {
 			notepad.setRecords(doublingRecords(notepad.getRecords()));
 
-			notepad.getRecords()[numberNextRecord] = new Record(titleOfRecord);
+			notepad.getRecords()[numberNextRecord] = record;
 		}
 		notepad.setTotalOfRecords(numberNextRecord + 1);
 	}
 
-	public void addRecord(Notepad notepad, String titleOfRecord, String contentOfRecord) {
-		int numberNextRecord = notepad.getTotalOfRecords();
+	public Record getRecordByIndex(Notepad notepad, int index) {
+		return notepad.getRecords()[index];
+	}
 
-		if (checkSizeRecords(notepad)) {
-			notepad.getRecords()[numberNextRecord] = new Record(titleOfRecord, contentOfRecord);
-		} else {
-			notepad.setRecords(doublingRecords(notepad.getRecords()));
+	public Record getFirstRecordByTitle(Notepad notepad, String title) {
 
-			notepad.getRecords()[numberNextRecord] = new Record(titleOfRecord, contentOfRecord);
+		for (Record record : notepad.getRecords()) {
+			if (record != null && record.getTitle().contains(title)) {
+				return record;
+			}
 		}
-		notepad.setTotalOfRecords(numberNextRecord + 1);
+		return null;
 	}
 
-	public void updateTitleRecordInNotepad(Notepad notepad, int numberOfRecord, String newTitle) {
-		notepad.getRecords()[numberOfRecord].setTitle(newTitle);
+	public Record[] getRecordByTitle(Notepad notepad, String title) {
+		ArrayList<Record> list = new ArrayList<>();
+		for (Record record : notepad.getRecords()) {
+			if (record != null && record.getTitle().contains(title)) {
+				list.add(record);
+			}
+		}
+		if (list.size() == 0) {
+			return null;
+		}
+		Record[] result = new Record[list.size()];
+		result = list.toArray(new Record[list.size()]);
+		return result;
+	}
+	// erunda nije
+	public Record[] getRecordByTitle(Notepad notepad, String title, String n) {
+
+		Record[] result = null;
+		Stream<Record> stream = Arrays.stream(notepad.getRecords()).filter(p -> p.getTitle().contains(title));
+		result = (Record[]) stream.toArray();
+
+		return result;
 	}
 
-	public void updateContentRecordInNotepad(Notepad notepad, int numberOfRecord, String newContent) {
-		notepad.getRecords()[numberOfRecord].setContent(newContent);
+	public Record[] getAllRecords(Notepad notepad) {
+		int length = notepad.getTotalOfRecords();
+		Record[] result = new Record[length];
+		result = Arrays.copyOf(notepad.getRecords(), length);
+		return result;
 	}
 
-	public Record delRecordFromNotepad(Notepad notepad, int numberOfRecord) {
-		Record record = notepad.getRecords()[numberOfRecord];
-		indexation(notepad.getRecords(), numberOfRecord);
+	public void delRecordFromNotepad(Notepad notepad, int numberOfRecord) {
+		notepad.getRecords()[numberOfRecord] = null;
+		reindexingAfterDel(notepad.getRecords(), numberOfRecord);
 		notepad.setTotalOfRecords(notepad.getTotalOfRecords() - 1);
-		return record;
 	}
 
-	public void printNotepadList(Notepad notepad) {
-		System.out.print(notepad.toString());
-	}
-
-	private void indexation(Object[] array, int startIndex) {
+	private void reindexingAfterDel(Object[] array, int startIndex) {
 
 		for (int i = startIndex; i < array.length - 1; i++) {
 			array[i] = array[i + 1];
@@ -82,10 +108,10 @@ public class NotepadService {
 	}
 
 	private boolean checkSizeRecords(Notepad notepad) {
-		if (notepad.getTotalOfRecords() < notepad.getRecords().length)
+		if (notepad.getTotalOfRecords() < notepad.getRecords().length) {
 			return true;
+		}
 		return false;
-
 	}
 
 	private Record[] doublingRecords(Record[] records) {

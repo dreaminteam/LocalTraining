@@ -7,11 +7,20 @@ public class RecordService {
 
 	}
 
+	public Record createRecord(String title) {
+		return new Record(title);
+	}
+
+	public Record createRecord(String title, String content) {
+		return new Record(title, content);
+		
+	}
+
 	public void changeTitle(Record record, String newTitle) {
 		record.setTitle(newTitle);
 	}
 
-	public void changeContent(Record record, String newContent) {
+	public void updateRecord(Record record, String newContent) {
 		record.setContent(newContent);
 	}
 
