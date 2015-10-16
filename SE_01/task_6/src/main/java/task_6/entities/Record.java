@@ -1,19 +1,30 @@
-package task_6;
+package task_6.entities;
 
 import java.time.LocalDate;
 
+/**
+ * This class description entity record. Record has four properties.
+ * 
+ * @author AndrewZenov
+ * @version JDK_1.8
+ */
 public class Record {
 
+	/**
+	 * dateCreateRecord - creating date of new Record. lastChangeRecord - date
+	 * last record's changing. content - content of Record. title - title of
+	 * Record
+	 */
 	private LocalDate dateCreateRecord;
 	private LocalDate lastChangeRecord;
 	private String content;
 	private String title;
 
-	public static void main(String[] args) {
-		Record record = new Record("title", "content");
-		System.out.println(record.toString());
-	}
-
+	/**
+	 * 
+	 * @param title
+	 *            the title of Record
+	 */
 	public Record(String title) {
 		this.title = title;
 		this.dateCreateRecord = LocalDate.now();
@@ -21,6 +32,13 @@ public class Record {
 		this.content = "";
 	}
 
+	/**
+	 * 
+	 * @param title
+	 *            the title of Record
+	 * @param content
+	 *            the content of Record
+	 */
 	public Record(String title, String content) {
 		this.title = title;
 		this.dateCreateRecord = LocalDate.now();
@@ -29,6 +47,8 @@ public class Record {
 	}
 
 	/**
+	 * Return date of creating of Record
+	 * 
 	 * @return the dateCreateRecord
 	 */
 	public LocalDate getDateCreateRecord() {
@@ -36,6 +56,8 @@ public class Record {
 	}
 
 	/**
+	 * Return date last record's changing
+	 * 
 	 * @return the lastChangeRecord
 	 */
 	public LocalDate getLastChangeRecord() {
@@ -50,6 +72,8 @@ public class Record {
 	}
 
 	/**
+	 * Set content for Record. Set new lastChangeRecord
+	 * 
 	 * @param content
 	 *            the content to set
 	 */
@@ -59,6 +83,8 @@ public class Record {
 	}
 
 	/**
+	 * Return title of record
+	 * 
 	 * @return the title
 	 */
 	public String getTitle() {
@@ -66,6 +92,8 @@ public class Record {
 	}
 
 	/**
+	 * Set title for Record Set new lastChangeRecord
+	 * 
 	 * @param title
 	 *            the title to set
 	 */
@@ -80,5 +108,4 @@ public class Record {
 				+ getLastChangeRecord() + '\n' + "Title : " + getTitle() + '\n' + "Content : " + getContent() + '\n'
 				+ "<<<<<<<<<<<<<" + '\n';
 	}
-
 }
