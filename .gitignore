@@ -3,8 +3,14 @@
 *.css
 *.classpath
 *.name
-*.xml
 *.project
 *.prefs
 *.bak
 SE_01/task_6/doc/package-list
+SE_02/task_2/.idea/compiler.xml
+SE_02/task_2/.idea/copyright/profiles_settings.xml
+SE_02/task_2/.idea/misc.xml
+SE_02/task_2/.idea/modules.xml
+SE_02/task_2/.idea/uiDesigner.xml
+SE_02/task_2/.idea/vcs.xml
+SE_02/task_2/.idea/workspace.xml
