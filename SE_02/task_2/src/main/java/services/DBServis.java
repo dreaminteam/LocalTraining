@@ -15,32 +15,58 @@ public class DBServis {
 
 	public static void main(String[] args) {
 		DBServis servisDB = new DBServis();
-		EmployeeServes employeeServes=new EmployeeServes();
+
 		/*
 		 * servisDB.addEmployee("Dmitry", "Zenov");
 		 * servisDB.addEmployee("Andrew", "Zenov", "3");
 		 * servisDB.addEmployee("Nikalay", "Batsilou", "developer");
+		 */
+
+		/*
 		 * servisDB.addStationery("pen", 2.3, "black");
 		 * servisDB.addStationery("pen", 2.5, "red");
 		 * servisDB.addStationery("pen", 2.1, "blau");
 		 * servisDB.addStationery("pen", 2.2);
 		 */
-		// System.out.print(servisDB.getEmployeeById(3));
-		// servisDB.deleteStationeryById(2);
 
-		//System.out.println(servisDB.getStationeryById(1).toString());
-		//System.out.println(servisDB.getAllEmployees().toString());
-		//System.out.println(servisDB.getAllStationery().toString());
-		
-		Employee employee=servisDB.getEmployeeById(1);
-		System.out.println(employeeServes.getRusultCostOfStationery(employee));
-		
+		/*
+		 * servisDB.addStationeryOnEmployee(1, 1);
+		 * servisDB.addStationeryOnEmployee(1, 2);
+		 * servisDB.addStationeryOnEmployee(2, 2);
+		 * servisDB.addStationeryOnEmployee(2, 3);
+		 * servisDB.addStationeryOnEmployee(3, 1);
+		 * servisDB.addStationeryOnEmployee(3, 2);
+		 * servisDB.addStationeryOnEmployee(3, 3);
+		 */
+
+		/*
+		 * servisDB.updatePositionOfEmployee(2, "new position");
+		 */
+
+		/*
+		 * servisDB.deleteEmployeeById(1);
+		 * 
+		 * servisDB.deleteStationeryById(2);
+		 * servisDB.deleteStationeryOfEmployee(2, 1);
+		 */
+
+		/*
+		 * System.out.println(servisDB.getAllEmployees().toString());
+		 * System.out.println(servisDB.getAllStationery().toString());
+		 */
+
+		/*
+		 * EmployeeServes employeeServes = new EmployeeServes(); Employee
+		 * employee = servisDB.getEmployeeById(1); Double sum =
+		 * employeeServes.getRusultCostOfStationery(employee);
+		 * System.out.println(sum);
+		 */
+
 	}
 
 	private String userLogin = "root";
 	private String userPassword = "135246";
 	private String myConnectioURL = "jdbc:mysql://localhost:3306/office";
-	// private String driverName = "com.mysql.jdbc.Driver";
 
 	public void addEmployee(String name, String surName) {
 		String sql = "INSERT INTO employee(name,surname,position) VALUES(?,?) ";
@@ -110,7 +136,67 @@ public class DBServis {
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, name);
 				ps.setDouble(2, cost);
-				ps.setString(1, description);
+				ps.setString(3, description);
+				ps.executeUpdate();
+			} catch (SQLException ex) {
+				con.rollback();
+				con.setAutoCommit(true);
+				ex.printStackTrace();
+			}
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void addStationeryOnEmployee(int employee_id, int stationery_id) {
+		String sql = "INSERT INTO employee_has_stationery VALUES(?,?)";
+		try (Connection con = DriverManager.getConnection(myConnectioURL, userLogin, userPassword)) {
+			con.setAutoCommit(false);
+			try (PreparedStatement ps = con.prepareStatement(sql)) {
+				ps.setInt(1, employee_id);
+				ps.setInt(2, stationery_id);
+				ps.executeUpdate();
+			} catch (SQLException ex) {
+				con.rollback();
+				con.setAutoCommit(true);
+				ex.printStackTrace();
+			}
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updatePositionOfEmployee(int employee_id, String newPosition) {
+		String sql = "UPDATE employee SET position=? where id=?";
+		try (Connection con = DriverManager.getConnection(myConnectioURL, userLogin, userPassword)) {
+			con.setAutoCommit(false);
+			try (PreparedStatement ps = con.prepareStatement(sql)) {
+				ps.setString(1, newPosition);
+				ps.setInt(2, employee_id);
+				ps.executeUpdate();
+			} catch (SQLException ex) {
+				con.rollback();
+				con.setAutoCommit(true);
+				ex.printStackTrace();
+			}
+			con.commit();
+			con.setAutoCommit(true);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteStationeryOfEmployee(int employee_id, int stationery_id) {
+		String sql = "DELETE FROM employee_has_stationery where employee_id=? and stationery_id=?";
+		try (Connection con = DriverManager.getConnection(myConnectioURL, userLogin, userPassword)) {
+			con.setAutoCommit(false);
+			try (PreparedStatement ps = con.prepareStatement(sql)) {
+				ps.setInt(1, employee_id);
+				ps.setInt(2, stationery_id);
 				ps.executeUpdate();
 			} catch (SQLException ex) {
 				con.rollback();
@@ -196,7 +282,7 @@ public class DBServis {
 		return list;
 	}
 
-	public List getAllStationery() {
+	public List<Stationery> getAllStationery() {
 		List<Stationery> list = new ArrayList<>();
 		String sql = "select * from stationery";
 		try (Connection con = DriverManager.getConnection(myConnectioURL, userLogin, userPassword)) {
@@ -238,7 +324,7 @@ public class DBServis {
 					String position = rs.getString("position");
 					ArrayList<Stationery> list = (ArrayList<Stationery>) getStationeryOfEmployeeById(employee_id);
 
-					Employee employee = new Employee(id, name, surName, position);
+					Employee employee = employeeServes.createEmployee(id, name, surName, position);
 					employee.setList(list);
 					return employee;
 				}
@@ -277,7 +363,7 @@ public class DBServis {
 		return null;
 	}
 
-	private List getStationeryOfEmployeeById(int employee_id) {
+	private List<Stationery> getStationeryOfEmployeeById(int employee_id) {
 		List<Stationery> list = new ArrayList<>();
 		String sql = "select id,name,cost,description"
 				+ " from stationery join employee_has_stationery on id=stationery_id" + " where employee_id=?";

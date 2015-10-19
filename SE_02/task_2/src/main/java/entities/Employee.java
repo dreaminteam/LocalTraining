@@ -13,7 +13,7 @@ public class Employee {
 	public Employee(String name, String surName, String position) {
 		this.name = name;
 		this.surName = surName;
-		this.setPosition(position);
+		this.position = position;
 	}
 
 	public Employee(int id, String name, String surName, String position) {
@@ -23,16 +23,6 @@ public class Employee {
 		this.position = position;
 	}
 
-
-	/**
-	 * @param position
-	 *            the position to set
-	 */
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-
 	/**
 	 * @param list
 	 *            the list to set
@@ -41,11 +31,13 @@ public class Employee {
 		this.list = list;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return the list of Stationery
 	 */
+	public ArrayList<Stationery> getList() {
+		return list;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", surName=" + surName + ", position=" + position
