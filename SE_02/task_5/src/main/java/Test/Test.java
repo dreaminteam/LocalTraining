@@ -11,6 +11,8 @@ public class Test {
 		Student st1 = new Student("A", "B", 22);
 		Student st2 = new Student("A", "C", 20);
 
+		GroupOfStudents<Subject> group=new GroupOfStudents<>();
+		
 	}
 
 }
