@@ -1,5 +1,9 @@
 package entities;
 
-public class Eraser {
+public class Eraser extends Stationery {
+
+	public Eraser(Double cost) {
+		super(cost);
+	}
 
 }

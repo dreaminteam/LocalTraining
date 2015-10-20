@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DBUtil;
 import entities.Employee;
 import entities.Stationery;
 
@@ -30,7 +31,7 @@ public class EmployeeServes {
 
 	public void addEmployee(String name, String surName) {
 		String sql = "INSERT INTO employee(name,surname,position) VALUES(?,?) ";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, name);
@@ -50,7 +51,7 @@ public class EmployeeServes {
 
 	public void addEmployee(String name, String surName, String position) {
 		String sql = "INSERT INTO employee(name,surname,position) VALUES(?,?,?) ";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, name);
@@ -71,7 +72,7 @@ public class EmployeeServes {
 
 	public void addStationeryOnEmployee(int employee_id, int stationery_id) {
 		String sql = "INSERT INTO employee_has_stationery VALUES(?,?)";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setInt(1, employee_id);
@@ -91,7 +92,7 @@ public class EmployeeServes {
 
 	public void updatePositionOfEmployee(int employee_id, String newPosition) {
 		String sql = "UPDATE employee SET position=? where id=?";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, newPosition);
@@ -111,7 +112,7 @@ public class EmployeeServes {
 
 	public void deleteEmployeeById(int employee_id) {
 		String sql = "DELETE FROM employee where id=?";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setInt(1, employee_id);
@@ -131,7 +132,7 @@ public class EmployeeServes {
 	public List<Employee> getAllEmployees() {
 		List<Employee> list = new ArrayList<>();
 		String sql = "select * from employee";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
@@ -159,7 +160,7 @@ public class EmployeeServes {
 
 	public Employee getEmployeeById(int employee_id) {
 		String sql = "select * from employee where id=?";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, employee_id);
 			try (ResultSet rs = ps.executeQuery()) {
@@ -189,7 +190,7 @@ public class EmployeeServes {
 		List<Stationery> list = new ArrayList<>();
 		String sql = "select id,name,cost,description"
 				+ " from stationery join employee_has_stationery on id=stationery_id" + " where employee_id=?";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, employee_id);
 			try (ResultSet rs = ps.executeQuery()) {
@@ -212,7 +213,7 @@ public class EmployeeServes {
 
 	public void deleteStationeryOfEmployee(int employee_id, int stationery_id) {
 		String sql = "DELETE FROM employee_has_stationery where employee_id=? and stationery_id=?";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setInt(1, employee_id);

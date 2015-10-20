@@ -1,14 +1,14 @@
-package services;
+package test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import db.DBUtil;
 import entities.Employee;
+import services.EmployeeServes;
+import services.StationeryServes;
 
-public class DBServis {
+public class Test {
 
 	public static void main(String[] args) {
-		DBServis servisDB = new DBServis();
+		DBUtil servisDB = new DBUtil();
 		EmployeeServes employeeServes = new EmployeeServes();
 		StationeryServes stationeryServes = new StationeryServes();
 
@@ -56,15 +56,6 @@ public class DBServis {
 		Double sum = employeeServes.getRusultCostOfStationery(employee);
 		System.out.println(sum);
 
-	}
-
-	private static final String USER_LOGIN = "root";
-	private static final String USER_PASSWORD = "135246";
-	private static final String MY_CONNECTION_URL = "jdbc:mysql://localhost:3306/office";
-
-	public static Connection getConnection() throws SQLException {
-		Connection con = DriverManager.getConnection(MY_CONNECTION_URL, USER_LOGIN, USER_PASSWORD);
-		return con;
 	}
 
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import db.DBUtil;
 import entities.Stationery;
 
 public class StationeryServes {
@@ -21,7 +22,7 @@ public class StationeryServes {
 
 	public void addStationery(String name, double cost) {
 		String sql = "INSERT INTO stationery(name,cost) VALUES(?,?) ";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, name);
@@ -41,7 +42,7 @@ public class StationeryServes {
 
 	public void addStationery(String name, double cost, String description) {
 		String sql = "INSERT INTO stationery(name,cost,description) VALUES(?,?,?) ";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, name);
@@ -62,7 +63,7 @@ public class StationeryServes {
 
 	public void deleteStationeryById(int stationery_id) {
 		String sql = "DELETE FROM stationery where id=?";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setInt(1, stationery_id);
@@ -88,7 +89,7 @@ public class StationeryServes {
 	public List<Stationery> getAllStationery() {
 		List<Stationery> list = new ArrayList<>();
 		String sql = "select * from stationery";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
@@ -114,7 +115,7 @@ public class StationeryServes {
 
 	public Stationery getStationeryById(int stationery_id) {
 		String sql = "select * from stationery where id=?";
-		try (Connection con = DBServis.getConnection()) {
+		try (Connection con = DBUtil.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, stationery_id);
 			try (ResultSet rs = ps.executeQuery()) {
