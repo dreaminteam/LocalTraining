@@ -41,14 +41,27 @@ public class Test {
 		beginner.setList(list);
 
 		BeginnerSetServis servis = new BeginnerSetServis();
+
 		servis.sortingByName(beginner);
 		System.out.println(beginner.toString());
+
+		servis.sortByNameByLambda(beginner);
+		System.out.println(beginner.toString());
+		System.out.println();
 
 		servis.sortingByCost(beginner);
 		System.out.println(beginner.toString());
 
+		servis.sortByCostByLambda(beginner);
+		System.out.println(beginner.toString());
+		System.out.println();
+
 		servis.sortingByNameAndCost(beginner);
 		System.out.println(beginner.toString());
+
+		servis.sortByNameAndCostByLambda(beginner);
+		System.out.println(beginner.toString());
+
 	}
 
 }

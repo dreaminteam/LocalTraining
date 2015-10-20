@@ -1,6 +1,8 @@
 package servises;
 
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import entities.BeginnerSet;
 import entities.Stationery;
@@ -39,6 +41,18 @@ public class BeginnerSetServis {
 				return o1.getCost().compareTo(o2.getCost());
 			}
 		});
+	}
+
+	public void sortByNameByLambda(BeginnerSet bSet) {
+		bSet.getList().sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+	}
+
+	public void sortByCostByLambda(BeginnerSet bSet) {
+		bSet.getList().sort((o1, o2) -> o1.getCost().compareTo(o2.getCost()));
+	}
+
+	public void sortByNameAndCostByLambda(BeginnerSet bSet) {
+		bSet.getList().sort(Comparator.comparing(Stationery::getName).thenComparing(Stationery::getCost));
 	}
 
 }
