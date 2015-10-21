@@ -3,15 +3,27 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupOfStudents<Subject> {
+public class GroupOfStudents<T extends Subject> {
 
 	private String name;
 	private List<Student> list;
+	private Subject subject;
 
-	public GroupOfStudents(String name, List<Student> list) {
+	public GroupOfStudents(T subject, String name) {
 		super();
+		this.subject = subject;
 		this.name = name;
-		this.list = list;
+		list = new ArrayList<>();
+
+	}
+
+	public void addMarkToStudent(Student student, double mark) {
+		if (!subject.isInt()) {
+			student.setMark(mark);
+			return;
+		}
+		student.setMark(mark);
+
 	}
 
 	/**
@@ -34,6 +46,13 @@ public class GroupOfStudents<Subject> {
 	 */
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * @return the subject
+	 */
+	public Subject getSubject() {
+		return subject;
 	}
 
 }

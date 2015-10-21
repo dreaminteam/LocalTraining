@@ -5,7 +5,8 @@ public class Student {
 	private String name;
 	private String surName;
 	private int age;
-	
+	private Number mark;
+		
 	
 	
 	
@@ -34,6 +35,20 @@ public class Student {
 	 */
 	public String getSurName() {
 		return surName;
+	}
+
+	/**
+	 * @return the mark
+	 */
+	public Number getMark() {
+		return mark;
+	}
+
+	/**
+	 * @param mark the mark to set
+	 */
+	public void setMark(Number mark) {
+		this.mark = mark;
 	}
 	
 	
