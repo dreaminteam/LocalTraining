@@ -1,16 +1,16 @@
-package servises;
+package by.epam.andrewzenov.servises;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import entities.Course;
-import entities.GroupOfStudents;
-import entities.JournalOfGroup;
-import entities.StudMark;
-import entities.Student;
-import entities.Subject;
+import by.epam.andrewzenov.entities.Course;
+import by.epam.andrewzenov.entities.GroupOfStudents;
+import by.epam.andrewzenov.entities.JournalOfGroup;
+import by.epam.andrewzenov.entities.StudMark;
+import by.epam.andrewzenov.entities.Student;
+import by.epam.andrewzenov.entities.Subject;
 
 public class StudentServis {
 
@@ -27,19 +27,10 @@ public class StudentServis {
 		return false;
 	}
 
-	public <E extends Number> void addMarkOfStudent(GroupOfStudents<Subject> group, Student student, E mark) {
-		if (!group.getSubject().isInt()) {
-			student.setMark((Double)mark);
-			return;
-		}
-		student.setMark((Integer) mark);
-		return;
+	public void sortAllMarkOfStudentInc(Student student, Course course) {
+		allMarkOfStudent(student, course).sort((o1, o2) -> o1.getMark().doubleValue() - o2.getMark().doubleValue());
 	}
 
-	public void sortAllMarkOfStudentInc(Student student, Course course){
-		allMarkOfStudent(student, course).sort((o1,o2)->o1.getMark()-o2.getMark());
-	}
-	
 	public StudMark getStudMark(Student student, JournalOfGroup journal) {
 		Optional<StudMark> result = journal.getListOfStudMark().stream()
 				.filter(StudMark -> StudMark.getStudent().equals(student)).findFirst();

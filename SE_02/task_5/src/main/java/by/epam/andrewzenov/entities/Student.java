@@ -1,11 +1,10 @@
-package entities;
+package by.epam.andrewzenov.entities;
 
 public class Student {
 
 	private String name;
 	private String surName;
 	private int numOfIdCard;
-
 
 	public Student(String name, String surName, int numOfIdCard) {
 		super();
@@ -14,18 +13,18 @@ public class Student {
 		this.numOfIdCard = numOfIdCard;
 	}
 
-	/**
-	 * @return the numOfIdCard
-	 */
+	public String getName() {
+		return name;
+	}
+
+	public String getSurName() {
+		return surName;
+	}
+
 	public int getNumOfIdCard() {
 		return numOfIdCard;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -36,11 +35,6 @@ public class Student {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -63,35 +57,6 @@ public class Student {
 		} else if (!getSurName().equals(other.getSurName()))
 			return false;
 		return true;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @return the surName
-	 */
-	public String getSurName() {
-		return surName;
-	}
-
-	/**
-	 * @return the mark
-	 */
-	public Number getMark() {
-		return mark;
-	}
-
-	/**
-	 * @param mark
-	 *            the mark to set
-	 */
-	public <T extends Number> void setMark(T mark) {
-		this.mark = mark;
 	}
 
 }

@@ -1,4 +1,4 @@
-package entities;
+package by.epam.andrewzenov.entities;
 
 import java.util.ArrayList;
 import java.util.List;
