@@ -1,39 +1,39 @@
 package by.epam.andrewzenov.entities;
 
-import java.sql.Time;
+import by.epam.andrewzenov.subjects.Subject;
 
-public class StudMark {
+public class StudMark<T extends Number> {
 
 	private Student student;
-	private GroupOfStudents group;
-	private Time date;
 	private Number mark;
+	private Subject subject;
 
-	public StudMark(Student student, GroupOfStudents group, Time date, Number mark) {
+	public StudMark(Student student, Subject<T> subject, Number mark) {
 		super();
 		this.student = student;
-		this.group = group;
-		this.date = date;
-		this.mark = (group.getSubject().getT())mark;
+		this.subject = subject;
+		this.mark = mark;
 	}
 
+	/**
+	 * @return the student
+	 */
 	public Student getStudent() {
 		return student;
 	}
 
-	public GroupOfStudents getGroup() {
-		return group;
-	}
-
-	public Time getDate() {
-		return date;
-	}
-
+	/**
+	 * @return the mark
+	 */
 	public Number getMark() {
-		if (mark.doubleValue() % 1 != 0) {
-			return (Double)mark;
-		} else {
-			return (Integer)mark;
+		return mark;
+	}
+
+	/**
+	 * @return the subject
+	 */
+	public Subject<T> getSubject() {
+		return subject;
 	}
 
 }

@@ -1,7 +1,9 @@
 package by.epam.andrewzenov.subjects;
 
+public class Algebra extends Subject<Double> {
 
-
-public class Algebra<T extends Number> {
+	public Algebra() {
+		super(Double.class);
+	}
 	
 }

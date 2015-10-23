@@ -1,19 +1,14 @@
 package by.epam.andrewzenov.subjects;
 
-import java.lang.reflect.Type;
+public abstract class Subject<T extends Number> {
 
-public class Subject<T extends Number> {
+	Class<T> clazz;
 
-	public Subject(Class gen) {
-		T = gen;
+	public Subject(Class<T> clazz) {
+		this.clazz = clazz;
 	}
 
-	Class T;
-
-
-	public static void main(String[] args) {
-		Subject<Double> s =new Subject<>(T5);
-		System.out.println(s.getT());
+	public Class<T> getClazz() {
+		return clazz;
 	}
-
 }
