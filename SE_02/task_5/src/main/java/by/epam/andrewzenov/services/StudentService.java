@@ -1,4 +1,4 @@
-package by.epam.andrewzenov.servises;
+package by.epam.andrewzenov.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import by.epam.andrewzenov.entities.StudMark;
 import by.epam.andrewzenov.entities.Student;
 import by.epam.andrewzenov.subjects.Subject;
 
-public class StudentServis {
+public class StudentService {
 
 	public Student createStudent(String name, String surName, int numOfIdCard) {
 		return new Student(name, surName, numOfIdCard);

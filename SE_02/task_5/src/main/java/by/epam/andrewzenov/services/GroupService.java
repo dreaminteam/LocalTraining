@@ -1,4 +1,4 @@
-package by.epam.andrewzenov.servises;
+package by.epam.andrewzenov.services;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import by.epam.andrewzenov.entities.GroupOfStudents;
 import by.epam.andrewzenov.entities.Student;
 import by.epam.andrewzenov.subjects.Subject;
 
-public class GroupServis {
+public class GroupService {
 
 	public GroupOfStudents createGroup(String name, Subject subject) {
 		return new GroupOfStudents(name, subject);

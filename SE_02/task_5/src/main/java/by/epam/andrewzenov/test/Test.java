@@ -1,15 +1,14 @@
 package by.epam.andrewzenov.test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import by.epam.andrewzenov.entities.Course;
 import by.epam.andrewzenov.entities.GroupOfStudents;
 import by.epam.andrewzenov.entities.StudMark;
 import by.epam.andrewzenov.entities.Student;
-import by.epam.andrewzenov.servises.GroupServis;
-import by.epam.andrewzenov.servises.StudentServis;
+import by.epam.andrewzenov.services.GroupService;
+import by.epam.andrewzenov.services.StudentService;
 import by.epam.andrewzenov.subjects.Algebra;
 import by.epam.andrewzenov.subjects.Mechanics;
 import by.epam.andrewzenov.subjects.Philosophy;
@@ -44,21 +43,21 @@ public class Test {
 		listOfStudents_2.add(stud4);
 		listOfStudents_2.add(stud5);
 		
-		GroupServis groupServis = new GroupServis();
-		GroupOfStudents groupMech = groupServis.createGroup("Mechanics", mechanics);
-		GroupOfStudents groupAlg = groupServis.createGroup("Algebra", algebra);
-		GroupOfStudents groupPhil = groupServis.createGroup("Philosophy", philosophy);
+		GroupService groupService=new GroupService();
+		GroupOfStudents groupMech = groupService.createGroup("Mechanics", mechanics);
+		GroupOfStudents groupAlg = groupService.createGroup("Algebra", algebra);
+		GroupOfStudents groupPhil = groupService.createGroup("Philosophy", philosophy);
 		
-		groupServis.setListOfStudents(groupMech, listOfStudents);
-		groupServis.setListOfStudents(groupAlg, listOfStudents);
-		groupServis.setListOfStudents(groupPhil, listOfStudents_2);
+		groupService.setListOfStudents(groupMech, listOfStudents);
+		groupService.setListOfStudents(groupAlg, listOfStudents);
+		groupService.setListOfStudents(groupPhil, listOfStudents_2);
 
 		Course course = new Course("1 kurs");
 		course.getListGroupsOfCourse().add(groupMech);
 		course.getListGroupsOfCourse().add(groupAlg);
 		course.getListGroupsOfCourse().add(groupPhil);
 
-		StudentServis studentServis = new StudentServis();
+		StudentService studentServis = new StudentService();
 		System.out.println(studentServis.addStudMarkToGroup(stud6, groupAlg, algebra, 7.0));
 		System.out.println(studentServis.addStudMarkToGroup(stud6, groupMech, mechanics, 9));
 		System.out.println(studentServis.addStudMarkToGroup(stud6, groupPhil, philosophy, 6.4));
