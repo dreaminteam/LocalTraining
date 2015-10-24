@@ -8,15 +8,19 @@ import by.epam.andrewzenov.subjects.Subject;
 public class GroupOfStudents {
 
 	private String name;
-	private Subject<Number> subject;
+	private Subject subject;
 	private List<Student> listOfStudent;
-	private List<StudMark> journalOfStudMark;
+	private List<StudMark> listStudMarkOfGroup;
 
-	public GroupOfStudents(String name, Subject<Number> subject) {
+	public GroupOfStudents(String name, Subject subject) {
 		this.name = name;
 		this.subject = subject;
 		this.listOfStudent = new ArrayList<>();
-		this.journalOfStudMark = new ArrayList<>();
+		this.listStudMarkOfGroup=new ArrayList<>();
+	}
+
+	public List<StudMark> getListStudMarkOfGroup() {
+		return listStudMarkOfGroup;
 	}
 
 	public String getName() {
@@ -35,8 +39,5 @@ public class GroupOfStudents {
 		this.listOfStudent = list;
 	}
 
-	public List<StudMark> getJournalOfStudMark() {
-		return journalOfStudMark;
-	}
 
 }

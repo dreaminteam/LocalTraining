@@ -11,4 +11,10 @@ public abstract class Subject<T extends Number> {
 	public Class<T> getClazz() {
 		return clazz;
 	}
+
+	@Override
+	public String toString() {
+		return getClass().getName().toString().substring(getClass().getPackage().getName().length() + 1);
+
+	}
 }

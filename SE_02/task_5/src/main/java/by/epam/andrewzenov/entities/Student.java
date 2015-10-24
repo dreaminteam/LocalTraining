@@ -59,4 +59,11 @@ public class Student {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("%s %s id:%s", name,surName,numOfIdCard);
+	}
+	
+	
+
 }

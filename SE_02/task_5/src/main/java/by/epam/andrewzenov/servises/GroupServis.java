@@ -1,22 +1,27 @@
 package by.epam.andrewzenov.servises;
 
-import java.util.Optional;
+import java.util.List;
 
-import by.epam.andrewzenov.entities.Course;
 import by.epam.andrewzenov.entities.GroupOfStudents;
 import by.epam.andrewzenov.entities.Student;
-import by.epam.andrewzenov.entities.Subject;
+import by.epam.andrewzenov.subjects.Subject;
 
 public class GroupServis {
 
-	public GroupOfStudents createGroup(T<E> subject, String name, Course course) {
-		GroupOfStudents<Subject> group = new GroupOfStudents<Subject>(subject, name);
-		course.getListGroupsOfCourse().add(group);
-		return group;
+	public GroupOfStudents createGroup(String name, Subject subject) {
+		return new GroupOfStudents(name, subject);
 	}
 
-	public void addStudentToGroup(GroupOfStudents<Subject> group, Student student) {
+	public void addStudentToGroup(GroupOfStudents group, Student student) {
 		group.getListOfStudent().add(student);
+	}
+
+	public List<Student> getListOfStudents(GroupOfStudents group) {
+		return group.getListOfStudent();
+	}
+
+	public void setListOfStudents(GroupOfStudents group, List<Student> list) {
+		group.setListOfStudent(list);
 	}
 
 }
