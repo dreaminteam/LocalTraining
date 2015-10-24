@@ -14,7 +14,7 @@ public abstract class Subject<T extends Number> {
 
 	@Override
 	public String toString() {
-		return getClass().getName().toString().substring(getClass().getPackage().getName().length() + 1);
+		return getClass().getSimpleName();
 
 	}
 }
