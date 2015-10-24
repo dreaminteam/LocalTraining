@@ -6,7 +6,7 @@ import by.epam.andrewzenov.annotations.Service;
 @Service(name = "UltraSuperSimpleService")
 public class SimpleService {
 	@Init
-	public void initService() {
+	private void initService() {
 		System.out.println("Run initService from SimpleService");
 	}
 
