@@ -58,9 +58,13 @@ public class Test {
 		course.getListGroupsOfCourse().add(groupPhil);
 
 		StudentService studentServis = new StudentService();
-		System.out.println(studentServis.addStudMarkToGroup(stud6, groupAlg, algebra, 7.0));
-		System.out.println(studentServis.addStudMarkToGroup(stud6, groupMech, mechanics, 9));
-		System.out.println(studentServis.addStudMarkToGroup(stud6, groupPhil, philosophy, 6.4));
+		StudMark sMarkAlg=studentServis.createStudMark(stud6, algebra, 7.0);
+		StudMark sMarkMech=studentServis.createStudMark(stud6, mechanics, 9);
+		StudMark sMarkPhil=studentServis.createStudMark(stud6, philosophy, 6.4);
+		
+		System.out.println(groupService.addStudMarkToGroup(groupAlg,sMarkAlg));
+		System.out.println(groupService.addStudMarkToGroup( groupMech,sMarkMech));
+		System.out.println(groupService.addStudMarkToGroup( groupPhil, sMarkPhil));
 		
 		List<StudMark> marksOfstud6=studentServis.allMarkOfStudent(stud6, course);
 		System.out.println(marksOfstud6.toString());

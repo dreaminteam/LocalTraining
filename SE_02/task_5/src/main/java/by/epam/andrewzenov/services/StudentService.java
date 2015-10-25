@@ -25,19 +25,8 @@ public class StudentService {
 		return false;
 	}
 
-	public <T extends Number> boolean addStudMarkToGroup(Student student, GroupOfStudents group, Subject<T> subject,
-			T mark) {
-		if (group.getSubject().getClazz() != subject.getClazz()) {
-			throw new IllegalArgumentException("Field GroupOfStudent.subject must be the same how argument subject");
-		}
-
-		if (!hasGroupStudent(student, group)) {
-			return false;
-		}
-
-		StudMark sMark = new StudMark(student, subject, mark);
-		group.getListStudMarkOfGroup().add(sMark);
-		return true;
+	public <T extends Number> StudMark createStudMark(Student student, Subject<T> subject, T mark) {
+		return new StudMark(student, subject, mark);
 	}
 
 	public void sortMarkOfStudentInc(List<StudMark> list) {
