@@ -8,11 +8,11 @@ import java.util.List;
 public class CrazyLogger {
 
 	private String name;
-	private StringBuilder container;
+	private StringBuilder logs;
 
 	public CrazyLogger(String name) {
 		this.name = name;
-		container = new StringBuilder();
+		logs = new StringBuilder();
 	}
 
 	private MyLog createMyLog(String message) {
@@ -20,7 +20,7 @@ public class CrazyLogger {
 	}
 
 	public void addMyLog(String message) {
-		container.append(createMyLog(message).toString());
+		logs.append(createMyLog(message).toString());
 	}
 
 	public List<String> searchLogs(int day, int mounth, int year) {
@@ -30,10 +30,10 @@ public class CrazyLogger {
 		int end = 0;
 		boolean flag = true;
 		do {
-			start = container.indexOf(forFind, start);
+			start = logs.indexOf(forFind, start);
 			if (start >= 0) {
-				end = container.indexOf(";", start);
-				String subStr = container.substring(start, end);
+				end = logs.indexOf(";", start);
+				String subStr = logs.substring(start, end);
 				result.add(subStr);
 				start = end;
 			} else {
@@ -46,7 +46,7 @@ public class CrazyLogger {
 
 	@Override
 	public String toString() {
-		return String.format("Name:%s, Logs:%s", name, container.toString());
+		return String.format("Name:%s, Logs:%s", name, logs.toString());
 	}
 
 	class MyLog {
