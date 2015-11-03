@@ -1,4 +1,4 @@
-package be.epam.andrewzenov.entities;
+package task_1.by.epam.andrewzenov.entities;
 
 public class KeyWord {
 
@@ -22,7 +22,7 @@ public class KeyWord {
 
 	@Override
 	public String toString() {
-		return String.format("KeyWord=%s(quantity %s)", keyWord,quantity);
+		return String.format("%s(%s)", keyWord,quantity);
 	}
 	
 	
