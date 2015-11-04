@@ -1,6 +1,7 @@
 package task_1.by.epam.andrewzenov.test;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.channels.ShutdownChannelGroupException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -52,12 +53,20 @@ public class Test {
 		final String pathUTF_16 = "file-utf-16.txt";
 		final String cod_utf_8 = "utf-8";
 		final String cod_utf_16 = "utf-16";
+		final String cod_c1251 = "US-ASCII";
 
-		byte[] inputUTF_8 = ReadWriteUtil.readFile(pathUTF_8, cod_utf_8);
-		System.out.println(Arrays.toString(inputUTF_8));
-		String out=new String(inputUTF_8, cod_utf_16);
-		System.out.println(out);
-		System.out.println(ReadWriteUtil.writeFile(pathUTF_16, inputUTF_8, cod_utf_16));
+		//byte[] inputUTF_8 = StreamUtil.readFile(pathUTF_8);
+		//System.out.println(Arrays.toString(inputUTF_8));
+		String out8=StreamUtil.readFile(pathUTF_8, cod_utf_8);
+		//byte[] byte16=out8.getBytes(cod_utf_16);
+		String out16=StreamUtil.readFile(pathUTF_8, cod_utf_16);
+		//System.out.println(Arrays.toString(byte16));
+		String out12=StreamUtil.readFile(pathUTF_8, cod_c1251);
+		System.out.println("out8: "+out8);
+		System.out.println("out16: "+out16);
+		System.out.println("out12: "+out12);
+		//System.out.println(ReadWriteUtil.writeFile(pathUTF_16, inputUTF_8, cod_utf_16));
+		
 
 		
 		

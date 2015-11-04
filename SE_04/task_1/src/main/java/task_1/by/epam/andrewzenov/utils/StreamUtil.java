@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +49,23 @@ public class StreamUtil {
 			System.out.println(e.getMessage());
 		}
 		return result;
+	}
+
+	public static String readFile(String pathName, String charsetName) {
+
+		StringBuilder result = new StringBuilder();
+		try (FileInputStream fis = new FileInputStream(pathName);
+				InputStreamReader isr = new InputStreamReader(fis, charsetName);) {
+			int symbol;
+			while ((symbol = isr.read()) != -1) {
+				result.append(symbol);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		return result.toString();
 	}
 
 	public static boolean writeFile(String pathName, byte[] source) {
