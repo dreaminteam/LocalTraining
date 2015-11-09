@@ -1,4 +1,4 @@
-package by.epam.andrewzenov.utils;
+package task1.by.epam.andrewzenov.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
