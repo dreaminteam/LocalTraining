@@ -1,31 +1,19 @@
 package task2.by.epam.andrewzenov.test;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
+import task2.by.epam.andrewzenov.entities.PropertySource;
 
 public class Test2 {
 
 	public static void main(String[] args) {
 
-		final String pathToRes = ".\\src\\main\\resources\\";
-		final String nameFile = "test.properties";
+		final String path = ".\\src\\main\\resources\\test.properties";
+		final String key = "question_1";
 
-		Properties properties = new Properties();
+		PropertySource pSource = new PropertySource(path);
 
-		try (FileInputStream fin = (new FileInputStream(pathToRes + nameFile))) {
-			properties.load(fin);
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
+		String value1 = pSource.getProperty(key);
+		System.out.println(value1);
 
-		System.out.println(properties.toString());
-		
-		String answ1=properties.getProperty("question_");
-		System.out.println(answ1);
 	}
 
 }

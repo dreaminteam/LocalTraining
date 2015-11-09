@@ -48,7 +48,7 @@ public class FileUtil {
 			System.out.println("File was created.");
 			return true;
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -79,10 +79,10 @@ public class FileUtil {
 			}
 			bw.write(textForAppending);
 		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 
@@ -132,7 +132,7 @@ public class FileUtil {
 			}
 			return false;
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}

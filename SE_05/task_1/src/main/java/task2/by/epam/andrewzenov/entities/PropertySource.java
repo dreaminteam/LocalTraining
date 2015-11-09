@@ -9,17 +9,22 @@ public class PropertySource {
 
 	private Properties properties;
 
-	public static void main(String[] args) throws FileNotFoundException, IOException {
-
-		PropertySource prop = new PropertySource("ddf");
-		System.out.println(prop.toString());
-	}
-
-	public PropertySource(String path) throws FileNotFoundException, IOException {
+	public PropertySource(String path) {
 		properties = new Properties();
 		try (FileInputStream fin = (new FileInputStream(path))) {
 			properties.load(fin);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+	}
+
+	public String getProperty(String key) {
+		if (!properties.containsKey(key)) {
+			throw new IllegalArgumentException(String.format("%s not found.", key));
+		}
+		return properties.getProperty(key);
 	}
 
 }
