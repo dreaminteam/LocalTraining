@@ -10,33 +10,6 @@ import java.io.IOException;
 
 public class FileUtil {
 
-	static final String MY_PATH = "./src/main/resources/";
-	static final String TEXT_FOR_APPENDING = "new test\n";
-
-	public static void main(String... args) {
-		// showDirectory(MY_PATH);
-
-		// createDir(MY_PATH+"newDir");
-		// createDir(MY_PATH+"newDir"+"/workdirectory");
-
-		// createFile(MY_PATH+"newDir"+"/file1");
-		// createFile(MY_PATH+"newDir"+"/file2");
-		// createFile(MY_PATH+"newDir"+"/file3");
-		// createFile(MY_PATH+"newDir"+"/file3");
-		// showDirectory(MY_PATH+"newDir");
-
-//		 createFile(MY_PATH+"newDir"+"/workdirectory"+"/file");
-//		 appendToFile(MY_PATH + "newDir" + "/workdirectory" + "/file",
-//		 TEXT_FOR_APPENDING);
-//		 showDirectory(MY_PATH+"newDir"+"/workdirectory");
-
-//		 delete(MY_PATH + "newDir" + "/workdirectory" + "/file");
-//		 showDirectory(MY_PATH+"newDir"+"/workdirectory");
-		
-//		 delete(MY_PATH + "newDir");
-//		 showDirectory(MY_PATH);
-	}
-
 	public static void showDirectory(String pathDirectory) {
 
 		File root = new File(pathDirectory);
@@ -82,12 +55,10 @@ public class FileUtil {
 
 	public static boolean createDir(String path) {
 		File file = new File(path);
-
 		if (file.exists() && file.isDirectory()) {
 			System.out.println(String.format("Directory '%s' is exists.", path));
 			return false;
 		}
-
 		file.mkdirs();
 		System.out.println("Directory was created.");
 		return true;
@@ -124,28 +95,33 @@ public class FileUtil {
 	}
 
 	public static boolean delete(String pathName) {
-
 		File file = new File(pathName);
 		if (!file.exists()) {
 			System.out.println(String.format("File or directory '%s' not found.", pathName));
 			return false;
 		}
-		if (file.isDirectory() && file.listFiles() != null) {
-			if (file.listFiles().length > 0) {
-				System.out.println(String
-						.format("Directory '%s' has inner folders and files. For to continue enter 'y'", pathName));
-				if (!equelsInput('y')) {
-					System.out.println("Action canceled.");
-					return false;
-				}
-				File[] list = file.listFiles();
-				for (File f : list) {
-					delete(f.getAbsolutePath());
-				}
+		if (file.listFiles() == null) {
+			file.delete();
+			return true;
+		}
+		System.out.println(
+				String.format("Directory '%s' has inner folders or files. For to continue enter 'y'", pathName));
+		if (equelsInput('y')) {
+			del(file);
+			return true;
+		}
+		System.out.println("Action canceled.");
+		return false;
+	}
+
+	private static void del(File file) {
+		if (file.listFiles() != null) {
+			File[] list = file.listFiles();
+			for (File f : list) {
+				del(f);
 			}
 		}
 		file.delete();
-		return true;
 	}
 
 	private static boolean equelsInput(char symbol) {
