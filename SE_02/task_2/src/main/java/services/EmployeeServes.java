@@ -32,7 +32,6 @@ public class EmployeeServes {
 	public void addEmployee(String name, String surName) {
 		String sql = "INSERT INTO employee(name,surname,position) VALUES(?,?) ";
 		try (Connection con = DBUtil.getConnection()) {
-			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, name);
 				ps.setString(2, surName);
@@ -42,8 +41,6 @@ public class EmployeeServes {
 				con.setAutoCommit(true);
 				ex.printStackTrace();
 			}
-			con.commit();
-			con.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +49,6 @@ public class EmployeeServes {
 	public void addEmployee(String name, String surName, String position) {
 		String sql = "INSERT INTO employee(name,surname,position) VALUES(?,?,?) ";
 		try (Connection con = DBUtil.getConnection()) {
-			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, name);
 				ps.setString(2, surName);
@@ -63,8 +59,6 @@ public class EmployeeServes {
 				con.setAutoCommit(true);
 				ex.printStackTrace();
 			}
-			con.commit();
-			con.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -73,7 +67,6 @@ public class EmployeeServes {
 	public void addStationeryOnEmployee(int employee_id, int stationery_id) {
 		String sql = "INSERT INTO employee_has_stationery VALUES(?,?)";
 		try (Connection con = DBUtil.getConnection()) {
-			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setInt(1, employee_id);
 				ps.setInt(2, stationery_id);
@@ -83,8 +76,6 @@ public class EmployeeServes {
 				con.setAutoCommit(true);
 				ex.printStackTrace();
 			}
-			con.commit();
-			con.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,7 +84,6 @@ public class EmployeeServes {
 	public void updatePositionOfEmployee(int employee_id, String newPosition) {
 		String sql = "UPDATE employee SET position=? where id=?";
 		try (Connection con = DBUtil.getConnection()) {
-			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setString(1, newPosition);
 				ps.setInt(2, employee_id);
@@ -103,8 +93,6 @@ public class EmployeeServes {
 				con.setAutoCommit(true);
 				ex.printStackTrace();
 			}
-			con.commit();
-			con.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -113,7 +101,6 @@ public class EmployeeServes {
 	public void deleteEmployeeById(int employee_id) {
 		String sql = "DELETE FROM employee where id=?";
 		try (Connection con = DBUtil.getConnection()) {
-			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setInt(1, employee_id);
 				ps.executeUpdate();
@@ -122,8 +109,6 @@ public class EmployeeServes {
 				con.setAutoCommit(true);
 				ex.printStackTrace();
 			}
-			con.commit();
-			con.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -214,7 +199,6 @@ public class EmployeeServes {
 	public void deleteStationeryOfEmployee(int employee_id, int stationery_id) {
 		String sql = "DELETE FROM employee_has_stationery where employee_id=? and stationery_id=?";
 		try (Connection con = DBUtil.getConnection()) {
-			con.setAutoCommit(false);
 			try (PreparedStatement ps = con.prepareStatement(sql)) {
 				ps.setInt(1, employee_id);
 				ps.setInt(2, stationery_id);
@@ -224,8 +208,6 @@ public class EmployeeServes {
 				con.setAutoCommit(true);
 				ex.printStackTrace();
 			}
-			con.commit();
-			con.setAutoCommit(true);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
