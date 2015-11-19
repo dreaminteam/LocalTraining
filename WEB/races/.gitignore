@@ -1,0 +1,9 @@
+services/.classpath
+dataaccess/.classpath
+.settings/
+dataaccess/.project
+services/.project
+webapp/.gitignore
+webapp/.project
+webapp/.classpath
+.project
