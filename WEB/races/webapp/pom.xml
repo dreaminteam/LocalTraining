@@ -14,7 +14,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>by.training.java.grodno.az</groupId>
-			<artifactId>services</artifactId>
+			<artifactId>service</artifactId>
 		</dependency>
 	</dependencies>
+
 </project>
