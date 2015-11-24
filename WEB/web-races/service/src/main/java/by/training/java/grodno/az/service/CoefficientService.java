@@ -1,5 +1,7 @@
 package by.training.java.grodno.az.service;
 
-public interface CoefficientService {
+import by.training.java.grodno.az.data.model.Coefficient;
+
+public interface CoefficientService extends AbstractService<Coefficient>{
 
 }

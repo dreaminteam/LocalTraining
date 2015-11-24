@@ -2,12 +2,11 @@ package by.training.java.grodno.az.data.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
-import by.training.java.grodno.az.data.dao.Dao;
 import by.training.java.grodno.az.data.dao.JockeyDao;
 import by.training.java.grodno.az.data.model.Jockey;
 
 @Repository
-public class JockeyDaoImpl implements Dao<Jockey>,JockeyDao {
+public class JockeyDaoImpl implements JockeyDao {
 
 	@Override
 	public Jockey get(int id) {

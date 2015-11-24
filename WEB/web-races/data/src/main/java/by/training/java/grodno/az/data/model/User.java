@@ -2,7 +2,7 @@ package by.training.java.grodno.az.data.model;
 
 import java.util.Date;
 
-public class User implements IPersistent {
+public class User{
 
 	private int id;
 	private String login;
@@ -12,12 +12,12 @@ public class User implements IPersistent {
 	private Date createDate;
 	private Date endDate;
 
-	@Override
+
 	public int getId() {
 		return id;
 	}
 
-	@Override
+
 	public void setId(int id) {
 		this.id = id;
 	}

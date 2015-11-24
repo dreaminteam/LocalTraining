@@ -2,12 +2,11 @@ package by.training.java.grodno.az.data.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
-import by.training.java.grodno.az.data.dao.Dao;
 import by.training.java.grodno.az.data.dao.RateDao;
 import by.training.java.grodno.az.data.model.Rate;
 
 @Repository
-public class RateDaoImpl implements Dao<Rate>, RateDao {
+public class RateDaoImpl implements RateDao {
 
 	@Override
 	public Rate get(int id) {

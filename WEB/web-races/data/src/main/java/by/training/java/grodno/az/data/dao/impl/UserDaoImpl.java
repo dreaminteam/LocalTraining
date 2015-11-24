@@ -6,25 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import by.training.java.grodno.az.data.dao.Dao;
 import by.training.java.grodno.az.data.dao.UserDao;
 import by.training.java.grodno.az.data.dao.mapper.UserMapper;
 import by.training.java.grodno.az.data.model.User;
 
 @Repository
-public class UserDaoImpl implements Dao<User>, UserDao {
+public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public User get(int id) {
-		String sql="select * from user where id=?";
-		return jdbcTemplate.queryForObject(sql,
-				new Object[] { id }, new UserMapper());
+		String sql = "select * from user where id=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] { id }, new UserMapper());
 	}
-	
-	
 
 	@Override
 	public void insert(User user) {

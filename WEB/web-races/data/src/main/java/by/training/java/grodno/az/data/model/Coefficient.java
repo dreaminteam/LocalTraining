@@ -38,6 +38,16 @@ public class Coefficient implements IPersistent{
 	public void setRacingLine(RacingLine racingLine) {
 		this.racingLine = racingLine;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Coefficient [id=" + id + ", value=" + value + ", rateLine=" + rateLine + ", racingLine=" + racingLine
+				+ "]";
+	}
+	
 	
 	
 }

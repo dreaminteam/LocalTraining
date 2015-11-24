@@ -9,9 +9,7 @@
 	    http://www.springframework.org/schema/tx
 	    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<import resource="classpath:spring-db-context.xml" />
-
-	<import resource="classpath:data-spring-context.xml" />
+	
 	<import resource="classpath:service-spring-context.xml" />
 
 </beans>

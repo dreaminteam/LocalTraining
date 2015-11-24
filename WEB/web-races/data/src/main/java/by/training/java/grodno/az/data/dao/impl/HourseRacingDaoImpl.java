@@ -2,12 +2,11 @@ package by.training.java.grodno.az.data.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
-import by.training.java.grodno.az.data.dao.Dao;
 import by.training.java.grodno.az.data.dao.HourseRacingDao;
 import by.training.java.grodno.az.data.model.HourseRacing;
 
 @Repository
-public class HourseRacingDaoImpl implements Dao<HourseRacing>,HourseRacingDao {
+public class HourseRacingDaoImpl implements HourseRacingDao {
 
 	@Override
 	public HourseRacing get(int id) {

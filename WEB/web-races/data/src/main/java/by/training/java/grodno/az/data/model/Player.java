@@ -5,6 +5,7 @@ public class Player extends User {
 	private int id;
 	private String email;
 	private Double balance;
+	private User user;
 
 	public int getId() {
 		return id;
@@ -29,4 +30,23 @@ public class Player extends User {
 	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Player [id=" + id + ", email=" + email + ", balance=" + balance + ", user=" + user + "]";
+	}
+
 }
