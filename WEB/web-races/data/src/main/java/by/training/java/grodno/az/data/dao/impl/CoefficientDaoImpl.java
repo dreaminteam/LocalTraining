@@ -6,7 +6,7 @@ import by.training.java.grodno.az.data.dao.CoefficientDao;
 import by.training.java.grodno.az.data.model.Coefficient;
 
 @Repository
-public class CoefficientDaoImpl extends AbstractDaoImpl< Coefficient> implements CoefficientDao{
+public class CoefficientDaoImpl extends GenericDao< Coefficient> implements CoefficientDao{
 
 	
 	

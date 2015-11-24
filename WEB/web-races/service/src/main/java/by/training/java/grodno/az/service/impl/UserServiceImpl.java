@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.UserDao;
+import by.training.java.grodno.az.data.dao.impl.GenericDao;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends GenericDao<User> implements UserService {
 
 	@Autowired
 	private UserDao userDao;
@@ -28,9 +29,6 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-	public User get(int id) {
-		return userDao.get(id);
-	}
+
 
 }

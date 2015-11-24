@@ -1,8 +1,6 @@
 package by.training.java.grodno.az.data.dao;
 
-import by.training.java.grodno.az.data.model.IPersistent;
-
-public interface AbstractDao<T> {
+public interface Dao<T> {
 
 	T get(int id);
 	

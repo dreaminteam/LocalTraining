@@ -29,9 +29,9 @@ public class UserRegisterPage {
 		
 		
 		
-		PlayerService playerBean=aContext.getBean(PlayerService.class);
-		Player player=playerBean.getById(1);
-		System.out.println(player.toString());
+//		PlayerService playerBean=aContext.getBean(PlayerService.class);
+//		Player player=playerBean.getById(1);
+//		System.out.println(player.toString());
 
 	}
 }

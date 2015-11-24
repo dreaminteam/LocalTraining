@@ -2,6 +2,6 @@ package by.training.java.grodno.az.data.dao;
 
 import by.training.java.grodno.az.data.model.Jockey;
 
-public interface JockeyDao extends AbstractDao<Jockey>{
+public interface JockeyDao extends Dao<Jockey>{
 
 }
