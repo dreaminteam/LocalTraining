@@ -1,7 +1,7 @@
 package by.training.java.grodno.az.data.model;
 
-public class RateLine implements IPersistent{
-
+public class RateLine extends AbstractEntity{
+	
 	private int id;
 	private String name;
 	

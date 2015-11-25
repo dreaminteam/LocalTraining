@@ -4,7 +4,7 @@ public interface Dao<T> {
 
 	T get(int id);
 	
-	void insert(T persistent);
+	int insert(T persistent);
 	
 	void update(T persistent);
 	

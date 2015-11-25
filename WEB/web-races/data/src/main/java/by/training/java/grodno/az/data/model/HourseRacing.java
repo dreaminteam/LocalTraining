@@ -2,7 +2,7 @@ package by.training.java.grodno.az.data.model;
 
 import java.time.LocalDateTime;
 
-public class HourseRacing implements IPersistent{
+public class HourseRacing  extends AbstractEntity{
 
 	private int id;
 	private String title;

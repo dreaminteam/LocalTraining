@@ -1,15 +1,10 @@
 package by.training.java.grodno.az.webapp;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import java.util.Date;
 
-import by.training.java.grodno.az.data.model.Coefficient;
-import by.training.java.grodno.az.data.model.Employee;
-import by.training.java.grodno.az.data.model.Player;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import by.training.java.grodno.az.data.model.User;
-import by.training.java.grodno.az.service.CoefficientService;
-import by.training.java.grodno.az.service.EmployeeService;
-import by.training.java.grodno.az.service.PlayerService;
 import by.training.java.grodno.az.service.UserService;
 
 public class UserRegisterPage {
@@ -18,10 +13,25 @@ public class UserRegisterPage {
 
 		ClassPathXmlApplicationContext aContext = new ClassPathXmlApplicationContext("spring-context.xml");
 
+		User p = new User();
+//	        p.setLogin("login4");
+//	        p.setPassword("password");
+//	        p.setFirstName("firstName");
+//	        p.setLastName("lastName");
+//	        p.setCreateDate(new Date());
+		
 		UserService bean = aContext.getBean(UserService.class);
-		// bean.insert("log2", "pas1", "fName", "lName");
-		User user = bean.get(2);
+		User user=bean.get(1);
 		System.out.println(user);
+		user.setLogin("newLogin");
+		user.setCreateDate(new Date());
+		bean.update(user);
+		System.out.println(user);
+//		bean.insert(p);
+//		// bean.insert("log2", "pas1", "fName", "lName");
+//		User user = bean.get(1);
+//		System.out.println(user);
+		System.out.println(true);
 		
 //		EmployeeService b2=aContext.getBean(EmployeeService.class);
 //		Employee e=b2.getById(1);

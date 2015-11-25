@@ -1,6 +1,6 @@
 package by.training.java.grodno.az.data.model;
 
-public class RacingLine implements IPersistent{
+public class RacingLine extends AbstractEntity{
 	
 	private int id;
 	private HourseRacing hourseRacing;

@@ -1,6 +1,6 @@
 package by.training.java.grodno.az.data.model;
 
-public class Coefficient implements IPersistent{
+public class Coefficient extends AbstractEntity{
 
 	private int id;
 	private double value;

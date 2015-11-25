@@ -1,6 +1,6 @@
 package by.training.java.grodno.az.data.model;
 
-public class Jockey implements IPersistent{
+public class Jockey extends AbstractEntity{
 
 	private int id;
 	private String firstName;

@@ -1,6 +1,6 @@
 package by.training.java.grodno.az.data.model;
 
-public class Hourse implements IPersistent{
+public class Hourse  extends AbstractEntity{
 
 	private int id;
 	private String name;

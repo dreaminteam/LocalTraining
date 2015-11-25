@@ -1,6 +1,6 @@
 package by.training.java.grodno.az.data.model;
 
-public class Rate implements IPersistent{
+public class Rate extends AbstractEntity{
 
 	private int id;
 	private double value;

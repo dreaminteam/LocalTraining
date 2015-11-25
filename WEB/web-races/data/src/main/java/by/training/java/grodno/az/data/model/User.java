@@ -2,7 +2,7 @@ package by.training.java.grodno.az.data.model;
 
 import java.util.Date;
 
-public class User{
+public class User extends AbstractEntity{
 
 	private int id;
 	private String login;

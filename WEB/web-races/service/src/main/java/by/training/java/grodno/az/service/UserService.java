@@ -6,6 +6,8 @@ public interface UserService {
 
 	User get(int id);
 
-	void insert(String login, String password, String first_name, String last_name);
+	int insert(User u);
+
+	void update(User user);
 
 }
