@@ -1,5 +1,7 @@
 package by.training.java.grodno.az.service;
 
-public interface RateLineService {
+import by.training.java.grodno.az.data.model.RateLine;
+
+public interface RateLineService extends IService<RateLine> {
 
 }

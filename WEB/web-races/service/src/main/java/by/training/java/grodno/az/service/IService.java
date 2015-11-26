@@ -1,17 +1,19 @@
 package by.training.java.grodno.az.service;
 
-import by.training.java.grodno.az.data.model.IPersistent;
+import by.training.java.grodno.az.data.model.AbstractEntity;
 
-public interface IService<T extends IPersistent> {
-	
-	T get(int id);
-	
-	void insert(T persistent);
+public interface IService<T extends AbstractEntity> {
 
-	void saveOrupdate(T persistent);
+	T getById(int id);
+
+	int insert(T entity);
 	
+	void update(T entity);
+
+	void saveOrupdate(T entity);
+
 	void delete(int id);
-	
-	void delete(T persistent);
+
+	void delete(T entity);
 
 }

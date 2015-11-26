@@ -1,15 +1,17 @@
 package by.training.java.grodno.az.data.dao;
 
-public interface Dao<T> {
+import by.training.java.grodno.az.data.model.AbstractEntity;
+
+public interface Dao<T extends AbstractEntity> {
 
 	T get(int id);
-	
-	int insert(T persistent);
-	
-	void update(T persistent);
-	
+
+	int insert(T entity);
+
+	void update(T entity);
+
 	void delete(int id);
-	
-	void delete(T persistent);
-	
+
+	void delete(T entity);
+
 }

@@ -1,12 +1,9 @@
 package by.training.java.grodno.az.service.impl;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.UserDao;
-import by.training.java.grodno.az.data.dao.impl.GenericDao;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 
@@ -15,26 +12,39 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Override
-	public User get(int id) {
+	public User getById(int id) {
 		return userDao.get(id);
 	}
 
 	@Override
-	public int insert(User u) {
-		return userDao.insert(u);
+	public int insert(User entity) {
+		return userDao.insert(entity);
 	}
 
 	@Override
-	public void update(User user) {
-		userDao.update(user);
-		
+	public void update(User entity) {
+		userDao.update(entity);
 	}
 
+	@Override
+	public void saveOrupdate(User entity) {
+		if (userDao.get(entity.getId()) != null) {
+			userDao.update(entity);
+		} else {
+			userDao.insert(entity);
+		}
+	}
 
-	
+	@Override
+	public void delete(int id) {
+		userDao.delete(id);
+	}
 
-
+	@Override
+	public void delete(User entity) {
+		userDao.delete(entity);
+	}
 
 }

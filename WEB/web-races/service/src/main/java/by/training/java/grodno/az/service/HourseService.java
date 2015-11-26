@@ -1,5 +1,7 @@
 package by.training.java.grodno.az.service;
 
-public interface HourseService {
+import by.training.java.grodno.az.data.model.Hourse;
+
+public interface HourseService extends IService<Hourse> {
 
 }

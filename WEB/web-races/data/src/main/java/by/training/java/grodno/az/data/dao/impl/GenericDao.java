@@ -3,10 +3,7 @@ package by.training.java.grodno.az.data.dao.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,28 +28,23 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	public T get(int id) {
 		String sql = "select * from " + tableName + " where id=?";
 		T result = null;
-
 		result = (T) jdbcTemplate.queryForObject(sql, new Object[] { id },
 				new BeanPropertyRowMapper<T>(getGenericType()));
-
 		return result;
 	}
 
 	@Override
 	public int insert(T entity) {
 		SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-
 		jdbcInsert.withTableName(tableName).usingGeneratedKeyColumns("id");
-
 		Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(getMapAtributes(entity)));
-
 		return key.intValue();
 	}
 
 	@Override
 	public void update(T entity) {
 
-		String sql = "update " + tableName + " set " + mapToUpdate(getMapAtributes(entity)) + " where id=?";
+		String sql = "update " + tableName + " set " + forSetToSql(getMapAtributes(entity)) + " where id=?";
 		jdbcTemplate.update(sql, new Object[] { entity.getId() });
 	}
 
@@ -92,7 +84,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		return result;
 	}
 
-	private String nameDBField(String source) {
+	private String getNameDBField(String source) {
 		StringBuilder sb = new StringBuilder();
 		for (int index = 0; index < source.length(); index++) {
 			char c = source.charAt(index);
@@ -111,10 +103,10 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		return sb.toString();
 	}
 
-	private String mapToUpdate(Map<String, Object> mapSource) {
+	private String forSetToSql(Map<String, Object> mapSource) {
 		Map<String, Object> map = new HashMap<>();
 		for (Map.Entry<String, Object> entry : mapSource.entrySet()) {
-			String key = nameDBField(entry.getKey());
+			String key = getNameDBField(entry.getKey());
 			if (!key.contains("Date")) {
 				map.put(key, String.format("'%s'", entry.getValue()));
 			}
