@@ -1,10 +1,6 @@
 package by.training.java.grodno.az.data.model;
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
 
 public class User extends AbstractEntity {
 
@@ -57,13 +53,7 @@ public class User extends AbstractEntity {
 	}
 
 	public Date getCreateDate() {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String date=formatter.format(createDate);
-		
 		return createDate;
-
-		
-
 	}
 
 	public void setCreateDate(Date createDate) {
@@ -78,11 +68,6 @@ public class User extends AbstractEntity {
 		this.endDate = endDate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName

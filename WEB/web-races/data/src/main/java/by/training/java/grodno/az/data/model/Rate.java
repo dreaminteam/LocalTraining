@@ -1,12 +1,12 @@
 package by.training.java.grodno.az.data.model;
 
-public class Rate extends AbstractEntity{
+public class Rate extends AbstractEntity {
 
 	private int id;
 	private double value;
-	private Player player;
-	private RateType rateType;
-	private Coefficient coefficient;
+	private int playerId;
+	private int rateTypeId;
+	private int coefficientId;
 
 	public int getId() {
 		return id;
@@ -24,28 +24,34 @@ public class Rate extends AbstractEntity{
 		this.value = value;
 	}
 
-	public Player getPlayer() {
-		return player;
+	public int getPlayerId() {
+		return playerId;
 	}
 
-	public void setPlayer(Player player) {
-		this.player = player;
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
 	}
 
-	public RateType getRateType() {
-		return rateType;
+	public int getRateTypeId() {
+		return rateTypeId;
 	}
 
-	public void setRateType(RateType rateType) {
-		this.rateType = rateType;
+	public void setRateTypeId(int rateTypeId) {
+		this.rateTypeId = rateTypeId;
 	}
 
-	public Coefficient getCoefficient() {
-		return coefficient;
+	public int getCoefficientId() {
+		return coefficientId;
 	}
 
-	public void setCoefficient(Coefficient coefficient) {
-		this.coefficient = coefficient;
+	public void setCoefficientId(int coefficientId) {
+		this.coefficientId = coefficientId;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Rate [id=" + id + ", value=" + value + ", playerId=" + playerId + ", rateTypeId=" + rateTypeId
+				+ ", coefficientId=" + coefficientId + "]";
+	}
+
 }

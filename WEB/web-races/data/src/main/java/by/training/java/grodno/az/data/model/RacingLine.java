@@ -1,10 +1,10 @@
 package by.training.java.grodno.az.data.model;
 
-public class RacingLine extends AbstractEntity{
-	
+public class RacingLine extends AbstractEntity {
+
 	private int id;
-	private HourseRacing hourseRacing;
-	private Participant participant;
+	private int hourseRacingId;
+	private int participantId;
 	private int result;
 
 	public int getId() {
@@ -15,20 +15,20 @@ public class RacingLine extends AbstractEntity{
 		this.id = id;
 	}
 
-	public HourseRacing gethRacing() {
-		return hourseRacing;
+	public int getHourseRacingId() {
+		return hourseRacingId;
 	}
 
-	public void sethRacing(HourseRacing hRacing) {
-		this.hourseRacing = hRacing;
+	public void setHourseRacingId(int hourseRacingId) {
+		this.hourseRacingId = hourseRacingId;
 	}
 
-	public Participant getParticipant() {
-		return participant;
+	public int getParticipantId() {
+		return participantId;
 	}
 
-	public void setParticipant(Participant participant) {
-		this.participant = participant;
+	public void setParticipantId(int participantId) {
+		this.participantId = participantId;
 	}
 
 	public int getResult() {
@@ -37,6 +37,12 @@ public class RacingLine extends AbstractEntity{
 
 	public void setResult(int result) {
 		this.result = result;
+	}
+
+	@Override
+	public String toString() {
+		return "RacingLine [id=" + id + ", hourseRacingId=" + hourseRacingId + ", participantId=" + participantId
+				+ ", result=" + result + "]";
 	}
 
 }

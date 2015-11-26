@@ -4,8 +4,8 @@ public class Coefficient extends AbstractEntity{
 
 	private int id;
 	private double value;
-	private RateLine rateLine;
-	private RacingLine racingLine;
+	private int rateLineId;
+	private int racingLineId;
 
 	public int getId() {
 		return id;
@@ -23,20 +23,20 @@ public class Coefficient extends AbstractEntity{
 		this.value = value;
 	}
 
-	public RateLine getRateLine() {
-		return rateLine;
+	public int getRateLineId() {
+		return rateLineId;
 	}
 
-	public void setRateLine(RateLine rateLine) {
-		this.rateLine = rateLine;
+	public void setRateLineId(int rateLineId) {
+		this.rateLineId = rateLineId;
 	}
 
-	public RacingLine getRacingLine() {
-		return racingLine;
+	public int getRacingLineId() {
+		return racingLineId;
 	}
 
-	public void setRacingLine(RacingLine racingLine) {
-		this.racingLine = racingLine;
+	public void setRacingLineId(int racingLineId) {
+		this.racingLineId = racingLineId;
 	}
 
 	/* (non-Javadoc)
@@ -44,9 +44,11 @@ public class Coefficient extends AbstractEntity{
 	 */
 	@Override
 	public String toString() {
-		return "Coefficient [id=" + id + ", value=" + value + ", rateLine=" + rateLine + ", racingLine=" + racingLine
-				+ "]";
+		return "Coefficient [id=" + id + ", value=" + value + ", rateLineId=" + rateLineId + ", racingLineId="
+				+ racingLineId + "]";
 	}
+
+	
 	
 	
 	

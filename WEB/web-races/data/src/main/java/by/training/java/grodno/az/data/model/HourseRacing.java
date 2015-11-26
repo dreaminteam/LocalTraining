@@ -1,12 +1,12 @@
 package by.training.java.grodno.az.data.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
-public class HourseRacing  extends AbstractEntity{
+public class HourseRacing extends AbstractEntity {
 
 	private int id;
 	private String title;
-	private LocalDateTime date;
+	private Date date;
 
 	public int getId() {
 		return id;
@@ -23,13 +23,13 @@ public class HourseRacing  extends AbstractEntity{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	public LocalDateTime getDate() {
+
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 }

@@ -1,10 +1,10 @@
 package by.training.java.grodno.az.data.model;
 
-public class Participant extends AbstractEntity{
+public class Participant extends AbstractEntity {
 
 	private int id;
-	private Hourse hourse;
-	private Jockey jockey;
+	private int hourseId;
+	private int jockeyId;
 
 	public int getId() {
 		return id;
@@ -14,20 +14,25 @@ public class Participant extends AbstractEntity{
 		this.id = id;
 	}
 
-	public Hourse getHourse() {
-		return hourse;
+	public int getHourseId() {
+		return hourseId;
 	}
 
-	public void setHourse(Hourse hourse) {
-		this.hourse = hourse;
+	public void setHourseId(int hourseId) {
+		this.hourseId = hourseId;
 	}
 
-	public Jockey getJockey() {
-		return jockey;
+	public int getJockeyId() {
+		return jockeyId;
 	}
 
-	public void setJockey(Jockey jockey) {
-		this.jockey = jockey;
+	public void setJockeyId(int jockeyId) {
+		this.jockeyId = jockeyId;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Participant [id=" + id + ", hourseId=" + hourseId + ", jockeyId=" + jockeyId + "]";
+	}
+
 }
