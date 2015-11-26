@@ -27,13 +27,6 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 
 	private String tableName = getGenericType().getSimpleName();
 
-	private Class<T> getGenericType() {
-		@SuppressWarnings("unchecked")
-		Class<T> classOfObjectClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
-				.getActualTypeArguments()[0];
-		return classOfObjectClass;
-	}
-
 	@Override
 	public T get(int id) {
 		String sql = "select * from " + tableName + " where id=?";
@@ -58,12 +51,8 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 
 	@Override
 	public void update(T entity) {
-		String table = String.format("%s(%s)", tableName, fieldValauToUpdate(entity).get(0));
-		String values = String.format("%s(%s)", tableName, fieldValauToUpdate(entity).get(1));
-		String sql = "insert into " + table + " " + values + " where id=?";
-		System.out.println("******************");
-		System.out.println(sql);
-		System.out.println("******************");
+
+		String sql = "update " + tableName + " set " + mapToUpdate(getMapAtributes(entity)) + " where id=?";
 		jdbcTemplate.update(sql, new Object[] { entity.getId() });
 	}
 
@@ -79,6 +68,13 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		jdbcTemplate.update(sql, new Object[] { entity.getId() });
 	}
 
+	private Class<T> getGenericType() {
+		@SuppressWarnings("unchecked")
+		Class<T> classOfObjectClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
+				.getActualTypeArguments()[0];
+		return classOfObjectClass;
+	}
+
 	private Map<String, Object> getMapAtributes(T entity) {
 		Map<String, Object> result = new HashMap<>();
 		Method[] methods = entity.getClass().getMethods();
@@ -86,19 +82,17 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 			if (m.getName().indexOf("get") == 0 && m.getName() != "getClass" && m.getName() != "getId") {
 				String str = m.getName();
 				try {
-					result.put(getFieldName(str), entity.getClass().getMethod(str, null).invoke(entity, null));
+					result.put(getFieldNameByGetter(str), entity.getClass().getMethod(str, null).invoke(entity, null));
 				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
 						| NoSuchMethodException | SecurityException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			}
 		}
 		return result;
 	}
 
-	private static String fieldToUpdate(String source) {
+	private String nameDBField(String source) {
 		StringBuilder sb = new StringBuilder();
 		for (int index = 0; index < source.length(); index++) {
 			char c = source.charAt(index);
@@ -107,40 +101,25 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 			}
 			sb.append(c);
 		}
-		System.out.println(sb.toString());
 		return sb.toString();
 	}
 
-	// TEST
-	public static void main(String[] args) {
-		fieldToUpdate("getFirstNameOfMy");
-	}
-
-	private String getFieldName(String str) {
+	private String getFieldNameByGetter(String str) {
 		StringBuilder sb = new StringBuilder(str.substring(3));
 		char c = sb.charAt(0);
 		sb.setCharAt(0, Character.toLowerCase(c));
 		return sb.toString();
 	}
 
-	private List<String> fieldValauToUpdate(T entity) {
-		List<String> result = new ArrayList<>(2);
-		StringBuilder fields = new StringBuilder();
-		StringBuilder values = new StringBuilder();
-		HashMap<String, Object> map = (HashMap<String, Object>) getMapAtributes(entity);
-		System.out.println(map);
-		System.out.println("sixe="+map.size());
-		Iterator it = map.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry pair = (Map.Entry) it.next();
-			fields.append(String.format("%s", getFieldName((String) pair.getKey())));
-			values.append(String.format("'%s'", pair.getValue()));
-			System.out.println(fields+"-"+values);
-			it.next();
+	private String mapToUpdate(Map<String, Object> mapSource) {
+		Map<String, Object> map = new HashMap<>();
+		for (Map.Entry<String, Object> entry : mapSource.entrySet()) {
+			String key = nameDBField(entry.getKey());
+			if (!key.contains("Date")) {
+				map.put(key, String.format("'%s'", entry.getValue()));
+			}
 		}
-
-		result.add(fields.toString());
-		result.add(values.toString());
-		return result;
+		String source = map.toString();
+		return String.format("%s", source.substring(1, source.length() - 1));
 	}
 }

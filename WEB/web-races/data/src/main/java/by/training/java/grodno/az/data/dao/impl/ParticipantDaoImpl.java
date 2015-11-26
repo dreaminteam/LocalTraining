@@ -6,36 +6,6 @@ import by.training.java.grodno.az.data.dao.ParticipantDao;
 import by.training.java.grodno.az.data.model.Participant;
 
 @Repository
-public class ParticipantDaoImpl implements ParticipantDao {
-
-	@Override
-	public Participant get(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void insert(Participant persistent) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update(Participant persistent) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(Participant persistent) {
-		// TODO Auto-generated method stub
-
-	}
+public class ParticipantDaoImpl extends GenericDao<Participant>implements ParticipantDao {
 
 }
