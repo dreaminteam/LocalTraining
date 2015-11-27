@@ -4,15 +4,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import Util.DaoUtil;
 import by.training.java.grodno.az.data.dao.Dao;
 import by.training.java.grodno.az.data.model.AbstractEntity;
 
@@ -22,15 +23,29 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	private DaoUtil daoUtil;
+
 	private String tableName = getGenericType().getSimpleName();
 
 	@Override
 	public T get(int id) {
 		String sql = "select * from " + tableName + " where id=?";
-		T result = null;
-		result = (T) jdbcTemplate.queryForObject(sql, new Object[] { id },
-				new BeanPropertyRowMapper<T>(getGenericType()));
-		return result;
+		Object[] parameters = new Object[] { id };
+		return daoUtil.getEntity(sql, getGenericType(), parameters);
+	}
+
+	@Override
+	public List<T> getAll() {
+		String sql = "select * from " + tableName;
+		return jdbcTemplate.queryForList(sql, getGenericType());
+	}
+
+	@Override
+	public List<T> find(Map<String, Object> atributesFinding) {
+		String atributes = getParametersStringForUpdate(atributesFinding);
+		String sql = String.format("select * from %s where %s", tableName, atributes);
+		return jdbcTemplate.queryForList(sql, getGenericType());
 	}
 
 	@Override
@@ -44,7 +59,8 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	@Override
 	public void update(T entity) {
 
-		String sql = "update " + tableName + " set " + forSetToSql(getMapAtributes(entity)) + " where id=?";
+		String sql = "update " + tableName + " set " + getParametersStringForUpdate(getMapAtributes(entity))
+				+ " where id=?";
 		jdbcTemplate.update(sql, new Object[] { entity.getId() });
 	}
 
@@ -103,7 +119,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		return sb.toString();
 	}
 
-	private String forSetToSql(Map<String, Object> mapSource) {
+	private String getParametersStringForUpdate(Map<String, Object> mapSource) {
 		Map<String, Object> map = new HashMap<>();
 		for (Map.Entry<String, Object> entry : mapSource.entrySet()) {
 			String key = getNameDBField(entry.getKey());
@@ -114,4 +130,5 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		String source = map.toString();
 		return String.format("%s", source.substring(1, source.length() - 1));
 	}
+
 }

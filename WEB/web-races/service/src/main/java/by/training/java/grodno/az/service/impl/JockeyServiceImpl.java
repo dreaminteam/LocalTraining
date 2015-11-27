@@ -1,5 +1,8 @@
 package by.training.java.grodno.az.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +48,16 @@ public class JockeyServiceImpl implements JockeyService {
 	@Override
 	public void delete(Jockey entity) {
 		jockeyDao.delete(entity);
+	}
+
+	@Override
+	public List<Jockey> getAll() {
+		return jockeyDao.getAll();
+	}
+
+	@Override
+	public List<Jockey> find(Map<String, Object> atributesFinding) {
+		return jockeyDao.find(atributesFinding);
 	}
 
 }

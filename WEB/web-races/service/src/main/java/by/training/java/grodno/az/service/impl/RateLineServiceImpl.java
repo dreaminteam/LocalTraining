@@ -1,5 +1,8 @@
 package by.training.java.grodno.az.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +48,16 @@ public class RateLineServiceImpl implements RateLineService {
 	@Override
 	public void delete(RateLine entity) {
 		rateLineDao.delete(entity);
+	}
+
+	@Override
+	public List<RateLine> getAll() {
+		return rateLineDao.getAll();
+	}
+
+	@Override
+	public List<RateLine> find(Map<String, Object> atributesFinding) {
+		return rateLineDao.find(atributesFinding);
 	}
 
 }

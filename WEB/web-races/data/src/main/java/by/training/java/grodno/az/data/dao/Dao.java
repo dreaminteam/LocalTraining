@@ -1,5 +1,8 @@
 package by.training.java.grodno.az.data.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import by.training.java.grodno.az.data.model.AbstractEntity;
 
 public interface Dao<T extends AbstractEntity> {
@@ -13,5 +16,9 @@ public interface Dao<T extends AbstractEntity> {
 	void delete(int id);
 
 	void delete(T entity);
+
+	List<T> getAll();
+
+	List<T> find(Map<String, Object> atributesFinding);
 
 }

@@ -25,15 +25,17 @@ public class UserRegisterPage {
 //	        p.setCreateDate(new Date());
 		
 		UserService bean = aContext.getBean(UserService.class);
-		User user=bean.getById(1);
-		System.out.println(user);
+//		User user=bean.getById(1);
+//		System.out.println(user);
+		
+		User user=new User();
 		
 		user.setLogin("eter");
 		user.setPassword("ertert");
 		user.setFirstName("erte");
 		user.setLastName("erterte");
 		
-		bean.update(user);
+		bean.insert(user);
 		System.out.println(bean.getById(1));
 		
 //		bean.insert(p);

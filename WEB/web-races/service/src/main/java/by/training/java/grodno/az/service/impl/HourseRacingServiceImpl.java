@@ -1,5 +1,8 @@
 package by.training.java.grodno.az.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +48,16 @@ public class HourseRacingServiceImpl implements HourseRacingService {
 	@Override
 	public void delete(HourseRacing entity) {
 		hourseRacingDao.delete(entity);
+	}
+
+	@Override
+	public List<HourseRacing> getAll() {
+		return hourseRacingDao.getAll();
+	}
+
+	@Override
+	public List<HourseRacing> find(Map<String, Object> atributesFinding) {
+		return hourseRacingDao.find(atributesFinding);
 	}
 
 }

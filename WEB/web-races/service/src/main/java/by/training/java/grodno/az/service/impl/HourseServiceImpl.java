@@ -1,5 +1,8 @@
 package by.training.java.grodno.az.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import by.training.java.grodno.az.data.dao.HourseDao;
@@ -43,6 +46,16 @@ public class HourseServiceImpl implements HourseService {
 	@Override
 	public void delete(Hourse entity) {
 		hourseDao.delete(entity);
+	}
+
+	@Override
+	public List<Hourse> getAll() {
+		return hourseDao.getAll();
+	}
+
+	@Override
+	public List<Hourse> find(Map<String, Object> atributesFinding) {
+		return hourseDao.find(atributesFinding);
 	}
 
 }

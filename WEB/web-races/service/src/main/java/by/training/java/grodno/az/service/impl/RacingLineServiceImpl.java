@@ -1,9 +1,16 @@
 package by.training.java.grodno.az.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import by.training.java.grodno.az.data.dao.HourseRacingDao;
+import by.training.java.grodno.az.data.dao.ParticipantDao;
 import by.training.java.grodno.az.data.dao.RacingLineDao;
+import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.service.RacingLineService;
 
@@ -12,6 +19,12 @@ public class RacingLineServiceImpl implements RacingLineService {
 
 	@Autowired
 	private RacingLineDao racingLineDao;
+
+	@Autowired
+	private HourseRacingDao hourseRacingDao;
+
+	@Autowired
+	private ParticipantDao participantDao;
 
 	@Override
 	public RacingLine getById(int id) {
@@ -45,6 +58,26 @@ public class RacingLineServiceImpl implements RacingLineService {
 	@Override
 	public void delete(RacingLine entity) {
 		racingLineDao.delete(entity);
+	}
+
+	@Override
+	public HourseRacing getHourseRacing(int hourseRacing_id) {
+		return hourseRacingDao.get(hourseRacing_id);
+	}
+
+	@Override
+	public Participant getParticipant(int participant_id) {
+		return participantDao.get(participant_id);
+	}
+
+	@Override
+	public List<RacingLine> getAll() {
+		return racingLineDao.getAll();
+	}
+
+	@Override
+	public List<RacingLine> find(Map<String, Object> atributesFinding) {
+		return racingLineDao.find(atributesFinding);
 	}
 
 }

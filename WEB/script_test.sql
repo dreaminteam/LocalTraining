@@ -1,10 +1,10 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 
-CREATE SCHEMA IF NOT EXISTS `races` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `races` ;
+CREATE SCHEMA IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `test` ;
 
-CREATE TABLE IF NOT EXISTS `races`.`user` (
+CREATE TABLE IF NOT EXISTS `test`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `login` VARCHAR(20) NOT NULL COMMENT '',
   `password` VARCHAR(40) NOT NULL COMMENT '',
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `races`.`user` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)  COMMENT '')
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `races`.`employee` (
+CREATE TABLE IF NOT EXISTS `test`.`employee` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `user_id` INT NOT NULL COMMENT '',
   `role` CHAR(1) NOT NULL COMMENT '',
@@ -26,13 +26,13 @@ CREATE TABLE IF NOT EXISTS `races`.`employee` (
   INDEX `fk_employee_user1_idx` (`user_id` ASC)  COMMENT '',
   CONSTRAINT `fk_employee_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `races`.`user` (`id`)
+    REFERENCES `test`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`player` (
+CREATE TABLE IF NOT EXISTS `test`.`player` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `email` VARCHAR(45) NOT NULL COMMENT '',
   `balance` DOUBLE NOT NULL COMMENT '',
@@ -42,13 +42,13 @@ CREATE TABLE IF NOT EXISTS `races`.`player` (
   INDEX `fk_player_user1_idx` (`user_id` ASC)  COMMENT '',
   CONSTRAINT `fk_player_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `races`.`user` (`id`)
+    REFERENCES `test`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`hourse_racing` (
+CREATE TABLE IF NOT EXISTS `test`.`hourse_racing` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `title` VARCHAR(45) NOT NULL COMMENT '',
   `date` DATETIME NOT NULL COMMENT '',
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `races`.`hourse_racing` (
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`rate_type` (
+CREATE TABLE IF NOT EXISTS `test`.`rate_type` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `name` VARCHAR(45) NOT NULL COMMENT '',
   `description` TEXT(1000) NULL COMMENT '',
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `races`.`rate_type` (
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`rate_line` (
+CREATE TABLE IF NOT EXISTS `test`.`rate_line` (
   `id` INT NOT NULL COMMENT '',
   `name` VARCHAR(45) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `races`.`rate_line` (
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`hourse` (
+CREATE TABLE IF NOT EXISTS `test`.`hourse` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `name` VARCHAR(45) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `races`.`hourse` (
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`jockey` (
+CREATE TABLE IF NOT EXISTS `test`.`jockey` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `first_name` VARCHAR(45) NOT NULL COMMENT '',
   `last_name` VARCHAR(45) NOT NULL COMMENT '',
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `races`.`jockey` (
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`participant` (
+CREATE TABLE IF NOT EXISTS `test`.`participant` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `hourse_id` INT NOT NULL COMMENT '',
   `jockey_id` INT NOT NULL COMMENT '',
@@ -103,18 +103,18 @@ CREATE TABLE IF NOT EXISTS `races`.`participant` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)  COMMENT '',
   CONSTRAINT `fk_hourses_has_jockeys_hourses1`
     FOREIGN KEY (`hourse_id`)
-    REFERENCES `races`.`hourse` (`id`)
+    REFERENCES `test`.`hourse` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_hourses_has_jockeys_jockeys1`
     FOREIGN KEY (`jockey_id`)
-    REFERENCES `races`.`jockey` (`id`)
+    REFERENCES `test`.`jockey` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`racing_line` (
+CREATE TABLE IF NOT EXISTS `test`.`racing_line` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `horse_racing_id` INT NOT NULL COMMENT '',
   `participant_id` INT NOT NULL COMMENT '',
@@ -125,18 +125,18 @@ CREATE TABLE IF NOT EXISTS `races`.`racing_line` (
   INDEX `fk_racing_line_hourse_2_jockey1_idx` (`participant_id` ASC)  COMMENT '',
   CONSTRAINT `fk_racing_line_horse_racing1`
     FOREIGN KEY (`horse_racing_id`)
-    REFERENCES `races`.`hourse_racing` (`id`)
+    REFERENCES `test`.`hourse_racing` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_racing_line_hourse_2_jockey1`
     FOREIGN KEY (`participant_id`)
-    REFERENCES `races`.`participant` (`id`)
+    REFERENCES `test`.`participant` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`coefficient` (
+CREATE TABLE IF NOT EXISTS `test`.`coefficient` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `value` DOUBLE NOT NULL COMMENT '',
   `rate_line_id` INT NOT NULL COMMENT '',
@@ -147,18 +147,18 @@ CREATE TABLE IF NOT EXISTS `races`.`coefficient` (
   INDEX `fk_coefficients_racing_line1_idx` (`racing_line_id` ASC)  COMMENT '',
   CONSTRAINT `fk_first_variant_rate1`
     FOREIGN KEY (`rate_line_id`)
-    REFERENCES `races`.`rate_line` (`id`)
+    REFERENCES `test`.`rate_line` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_coefficients_racing_line1`
     FOREIGN KEY (`racing_line_id`)
-    REFERENCES `races`.`racing_line` (`id`)
+    REFERENCES `test`.`racing_line` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `races`.`rate` (
+CREATE TABLE IF NOT EXISTS `test`.`rate` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `value` DOUBLE NOT NULL COMMENT '',
   `player_id` INT NOT NULL COMMENT '',
@@ -171,17 +171,17 @@ CREATE TABLE IF NOT EXISTS `races`.`rate` (
   INDEX `fk_rate_coefficient1_idx` (`coefficient_id` ASC)  COMMENT '',
   CONSTRAINT `fk_rate_user1`
     FOREIGN KEY (`player_id`)
-    REFERENCES `races`.`player` (`id`)
+    REFERENCES `test`.`player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_rate_type_rate1`
     FOREIGN KEY (`rate_type_id`)
-    REFERENCES `races`.`rate_type` (`id`)
+    REFERENCES `test`.`rate_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_rate_coefficient1`
     FOREIGN KEY (`coefficient_id`)
-    REFERENCES `races`.`coefficient` (`id`)
+    REFERENCES `test`.`coefficient` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
