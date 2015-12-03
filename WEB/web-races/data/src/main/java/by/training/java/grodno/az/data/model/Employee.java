@@ -3,7 +3,6 @@ package by.training.java.grodno.az.data.model;
 public class Employee extends User {
 
 	private int id;
-	private char role;
 	private int userId;
 
 	public int getUserId() {
@@ -22,17 +21,9 @@ public class Employee extends User {
 		this.id = id;
 	}
 
-	public char getRole() {
-		return role;
-	}
-
-	public void setRole(char role) {
-		this.role = role;
-	}
-
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", role=" + role + ", userId=" + userId + "]";
+		return "Employee [id=" + id + ", userId=" + userId + "]";
 	}
 
 }

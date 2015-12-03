@@ -47,7 +47,7 @@ public class RateServiceImpl implements RateService {
 	}
 
 	@Override
-	public void saveOrupdate(Rate entity) {
+	public void saveOrUpdate(Rate entity) {
 		if (rateDao.get(entity.getId()) != null) {
 			rateDao.update(entity);
 		} else {

@@ -7,18 +7,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import Util.DaoUtil;
 import by.training.java.grodno.az.data.dao.Dao;
 import by.training.java.grodno.az.data.model.AbstractEntity;
+import by.training.java.grodno.az.data.util.DaoUtil;
 
 @Repository
 public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(GenericDao.class);
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -26,7 +30,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	@Autowired
 	private DaoUtil daoUtil;
 
-	private String tableName = getGenericType().getSimpleName();
+	private String tableName = getNameDBField(getGenericType().getSimpleName());
 
 	@Override
 	public T get(int id) {
@@ -102,7 +106,8 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 
 	private String getNameDBField(String source) {
 		StringBuilder sb = new StringBuilder();
-		for (int index = 0; index < source.length(); index++) {
+		sb.append(source.charAt(0));
+		for (int index = 1; index < source.length(); index++) {
 			char c = source.charAt(index);
 			if (Character.isUpperCase(c)) {
 				sb.append("_");
@@ -123,9 +128,9 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		Map<String, Object> map = new HashMap<>();
 		for (Map.Entry<String, Object> entry : mapSource.entrySet()) {
 			String key = getNameDBField(entry.getKey());
-			if (!key.contains("Date")) {
+//			if (!key.contains("Date")) {
 				map.put(key, String.format("'%s'", entry.getValue()));
-			}
+//			}
 		}
 		String source = map.toString();
 		return String.format("%s", source.substring(1, source.length() - 1));

@@ -1,5 +1,6 @@
 package by.training.java.grodno.az.data.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class HourseRacing extends AbstractEntity {
@@ -25,7 +26,9 @@ public class HourseRacing extends AbstractEntity {
 	}
 
 	public Date getDate() {
-		return date;
+		Timestamp timestamp = new Timestamp(date.getTime());
+		timestamp.setNanos(0);
+		return timestamp;
 	}
 
 	public void setDate(Date date) {

@@ -6,6 +6,6 @@ public interface UserService extends IService<User> {
 
 	String encryption(String source);
 
-	public User getByLogPas(String login, String password);
+	User getByLogPas(String login, String password);
 
 }

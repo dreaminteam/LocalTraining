@@ -37,7 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void saveOrupdate(Employee entity) {
+	public void saveOrUpdate(Employee entity) {
 		if (employeeDao.get(entity.getId()) != null) {
 			employeeDao.update(entity);
 		} else {

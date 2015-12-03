@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.HourseDao;
 import by.training.java.grodno.az.data.model.Hourse;
 import by.training.java.grodno.az.service.HourseService;
 
+@Service
 public class HourseServiceImpl implements HourseService {
 
 	@Autowired
@@ -30,7 +32,7 @@ public class HourseServiceImpl implements HourseService {
 	}
 
 	@Override
-	public void saveOrupdate(Hourse entity) {
+	public void saveOrUpdate(Hourse entity) {
 		if (hourseDao.get(entity.getId()) != null) {
 			hourseDao.update(entity);
 		} else {

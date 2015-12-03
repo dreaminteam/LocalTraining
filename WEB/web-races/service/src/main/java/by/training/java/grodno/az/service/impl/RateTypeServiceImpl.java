@@ -32,7 +32,7 @@ public class RateTypeServiceImpl implements RateTypeService {
 	}
 
 	@Override
-	public void saveOrupdate(RateType entity) {
+	public void saveOrUpdate(RateType entity) {
 		if (rateTypeDao.get(entity.getId()) != null) {
 			rateTypeDao.update(entity);
 		} else {

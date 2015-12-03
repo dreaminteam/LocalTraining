@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 public class TestUtil {
 
 	public String getRandomString(int length) {
@@ -16,6 +16,18 @@ public class TestUtil {
 			sb.append(c);
 		}
 		return sb.toString();
+	}
+
+	public double getRandomDouble() {
+		Random r = new Random();
+		double d = -10.0 + r.nextDouble() * 20.0;
+		return d;
+	}
+
+	public int getRandomInteger() {
+		Random r = new Random();
+		int d = -10 + r.nextInt() * 20;
+		return d;
 	}
 
 }

@@ -42,7 +42,7 @@ public class CoefficientServiceImpl implements CoefficientService {
 	}
 
 	@Override
-	public void saveOrupdate(Coefficient entity) {
+	public void saveOrUpdate(Coefficient entity) {
 		if (coefficientDao.get(entity.getId()) != null) {
 			coefficientDao.update(entity);
 		} else {

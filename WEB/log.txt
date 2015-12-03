@@ -1,0 +1,58 @@
+SSL access to the examples has been enabled on port 8443
+You can access the application using SSL on https://localhost:8443
+
+15:40:55.208 [main] INFO  org.apache.wicket.util.file.WebXmlFile - web.xml: url mapping found for filter with name wicket.webapp: [/*]
+15:40:55.464 [main] INFO  org.apache.wicket.Application - [wicket.webapp] init: Wicket core library initializer
+15:40:55.481 [main] INFO  org.apache.wicket.RequestListenerInterface - registered listener interface [RequestListenerInterface name=IBehaviorListener, method=public abstract void org.apache.wicket.behavior.IBehaviorListener.onRequest()]
+15:40:55.482 [main] INFO  org.apache.wicket.RequestListenerInterface - registered listener interface [RequestListenerInterface name=IFormSubmitListener, method=public abstract void org.apache.wicket.markup.html.form.IFormSubmitListener.onFormSubmitted()]
+15:40:55.483 [main] INFO  org.apache.wicket.RequestListenerInterface - registered listener interface [RequestListenerInterface name=ILinkListener, method=public abstract void org.apache.wicket.markup.html.link.ILinkListener.onLinkClicked()]
+15:40:55.484 [main] INFO  org.apache.wicket.RequestListenerInterface - registered listener interface [RequestListenerInterface name=IOnChangeListener, method=public abstract void org.apache.wicket.markup.html.form.IOnChangeListener.onSelectionChanged()]
+15:40:55.485 [main] INFO  org.apache.wicket.RequestListenerInterface - registered listener interface [RequestListenerInterface name=IResourceListener, method=public abstract void org.apache.wicket.IResourceListener.onResourceRequested()]
+15:40:55.500 [main] INFO  org.apache.wicket.protocol.http.WebApplication - [wicket.webapp] Started Wicket version 7.1.0 in DEVELOPMENT mode
+********************************************************************
+*** WARNING: Wicket is running in DEVELOPMENT mode.              ***
+***                               ^^^^^^^^^^^                    ***
+*** Do NOT deploy to your live server(s) without changing this.  ***
+*** See Application#getConfigurationType() for more information. ***
+********************************************************************
+15:40:55.549 [main] WARN  org.eclipse.jetty.util.component.AbstractLifeCycle - FAILED ServerConnector@7803de{HTTP/1.1}{0.0.0.0:8080}: java.net.BindException: Address already in use: bind
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method) ~[?:1.8.0_65]
+	at sun.nio.ch.Net.bind(Unknown Source) ~[?:1.8.0_65]
+	at sun.nio.ch.Net.bind(Unknown Source) ~[?:1.8.0_65]
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source) ~[?:1.8.0_65]
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source) ~[?:1.8.0_65]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:321) ~[jetty-server-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:366) [jetty-server-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at by.training.java.grodno.az.Start.main(Start.java:94) [test-classes/:?]
+15:40:56.224 [main] WARN  org.eclipse.jetty.util.component.AbstractLifeCycle - FAILED org.eclipse.jetty.server.Server@81cdd1: java.net.BindException: Address already in use: bind
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method) ~[?:1.8.0_65]
+	at sun.nio.ch.Net.bind(Unknown Source) ~[?:1.8.0_65]
+	at sun.nio.ch.Net.bind(Unknown Source) ~[?:1.8.0_65]
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source) ~[?:1.8.0_65]
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source) ~[?:1.8.0_65]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:321) ~[jetty-server-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:366) ~[jetty-server-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) [jetty-util-9.2.13.v20150730.jar:9.2.13.v20150730]
+	at by.training.java.grodno.az.Start.main(Start.java:94) [test-classes/:?]
+java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.Net.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(Unknown Source)
+	at sun.nio.ch.ServerSocketAdaptor.bind(Unknown Source)
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:321)
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80)
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:366)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at by.training.java.grodno.az.Start.main(Start.java:94)

@@ -32,7 +32,7 @@ public class HourseRacingServiceImpl implements HourseRacingService {
 	}
 
 	@Override
-	public void saveOrupdate(HourseRacing entity) {
+	public void saveOrUpdate(HourseRacing entity) {
 		if (hourseRacingDao.get(entity.getId()) != null) {
 			hourseRacingDao.update(entity);
 		} else {

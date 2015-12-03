@@ -13,7 +13,7 @@ public interface IService<T extends AbstractEntity> {
 	
 	void update(T entity);
 
-	void saveOrupdate(T entity);
+	void saveOrUpdate(T entity);
 
 	void delete(int id);
 

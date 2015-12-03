@@ -1,5 +1,6 @@
 package by.training.java.grodno.az.data.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class User extends AbstractEntity {
@@ -9,8 +10,35 @@ public class User extends AbstractEntity {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String role;
+	private double balance;
 	private Date createDate;
 	private Date endDate;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 
 	public int getId() {
 		return id;
@@ -53,7 +81,9 @@ public class User extends AbstractEntity {
 	}
 
 	public Date getCreateDate() {
-		return createDate;
+		Timestamp timestamp = new Timestamp(createDate.getTime());
+		timestamp.setNanos(0);
+		return timestamp;
 	}
 
 	public void setCreateDate(Date createDate) {
@@ -61,7 +91,9 @@ public class User extends AbstractEntity {
 	}
 
 	public Date getEndDate() {
-		return endDate;
+		Timestamp timestamp = new Timestamp(endDate.getTime());
+		timestamp.setNanos(0);
+		return timestamp;
 	}
 
 	public void setEndDate(Date endDate) {
@@ -71,7 +103,8 @@ public class User extends AbstractEntity {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", createDate=" + createDate + ", endDate=" + endDate + "]";
+				+ ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", balance=" + balance
+				+ ", createDate=" + createDate + ", endDate=" + endDate + "]";
 	}
 
 }

@@ -37,7 +37,7 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 
 	@Override
-	public void saveOrupdate(Player entity) {
+	public void saveOrUpdate(Player entity) {
 		if (playerDao.get(entity.getId()) != null) {
 			playerDao.update(entity);
 		} else {

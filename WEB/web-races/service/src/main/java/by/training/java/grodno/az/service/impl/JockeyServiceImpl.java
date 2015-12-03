@@ -32,7 +32,7 @@ public class JockeyServiceImpl implements JockeyService {
 	}
 
 	@Override
-	public void saveOrupdate(Jockey entity) {
+	public void saveOrUpdate(Jockey entity) {
 		if (jockeyDao.get(entity.getId()) != null) {
 			jockeyDao.update(entity);
 		} else {

@@ -42,7 +42,7 @@ public class RacingLineServiceImpl implements RacingLineService {
 	}
 
 	@Override
-	public void saveOrupdate(RacingLine entity) {
+	public void saveOrUpdate(RacingLine entity) {
 		if (racingLineDao.get(entity.getId()) != null) {
 			racingLineDao.update(entity);
 		} else {

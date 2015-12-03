@@ -42,7 +42,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 	}
 
 	@Override
-	public void saveOrupdate(Participant entity) {
+	public void saveOrUpdate(Participant entity) {
 		if (participantDao.get(entity.getId()) != null) {
 			participantDao.update(entity);
 		} else {

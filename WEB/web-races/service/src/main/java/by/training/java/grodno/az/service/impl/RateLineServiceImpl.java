@@ -32,7 +32,7 @@ public class RateLineServiceImpl implements RateLineService {
 	}
 
 	@Override
-	public void saveOrupdate(RateLine entity) {
+	public void saveOrUpdate(RateLine entity) {
 		if (rateLineDao.get(entity.getId()) != null) {
 			rateLineDao.update(entity);
 		} else {
