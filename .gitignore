@@ -1,4 +1,3 @@
-*.html
 *.js
 *.css
 *.classpath
@@ -14,3 +13,5 @@ SE_02/task_2/.idea/modules.xml
 SE_02/task_2/.idea/uiDesigner.xml
 SE_02/task_2/.idea/vcs.xml
 SE_02/task_2/.idea/workspace.xml
+WEB/wicketexmpl/wicketexmpl/.settings*
+WEB/wicketexmpl/wicketexmpl/target/*
