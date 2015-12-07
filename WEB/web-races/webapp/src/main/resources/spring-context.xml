@@ -11,6 +11,8 @@
 
 	
 	<import resource="classpath:service-spring-context.xml" />
+	
+	<context:component-scan base-package="by.training.java.grodno.az.webapp.app" />
 
 </beans>
 

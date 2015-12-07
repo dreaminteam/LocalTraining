@@ -16,6 +16,40 @@
 			<groupId>by.training.java.grodno.az</groupId>
 			<artifactId>service</artifactId>
 		</dependency>
+		
+			<!-- WICKET DEPENDENCIES -->
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-core</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-spring</artifactId>
+			</dependency>
+			
+			
+			<!-- JETTY DEPENDENCIES FOR TESTING -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-server</artifactId>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-util</artifactId>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-jmx</artifactId>
+				<scope>test</scope>
+			</dependency>
+		
 	</dependencies>
 
 </project>
