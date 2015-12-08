@@ -36,7 +36,7 @@ public class StartJetty
 		http_config.setSecureScheme("https");
 		http_config.setSecurePort(8443);
 		http_config.setOutputBufferSize(32768);
-
+		
 		ServerConnector http = new ServerConnector(server, new HttpConnectionFactory(http_config));
 		http.setPort(8888);
 		http.setIdleTimeout(1000 * 60 * 60);
