@@ -1,5 +1,5 @@
 package by.training.java.grodno.az.webapp.page;
 
-public class InputPage extends AbstractPage{
+public class LoginPage extends AbstractPage{
 
 }
