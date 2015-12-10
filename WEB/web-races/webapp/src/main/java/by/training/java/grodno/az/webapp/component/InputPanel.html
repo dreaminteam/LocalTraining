@@ -1,8 +1,15 @@
 <meta charset="utf-8" />
 <html xmlns:wicket="http://wicket.apache.org">
 <wicket:panel>
-<div class="input-menu">
-	<a  wicket:id="registration-page-link">Регистрация</a>|<a  wicket:id="login-page-link">Вход</a>
-</div>
+	<div id="navigation">
+		<div class="input-menu">
+			<ul>
+				<li><a wicket:id="registration-page-link"><span>Регистрация</span></a><span
+					class="arrow">&nbsp;</span></li>
+				<li><a wicket:id="login-page-link"><span>Вход</span></a><span
+					class="arrow">&nbsp;</span></li>
+			</ul>
+		</div>
+	</div>
 </wicket:panel>
 </html>
