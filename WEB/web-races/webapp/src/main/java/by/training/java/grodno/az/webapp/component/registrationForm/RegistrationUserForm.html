@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<form class="contact_form" wicket:id="form">
+		<ul>
+			<li>
+				<h2>Contact Us</h2> <span class="required_notification">*
+					Denotes Required Field</span>
+			</li>
+			<li><label for="name">First name:</label> <input type="text"
+				wicket:id="firstName" placeholder="Andrew" required /></li>
+				
+			<li><label for="name">Surname:</label> <input type="text"
+				wicket:id="surname" placeholder="Zenov" required /></li>
+				
+			<li><label for="email">Email:</label> <input type="text"
+				wicket:id="email" placeholder="andrew_zenov@example.com" required /> <span
+				class="form_hint">Proper format "name@something.com"</span></li>
+				
+			<li><label for="name">Login:</label> <input type="text"
+				wicket:id="login" placeholder="login" required /></li>
+				
+			<li><label for="name">Password:</label> <input type="password"
+				wicket:id="password" required /></li>
+				
+				
+				
+			<li>
+				<button class="submit" type="submit" wicket:id="submit-button">Submit
+					Form</button>
+					
+			</li>
+		</ul>
+	</form>

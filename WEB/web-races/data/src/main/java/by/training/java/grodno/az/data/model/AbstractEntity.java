@@ -1,6 +1,8 @@
 package by.training.java.grodno.az.data.model;
 
-public abstract class AbstractEntity {
+import java.io.Serializable;
+
+public abstract class AbstractEntity implements Serializable {
 
 	private int id;
 

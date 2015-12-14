@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import by.training.java.grodno.az.webapp.page.HomePage;
+import by.training.java.grodno.az.webapp.page.homePage.HomePage;
 
 /**
  * Application object for your web application. If you want to run this

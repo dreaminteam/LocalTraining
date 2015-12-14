@@ -24,7 +24,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
+
 			<!-- Project modules -->
 			<dependency>
 				<groupId>by.training.java.grodno.az</groupId>
@@ -131,8 +131,8 @@
 				<artifactId>commons-codec</artifactId>
 				<version>1.9</version>
 			</dependency>
-			
-						<!-- WICKET DEPENDENCIES -->
+
+			<!-- WICKET DEPENDENCIES -->
 			<dependency>
 				<groupId>org.apache.wicket</groupId>
 				<artifactId>wicket-core</artifactId>
@@ -141,6 +141,11 @@
 			<dependency>
 				<groupId>org.apache.wicket</groupId>
 				<artifactId>wicket-spring</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-datetime</artifactId>
 				<version>${wicket.version}</version>
 			</dependency>
 

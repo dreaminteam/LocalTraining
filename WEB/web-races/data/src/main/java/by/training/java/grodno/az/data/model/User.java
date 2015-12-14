@@ -9,7 +9,7 @@ public class User extends AbstractEntity {
 	private String login;
 	private String password;
 	private String firstName;
-	private String lastName;
+	private String surname;
 	private String email;
 	private String role;
 	private double balance;
@@ -73,11 +73,11 @@ public class User extends AbstractEntity {
 	}
 
 	public String getLastName() {
-		return lastName;
+		return surname;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.surname = lastName;
 	}
 
 	public Date getCreateDate() {
@@ -103,7 +103,7 @@ public class User extends AbstractEntity {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", balance=" + balance
+				+ ", lastName=" + surname + ", email=" + email + ", role=" + role + ", balance=" + balance
 				+ ", createDate=" + createDate + ", endDate=" + endDate + "]";
 	}
 
