@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.component.inputPanel;
+package by.training.java.grodno.az.webapp.component.logoutInputPanel;
 
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -19,7 +19,6 @@ public class InputPanel extends Panel{
 	protected void onInitialize() {
 		super.onInitialize();
 		
-
 		add(new BookmarkablePageLink<Void>("login-page-link",LoginPage.class));
 		add(new BookmarkablePageLink<Void>("registration-page-link",RegistrationPage.class));
 

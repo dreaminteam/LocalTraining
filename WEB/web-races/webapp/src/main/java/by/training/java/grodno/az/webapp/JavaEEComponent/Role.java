@@ -1,6 +1,5 @@
 package by.training.java.grodno.az.webapp.JavaEEComponent;
 
-public enum Menu { PLAYER, ADMIN
+public enum Role { admin,player
 
-	
 }
