@@ -12,7 +12,7 @@ public class Singleton {
 	private static String lastName = "admin";
 	private static String login = "admin";
 	private static String password = "admin";
-	private static String role="player";
+	private static String role="anaficus";
 
 	private Singleton() {
 

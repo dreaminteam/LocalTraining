@@ -91,6 +91,9 @@ public class User extends AbstractEntity {
 	}
 
 	public Date getEndDate() {
+		if (endDate == null) {
+			return null;
+		}
 		Timestamp timestamp = new Timestamp(endDate.getTime());
 		timestamp.setNanos(0);
 		return timestamp;

@@ -10,6 +10,7 @@ import by.training.java.grodno.az.data.dao.CoefficientDao;
 import by.training.java.grodno.az.data.dao.RacingLineDao;
 import by.training.java.grodno.az.data.dao.RateLineDao;
 import by.training.java.grodno.az.data.model.Coefficient;
+import by.training.java.grodno.az.data.model.Employee;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.CoefficientService;
@@ -76,8 +77,13 @@ public class CoefficientServiceImpl implements CoefficientService {
 	}
 
 	@Override
-	public List<Coefficient> find(Map<String, Object> atributesFinding) {
-		return coefficientDao.find(atributesFinding);
+	public List<Coefficient> getAll(String orderBy, boolean orderType) {
+		List<Coefficient> result = coefficientDao.getAll(orderBy, orderType);
+		return result;
 	}
 
+	@Override
+	public List<Coefficient> find(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return coefficientDao.find(atributesFinding, orderBy, type);
+	}
 }

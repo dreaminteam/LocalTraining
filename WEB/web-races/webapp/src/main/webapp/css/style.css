@@ -149,7 +149,6 @@ h2 {
 }
 
 #navigation ul li a, #navigation ul li a span {
-	
 	float: left;
 	display: inline;
 	color: #fff;
@@ -212,12 +211,11 @@ ul li span.arrow {
 }
 
 #navigation .input-menu {
-	left:682px;
-	position:absolute;
+	left: 682px;
+	position: absolute;
 }
 
 #navigation .input-menu ul {
-	
 	width: 300px;
 	height: 47px;
 }
@@ -227,7 +225,7 @@ ul li span.arrow {
 	width: 980px;
 	height: 300px;
 	position: relative;
-	margin-top: -135px;
+	margin-top: -149px;
 	padding: 1px;
 }
 
@@ -435,10 +433,41 @@ ul.links li a {
 	float: right;
 }
 
-.employees .botton-link{
-	float:right;
-	font-size: 20px;
-	color: orange;
-	padding: 3px;
-	border: 2px solid;
+.logout-input {
+	float: right;
+}
+
+.employee a {
+	float: right;
+}
+
+a.button7 {
+	font-weight: 700;
+	color: white;
+	text-decoration: none;
+	padding: .8em 1em calc(.8em + 3px);
+	border-radius: 3px;
+	background: rgb(95, 160, 5);
+	box-shadow: 0 -3px rgb(121, 178, 23) inset;
+	transition: 0.2s;
+}
+
+a.button7:hover {
+	background: rgb(121, 178, 23);
+}
+
+a.button7:active {
+	background: rgb(95, 160, 5);
+	box-shadow: 0 3px rgb(121, 178, 23) inset;
+}
+
+.feedbackPanel {
+	text-align: center;
+	width: 984px;
+}
+
+.feedbackPanelINFO {
+	background-color: rgb(120, 200, 60);
+	color: white;
+	size: 15px;
 }

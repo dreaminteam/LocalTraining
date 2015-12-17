@@ -37,7 +37,7 @@ public class RateTypeServiceTest {
 
 		Assert.assertEquals(rateType.getName(), checkRateType.getName());
 		Assert.assertEquals(rateType.getDescription(), checkRateType.getDescription());
-
+		
 	}
 
 	@Test

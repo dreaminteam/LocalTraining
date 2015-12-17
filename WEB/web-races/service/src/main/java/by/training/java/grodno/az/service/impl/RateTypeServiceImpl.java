@@ -6,8 +6,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import by.training.java.grodno.az.data.dao.Dao;
 import by.training.java.grodno.az.data.dao.RateTypeDao;
 import by.training.java.grodno.az.data.model.RateType;
+import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.RateTypeService;
 
 @Service
@@ -56,7 +58,13 @@ public class RateTypeServiceImpl implements RateTypeService {
 	}
 
 	@Override
-	public List<RateType> find(Map<String, Object> atributesFinding) {
-		return rateTypeDao.find(atributesFinding);
+	public List<RateType> getAll(String orderBy, boolean orderType) {
+		List<RateType> result= rateTypeDao.getAll(orderBy,orderType);
+		return result;
+	}
+	
+	@Override
+	public List<RateType> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return rateTypeDao.find(atributesFinding,orderBy,type);
 	}
 }

@@ -6,18 +6,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.include.Include;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.validation.IValidator;
 import org.apache.wicket.validation.validator.EmailAddressValidator;
 import org.apache.wicket.validation.validator.StringValidator;
 
@@ -26,7 +23,6 @@ import by.training.java.grodno.az.data.util.UserRole;
 import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.JavaEEComponent.Role;
 import by.training.java.grodno.az.webapp.JavaEEComponent.Singleton;
-import by.training.java.grodno.az.webapp.page.admin.adminPage.AdminPage;
 import by.training.java.grodno.az.webapp.page.homePage.HomePage;
 import by.training.java.grodno.az.webapp.page.registrationPage.RegistrationPage;
 
@@ -49,7 +45,7 @@ public class RegistrationUserForm extends Panel {
 		
 		final User newUser = new User();
 		newUser.setRole(UserRole.Player.name());
-		Form<User> form = new Form<>("form", new CompoundPropertyModel<>(newUser));
+		Form<User> form = new Form<>("registration-form", new CompoundPropertyModel<>(newUser));
 		add(form);
 
 		TextField<String> fNameTextField = new TextField<String>("firstName");
@@ -118,11 +114,15 @@ public class RegistrationUserForm extends Panel {
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-				newUser.setPassword(service.encryption(newUser.getPassword()));
-				service.insert(newUser);
-				if (role.equals("admin")) {
-					setResponsePage(new RegistrationPage());
+				String pass = service.encryption(newUser.getPassword());
+				newUser.setPassword(pass);
+				
+				
+				if (service.insert(newUser)<0) {
+					newUser.setLogin("");
+					warn("Login cannot be used.");
 				} else {
+					Singleton.getInstance().setRole(newUser.getRole());
 					setResponsePage(new HomePage());
 				}
 

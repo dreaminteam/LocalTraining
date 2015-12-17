@@ -10,13 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.UserDao;
-import by.training.java.grodno.az.data.dao.impl.GenericDao;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
@@ -80,13 +79,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> find(Map<String, Object> atributesFinding) {
-		return userDao.find(atributesFinding);
+	public List<User> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return userDao.find(atributesFinding,orderBy,type);
 	}
 
 	@Override
 	public String encryption(String source) {
 		return DigestUtils.md5Hex(source);
+	}
+
+	@Override
+	public List<User> getAll(String orderBy, boolean orderType) {
+		List<User> result= userDao.getAll(orderBy,orderType);
+		LOGGER.info("Return list of all users.");
+		return result;
 	}
 
 }

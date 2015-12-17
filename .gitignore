@@ -4,6 +4,7 @@
 *.prefs
 *.bak
 *.settings*
+*.idea*
 SE_01/task_6/doc/package-list
 SE_02/task_2/.idea/compiler.xml
 SE_02/task_2/.idea/copyright/profiles_settings.xml

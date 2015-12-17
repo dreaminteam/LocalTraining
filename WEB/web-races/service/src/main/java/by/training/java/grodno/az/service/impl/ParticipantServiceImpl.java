@@ -12,6 +12,7 @@ import by.training.java.grodno.az.data.dao.ParticipantDao;
 import by.training.java.grodno.az.data.model.Hourse;
 import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.data.model.Participant;
+import by.training.java.grodno.az.data.model.Player;
 import by.training.java.grodno.az.service.ParticipantService;
 
 @Service
@@ -76,8 +77,14 @@ public class ParticipantServiceImpl implements ParticipantService {
 	}
 
 	@Override
-	public List<Participant> find(Map<String, Object> atributesFinding) {
-		return participantDao.find(atributesFinding);
+	public List<Participant> getAll(String orderBy, boolean orderType) {
+		List<Participant> result = participantDao.getAll(orderBy, orderType);
+		return result;
+	}
+	
+	@Override
+	public List<Participant> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return participantDao.find(atributesFinding,orderBy,type);
 	}
 
 }

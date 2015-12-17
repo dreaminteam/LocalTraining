@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.RateLineDao;
+import by.training.java.grodno.az.data.model.Rate;
 import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.RateLineService;
 
@@ -54,10 +55,16 @@ public class RateLineServiceImpl implements RateLineService {
 	public List<RateLine> getAll() {
 		return rateLineDao.getAll();
 	}
-
+	
 	@Override
-	public List<RateLine> find(Map<String, Object> atributesFinding) {
-		return rateLineDao.find(atributesFinding);
+	public List<RateLine> getAll(String orderBy, boolean orderType) {
+		List<RateLine> result = rateLineDao.getAll(orderBy, orderType);
+		return result;
+	}
+	
+	@Override
+	public List<RateLine> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return rateLineDao.find(atributesFinding,orderBy,type);
 	}
 
 }

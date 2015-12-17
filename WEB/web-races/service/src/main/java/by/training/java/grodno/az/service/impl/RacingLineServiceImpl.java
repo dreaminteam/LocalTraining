@@ -12,6 +12,7 @@ import by.training.java.grodno.az.data.dao.RacingLineDao;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.data.model.RacingLine;
+import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.RacingLineService;
 
 @Service
@@ -74,10 +75,16 @@ public class RacingLineServiceImpl implements RacingLineService {
 	public List<RacingLine> getAll() {
 		return racingLineDao.getAll();
 	}
-
+	
 	@Override
-	public List<RacingLine> find(Map<String, Object> atributesFinding) {
-		return racingLineDao.find(atributesFinding);
+	public List<RacingLine> getAll(String orderBy, boolean orderType) {
+		List<RacingLine> result = racingLineDao.getAll(orderBy, orderType);
+		return result;
+	}
+	
+	@Override
+	public List<RacingLine> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return racingLineDao.find(atributesFinding,orderBy,type);
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import by.training.java.grodno.az.data.dao.EmployeeDao;
 import by.training.java.grodno.az.data.dao.UserDao;
 import by.training.java.grodno.az.data.model.Employee;
+import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.EmployeeService;
 
@@ -66,8 +67,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> find(Map<String, Object> atributesFinding) {
-		return employeeDao.find(atributesFinding);
+	public List<Employee> getAll(String orderBy, boolean orderType) {
+		List<Employee> result = employeeDao.getAll(orderBy, orderType);
+		return result;
+	}
+	
+	@Override
+	public List<Employee> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return employeeDao.find(atributesFinding,orderBy,type);
 	}
 
 }

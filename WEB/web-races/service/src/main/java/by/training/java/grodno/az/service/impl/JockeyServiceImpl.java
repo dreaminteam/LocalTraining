@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.JockeyDao;
 import by.training.java.grodno.az.data.model.Jockey;
+import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.service.JockeyService;
 
 @Service
@@ -54,10 +55,16 @@ public class JockeyServiceImpl implements JockeyService {
 	public List<Jockey> getAll() {
 		return jockeyDao.getAll();
 	}
-
+	
 	@Override
-	public List<Jockey> find(Map<String, Object> atributesFinding) {
-		return jockeyDao.find(atributesFinding);
+	public List<Jockey> getAll(String orderBy, boolean orderType) {
+		List<Jockey> result = jockeyDao.getAll(orderBy, orderType);
+		return result;
+	}
+	
+	@Override
+	public List<Jockey> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return jockeyDao.find(atributesFinding,orderBy,type);
 	}
 
 }

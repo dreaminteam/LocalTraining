@@ -8,6 +8,11 @@ import by.training.java.grodno.az.webapp.page.homePage.HomePage;
 
 public class LogoutPanel extends Panel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public LogoutPanel(String id) {
 		super(id);
 	}
@@ -17,14 +22,12 @@ public class LogoutPanel extends Panel {
 		super.onInitialize();
 
 		add(new Link<Void>("logout") {
+			
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onClick() {
-				if (Singleton.getInstance().getRole().equals("admin")) {
-					Singleton.getInstance().setRole("player");
-				}else{
-					Singleton.getInstance().setRole("admin");
-				}
+				Singleton.getInstance().setRole("ananimus-grandiesus");
 				setResponsePage(new HomePage());
 			}
 		});

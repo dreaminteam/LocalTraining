@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.HourseDao;
 import by.training.java.grodno.az.data.model.Hourse;
+import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.service.HourseService;
 
 @Service
@@ -54,10 +55,16 @@ public class HourseServiceImpl implements HourseService {
 	public List<Hourse> getAll() {
 		return hourseDao.getAll();
 	}
+	
+	@Override
+	public List<Hourse> getAll(String orderBy, boolean orderType) {
+		List<Hourse> result = hourseDao.getAll(orderBy, orderType);
+		return result;
+	}
 
 	@Override
-	public List<Hourse> find(Map<String, Object> atributesFinding) {
-		return hourseDao.find(atributesFinding);
+	public List<Hourse> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return hourseDao.find(atributesFinding,orderBy,type);
 	}
 
 }

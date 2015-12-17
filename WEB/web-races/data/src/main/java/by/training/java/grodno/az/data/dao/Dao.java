@@ -18,7 +18,14 @@ public interface Dao<T extends AbstractEntity> {
 	void delete(T entity);
 
 	List<T> getAll();
+	
+	List<T> getAll(String orderBy, boolean orderType);
 
-	List<T> find(Map<String, Object> atributesFinding);
+	List<T> find(Map<String, Object> atributesFinding, String orderBy,boolean type);
+	
+	int getCount();
+
+	
+
 
 }

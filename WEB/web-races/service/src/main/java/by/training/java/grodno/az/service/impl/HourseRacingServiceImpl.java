@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.HourseRacingDao;
+import by.training.java.grodno.az.data.model.Hourse;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.service.HourseRacingService;
 
@@ -54,10 +55,16 @@ public class HourseRacingServiceImpl implements HourseRacingService {
 	public List<HourseRacing> getAll() {
 		return hourseRacingDao.getAll();
 	}
-
+	
 	@Override
-	public List<HourseRacing> find(Map<String, Object> atributesFinding) {
-		return hourseRacingDao.find(atributesFinding);
+	public List<HourseRacing> getAll(String orderBy, boolean orderType) {
+		List<HourseRacing> result = hourseRacingDao.getAll(orderBy, orderType);
+		return result;
+	}
+	
+	@Override
+	public List<HourseRacing> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return hourseRacingDao.find(atributesFinding,orderBy,type);
 	}
 
 }

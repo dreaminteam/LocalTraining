@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import by.training.java.grodno.az.data.dao.PlayerDao;
 import by.training.java.grodno.az.data.dao.UserDao;
 import by.training.java.grodno.az.data.model.Player;
+import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.PlayerService;
 
@@ -64,10 +65,16 @@ public class PlayerServiceImpl implements PlayerService {
 	public List<Player> getAll() {
 		return playerDao.getAll();
 	}
-
+	
 	@Override
-	public List<Player> find(Map<String, Object> atributesFinding) {
-		return playerDao.find(atributesFinding);
+	public List<Player> getAll(String orderBy, boolean orderType) {
+		List<Player> result = playerDao.getAll(orderBy, orderType);
+		return result;
+	}
+	
+	@Override
+	public List<Player> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return playerDao.find(atributesFinding,orderBy,type);
 	}
 
 }

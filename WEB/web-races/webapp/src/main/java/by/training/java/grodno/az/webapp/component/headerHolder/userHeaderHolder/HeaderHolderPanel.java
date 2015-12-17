@@ -29,31 +29,26 @@ public class HeaderHolderPanel extends Panel {
 		super.onInitialize();
 
 		String role = Singleton.getInstance().getRole();
-
-		if (role.equals("admin") || role.equals("player")) {
-			System.out.println("adding logout botton");
+		
+		if (role.equalsIgnoreCase("admin") || role.equalsIgnoreCase("player")) {
 			add(new LogoutPanel("logout-input-panel"));
-			System.out.println("logout botton added");
 		} else {
 			add(new InputPanel("logout-input-panel"));
 		}
 
 		switch (role) {
 		case "player":
-			System.out.println("add(new PlayerMainMenuPanel(main-menu-panel))");
 			add(new PlayerMainMenuPanel("main-menu-panel"));
 			add(new Label("title", titleForPlayer));
-			System.out.println("PlayerMainMenuPanel(main-menu-panel) added");
 			
 			break;
 		case "admin":
-			System.out.println("add new AdminMainMenuPanel");
 			add(new AdminMainMenuPanel("main-menu-panel"));
 			add(new Label("title", titleForAdmin));
-			System.out.println("AdminMainMenuPanel added");
 			break;
 		default:
-			System.out.println("case Default");
+			add(new PlayerMainMenuPanel("main-menu-panel"));
+			add(new Label("title", titleForPlayer));
 			break;
 		}
 

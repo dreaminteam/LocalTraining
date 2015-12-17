@@ -86,8 +86,14 @@ public class RateServiceImpl implements RateService {
 	}
 
 	@Override
-	public List<Rate> find(Map<String, Object> atributesFinding) {
-		return rateDao.find(atributesFinding);
+	public List<Rate> getAll(String orderBy, boolean orderType) {
+		List<Rate> result = rateDao.getAll(orderBy, orderType);
+		return result;
+	}
+
+	@Override
+	public List<Rate> find(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return rateDao.find(atributesFinding, orderBy, type);
 	}
 
 }

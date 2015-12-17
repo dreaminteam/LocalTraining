@@ -21,6 +21,8 @@ public interface IService<T extends AbstractEntity> {
 	
 	List<T> getAll();
 	
-	List<T> find(Map<String, Object> atributesFinding);
+	List<T> getAll(String orderBy, boolean orderType);
+	
+	List<T> find(Map<String, Object> atributesFinding, String orderBy,boolean type);
 
 }
