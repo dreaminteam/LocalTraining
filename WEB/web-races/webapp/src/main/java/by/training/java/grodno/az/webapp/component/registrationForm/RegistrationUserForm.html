@@ -11,8 +11,8 @@
 			<li><label wicket:for="firstName">First name:</label> <input
 				type="text" wicket:id="firstName" placeholder="Andrew" required /></li>
 
-			<li><label wicket:for="surname">Surname:</label> <input
-				type="text" wicket:id="surname" placeholder="Zenov" required /></li>
+			<li><label wicket:for="lastName">Surname:</label> <input
+				type="text" wicket:id="lastName" placeholder="Zenov" required /></li>
 
 			<li><label wicket:for="email">Email:</label> <input type="email"
 				wicket:id="email" placeholder="andrew_zenov@example.com" required />
@@ -26,10 +26,10 @@
 
 			<!--  wicket:enclosure child=this_component_will_determine_visibility>
 			</wicket:enclosure-->
-				<li><label wicket:for="drop-role">Role:</label> <select
-					wicket:id="drop-role" required></select></li>
-					
-			
+			<li><label wicket:for="drop-role">Role:</label> <select
+				wicket:id="drop-role" required></select></li>
+
+
 
 			<li>
 				<button class="submit" type="submit" wicket:id="submit-button">Submit
@@ -38,5 +38,10 @@
 			</li>
 		</ul>
 	</form>
+
+	<div class="users-page">
+		<a class="button" wicket:id="users-page-link">Go to users </a>
+	</div>
+
 
 </wicket:panel>

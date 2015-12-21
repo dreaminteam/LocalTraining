@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void saveOrUpdate(User entity) {
+	public void insertOrUpdate(User entity) {
 		LOGGER.debug("Start SaveOrUpdate method", entity.getId(), entity);
 		if (getById(entity.getId()) != null) {
 			update(entity);
@@ -79,8 +79,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return userDao.find(atributesFinding,orderBy,type);
+	public List<User> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return userDao.getAll(atributesFinding,orderBy,type);
 	}
 
 	@Override
@@ -93,6 +93,33 @@ public class UserServiceImpl implements UserService {
 		List<User> result= userDao.getAll(orderBy,orderType);
 		LOGGER.info("Return list of all users.");
 		return result;
+	}
+
+	@Override
+	public List<User> getAll(int first, int count) {
+		List<User> result= userDao.getAll(first,count);
+		LOGGER.info("Return list of all users.");
+		return result;
+	}
+
+	@Override
+	public List<User> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<User> result= userDao.getAll(first,count,orderBy,orderType);
+		LOGGER.info("Return list of all users.");
+		return result;
+	}
+
+	@Override
+	public List<User> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<User> result= userDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		LOGGER.info("Return list of all users.");
+		return result;
+	}
+
+	@Override
+	public int getCount() {
+		return userDao.getCount();
 	}
 
 }

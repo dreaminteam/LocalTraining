@@ -11,19 +11,31 @@ public interface Dao<T extends AbstractEntity> {
 
 	int insert(T entity);
 
-	void update(T entity);
+	int update(T entity);
 
-	void delete(int id);
+	int delete(int id);
 
 	void delete(T entity);
 
 	List<T> getAll();
 	
+	List<T> getAll(int first, int count);
+	
 	List<T> getAll(String orderBy, boolean orderType);
+	
+	List<T> getAll(int first, int count, String orderBy, boolean orderType);
 
-	List<T> find(Map<String, Object> atributesFinding, String orderBy,boolean type);
+	List<T> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type);
+	
+	List<T> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy, boolean orderType);
 	
 	int getCount();
+
+	
+
+	
+
+	
 
 	
 

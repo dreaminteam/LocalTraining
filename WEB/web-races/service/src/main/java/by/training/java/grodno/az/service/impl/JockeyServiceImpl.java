@@ -33,7 +33,7 @@ public class JockeyServiceImpl implements JockeyService {
 	}
 
 	@Override
-	public void saveOrUpdate(Jockey entity) {
+	public void insertOrUpdate(Jockey entity) {
 		if (jockeyDao.get(entity.getId()) != null) {
 			jockeyDao.update(entity);
 		} else {
@@ -63,8 +63,32 @@ public class JockeyServiceImpl implements JockeyService {
 	}
 	
 	@Override
-	public List<Jockey> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return jockeyDao.find(atributesFinding,orderBy,type);
+	public List<Jockey> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return jockeyDao.getAll(atributesFinding,orderBy,type);
+	}
+	
+	@Override
+	public List<Jockey> getAll(int first, int count) {
+		List<Jockey> result= jockeyDao.getAll(first,count);
+		return result;
 	}
 
+	@Override
+	public List<Jockey> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<Jockey> result= jockeyDao.getAll(first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public List<Jockey> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<Jockey> result= jockeyDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public int getCount() {
+		return jockeyDao.getCount();
+	}
+	
 }

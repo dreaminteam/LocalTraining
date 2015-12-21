@@ -49,7 +49,7 @@ public class UserServiceTest {
 		// For getAll
 		System.out.println(service.getAll());
 		System.out.println(service.getAll("id", true));
-		System.out.println(service.find(null, "id", false));
+		System.out.println(service.getAll(null, "id", false));
 	}
 	
 //	@Test

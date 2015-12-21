@@ -61,6 +61,15 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	}
 
 	@Override
+	public List<T> getAll(int first, int count) {
+		String sql = String.format("select * from %s order by id limit %s offset %s ", tableName, count, first);
+
+		List<T> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<T>(getGenericType()));
+
+		return result;
+	}
+
+	@Override
 	public List<T> getAll(String orderBy, boolean orderType) {
 		if (orderBy == null) {
 			return getAll();
@@ -72,7 +81,41 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	}
 
 	@Override
-	public List<T> find(Map<String, Object> atributesFinding, String orderBy, boolean orderType) {
+	public List<T> getAll(int first, int count, String orderBy, boolean orderType) {
+		if (orderBy == null) {
+			return getAll(first, count);
+		}
+		String ordering = (orderType == true ? "asc" : "desc");
+		String sql = String.format("select * from %s order by %s %s limit %s offset %s ", tableName, orderBy, ordering,
+				count, first);
+
+		List<T> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<T>(getGenericType()));
+
+		return result;
+	}
+
+	@Override
+	public List<T> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		String atributes = getParametersStringForUpdate(atributesFinding);
+		if (atributes.equals("")) {
+			return getAll(first, count, orderBy, orderType);
+		}
+
+		String sql = String.format("select from %s", tableName);
+		if (orderBy == null) {
+			sql = String.format("%s where %s limit %s offset %s", sql, atributes, count, first);
+		} else {
+			String ordering = (orderType == true ? "asc" : "desc");
+			sql = String.format("%s where %s order by %s %s  limit %s offset %s", sql,atributes, orderBy, ordering, 
+					count, first);
+		}
+		List<T> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<T>(getGenericType()));
+		return result;
+	}
+
+	@Override
+	public List<T> getAll(Map<String, Object> atributesFinding, String orderBy, boolean orderType) {
 		String atributes = getParametersStringForUpdate(atributesFinding);
 		String sql = String.format("select * from %s", tableName);
 		if (!atributes.equals("")) {
@@ -100,17 +143,17 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	}
 
 	@Override
-	public void update(T entity) {
+	public int update(T entity) {
 
 		String sql = "update " + tableName + " set " + getParametersStringForUpdate(getMapAtributes(entity))
 				+ " where id=?";
-		jdbcTemplate.update(sql, new Object[] { entity.getId() });
+		return jdbcTemplate.update(sql, new Object[] { entity.getId() });
 	}
 
 	@Override
-	public void delete(int id) {
+	public int delete(int id) {
 		String sql = "delete from " + tableName + " where id=?";
-		jdbcTemplate.update(sql, new Object[] { id });
+		return jdbcTemplate.update(sql, new Object[] { id });
 	}
 
 	@Override

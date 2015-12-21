@@ -38,7 +38,7 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 
 	@Override
-	public void saveOrUpdate(Player entity) {
+	public void insertOrUpdate(Player entity) {
 		if (playerDao.get(entity.getId()) != null) {
 			playerDao.update(entity);
 		} else {
@@ -73,8 +73,32 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 	
 	@Override
-	public List<Player> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return playerDao.find(atributesFinding,orderBy,type);
+	public List<Player> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return playerDao.getAll(atributesFinding,orderBy,type);
+	}
+	
+	@Override
+	public List<Player> getAll(int first, int count) {
+		List<Player> result= playerDao.getAll(first,count);
+		return result;
 	}
 
+	@Override
+	public List<Player> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<Player> result= playerDao.getAll(first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public List<Player> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<Player> result= playerDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public int getCount() {
+		return playerDao.getCount();
+	}
+	
 }

@@ -43,7 +43,7 @@ public class CoefficientServiceImpl implements CoefficientService {
 	}
 
 	@Override
-	public void saveOrUpdate(Coefficient entity) {
+	public void insertOrUpdate(Coefficient entity) {
 		if (coefficientDao.get(entity.getId()) != null) {
 			coefficientDao.update(entity);
 		} else {
@@ -83,7 +83,31 @@ public class CoefficientServiceImpl implements CoefficientService {
 	}
 
 	@Override
-	public List<Coefficient> find(Map<String, Object> atributesFinding, String orderBy, boolean type) {
-		return coefficientDao.find(atributesFinding, orderBy, type);
+	public List<Coefficient> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return coefficientDao.getAll(atributesFinding, orderBy, type);
+	}
+	
+	@Override
+	public List<Coefficient> getAll(int first, int count) {
+		List<Coefficient> result= coefficientDao.getAll(first,count);
+		return result;
+	}
+
+	@Override
+	public List<Coefficient> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<Coefficient> result= coefficientDao.getAll(first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public List<Coefficient> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<Coefficient> result= coefficientDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		return result;
+	}
+	
+	@Override
+	public int getCount() {
+		return coefficientDao.getCount();
 	}
 }

@@ -2,6 +2,8 @@ package by.training.java.grodno.az.data.model;
 
 public class Participant extends AbstractEntity {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private int hourseId;
 	private int jockeyId;

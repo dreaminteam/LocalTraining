@@ -33,7 +33,7 @@ public class HourseServiceImpl implements HourseService {
 	}
 
 	@Override
-	public void saveOrUpdate(Hourse entity) {
+	public void insertOrUpdate(Hourse entity) {
 		if (hourseDao.get(entity.getId()) != null) {
 			hourseDao.update(entity);
 		} else {
@@ -63,8 +63,32 @@ public class HourseServiceImpl implements HourseService {
 	}
 
 	@Override
-	public List<Hourse> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return hourseDao.find(atributesFinding,orderBy,type);
+	public List<Hourse> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return hourseDao.getAll(atributesFinding,orderBy,type);
+	}
+	
+	@Override
+	public List<Hourse> getAll(int first, int count) {
+		List<Hourse> result= hourseDao.getAll(first,count);
+		return result;
 	}
 
+	@Override
+	public List<Hourse> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<Hourse> result= hourseDao.getAll(first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public List<Hourse> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<Hourse> result= hourseDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public int getCount() {
+		return hourseDao.getCount();
+	}
+	
 }

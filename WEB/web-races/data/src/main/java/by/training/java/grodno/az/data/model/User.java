@@ -9,12 +9,12 @@ public class User extends AbstractEntity {
 	private String login;
 	private String password;
 	private String firstName;
-	private String surname;
+	private String lastName;
 	private String email;
 	private String role;
 	private double balance;
 	private Date createDate;
-	private Date endDate;
+//	private Date endDate;
 
 	public String getEmail() {
 		return email;
@@ -73,11 +73,11 @@ public class User extends AbstractEntity {
 	}
 
 	public String getLastName() {
-		return surname;
+		return lastName;
 	}
 
 	public void setLastName(String lastName) {
-		this.surname = lastName;
+		this.lastName = lastName;
 	}
 
 	public Date getCreateDate() {
@@ -90,24 +90,24 @@ public class User extends AbstractEntity {
 		this.createDate = createDate;
 	}
 
-	public Date getEndDate() {
-		if (endDate == null) {
-			return null;
-		}
-		Timestamp timestamp = new Timestamp(endDate.getTime());
-		timestamp.setNanos(0);
-		return timestamp;
-	}
+//	public Date getEndDate() {
+//		if (endDate == null) {
+//			return null;
+//		}
+//		Timestamp timestamp = new Timestamp(endDate.getTime());
+//		timestamp.setNanos(0);
+//		return timestamp;
+//	}
 
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+//	public void setEndDate(Date endDate) {
+//		this.endDate = endDate;
+//	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + surname + ", email=" + email + ", role=" + role + ", balance=" + balance
-				+ ", createDate=" + createDate + ", endDate=" + endDate + "]";
+				+ ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", balance=" + balance
+				+ ", createDate=" + createDate + "]";
 	}
 
 }

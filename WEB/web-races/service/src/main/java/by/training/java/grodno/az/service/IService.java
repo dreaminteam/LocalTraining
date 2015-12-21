@@ -13,7 +13,7 @@ public interface IService<T extends AbstractEntity> {
 	
 	void update(T entity);
 
-	void saveOrUpdate(T entity);
+	void insertOrUpdate(T entity);
 
 	void delete(int id);
 
@@ -21,8 +21,16 @@ public interface IService<T extends AbstractEntity> {
 	
 	List<T> getAll();
 	
+	List<T> getAll(int first, int count);
+	
 	List<T> getAll(String orderBy, boolean orderType);
 	
-	List<T> find(Map<String, Object> atributesFinding, String orderBy,boolean type);
+	List<T> getAll(int first, int count, String orderBy, boolean orderType);
+
+	List<T> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type);
+	
+	List<T> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy, boolean orderType);
+	
+	int getCount();
 
 }

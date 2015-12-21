@@ -43,7 +43,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 	}
 
 	@Override
-	public void saveOrUpdate(Participant entity) {
+	public void insertOrUpdate(Participant entity) {
 		if (participantDao.get(entity.getId()) != null) {
 			participantDao.update(entity);
 		} else {
@@ -83,8 +83,32 @@ public class ParticipantServiceImpl implements ParticipantService {
 	}
 	
 	@Override
-	public List<Participant> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return participantDao.find(atributesFinding,orderBy,type);
+	public List<Participant> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return participantDao.getAll(atributesFinding,orderBy,type);
+	}
+	
+	@Override
+	public List<Participant> getAll(int first, int count) {
+		List<Participant> result= participantDao.getAll(first,count);
+		return result;
+	}
+
+	@Override
+	public List<Participant> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<Participant> result= participantDao.getAll(first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public List<Participant> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<Participant> result= participantDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		return result;
+	}
+	
+	@Override
+	public int getCount() {
+		return participantDao.getCount();
 	}
 
 }

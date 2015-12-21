@@ -47,7 +47,7 @@ public class RateServiceImpl implements RateService {
 	}
 
 	@Override
-	public void saveOrUpdate(Rate entity) {
+	public void insertOrUpdate(Rate entity) {
 		if (rateDao.get(entity.getId()) != null) {
 			rateDao.update(entity);
 		} else {
@@ -92,8 +92,32 @@ public class RateServiceImpl implements RateService {
 	}
 
 	@Override
-	public List<Rate> find(Map<String, Object> atributesFinding, String orderBy, boolean type) {
-		return rateDao.find(atributesFinding, orderBy, type);
+	public List<Rate> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return rateDao.getAll(atributesFinding,orderBy,type);
+	}
+	
+
+	@Override
+	public List<Rate> getAll(int first, int count) {
+		List<Rate> result= rateDao.getAll(first,count);
+		return result;
 	}
 
+	@Override
+	public List<Rate> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<Rate> result= rateDao.getAll(first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public List<Rate> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<Rate> result= rateDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		return result;
+	}
+	
+	@Override
+	public int getCount() {
+		return rateDao.getCount();
+	}
 }

@@ -43,7 +43,7 @@ public class RacingLineServiceImpl implements RacingLineService {
 	}
 
 	@Override
-	public void saveOrUpdate(RacingLine entity) {
+	public void insertOrUpdate(RacingLine entity) {
 		if (racingLineDao.get(entity.getId()) != null) {
 			racingLineDao.update(entity);
 		} else {
@@ -83,8 +83,32 @@ public class RacingLineServiceImpl implements RacingLineService {
 	}
 	
 	@Override
-	public List<RacingLine> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return racingLineDao.find(atributesFinding,orderBy,type);
+	public List<RacingLine> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return racingLineDao.getAll(atributesFinding,orderBy,type);
+	}
+	
+	@Override
+	public List<RacingLine> getAll(int first, int count) {
+		List<RacingLine> result= racingLineDao.getAll(first,count);
+		return result;
 	}
 
+	@Override
+	public List<RacingLine> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<RacingLine> result= racingLineDao.getAll(first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public List<RacingLine> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<RacingLine> result= racingLineDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public int getCount() {
+		return racingLineDao.getCount();
+	}
+	
 }

@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void saveOrUpdate(Employee entity) {
+	public void insertOrUpdate(Employee entity) {
 		if (employeeDao.get(entity.getId()) != null) {
 			employeeDao.update(entity);
 		} else {
@@ -73,8 +73,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	public List<Employee> find(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return employeeDao.find(atributesFinding,orderBy,type);
+	public List<Employee> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
+		return employeeDao.getAll(atributesFinding,orderBy,type);
+	}
+	
+	@Override
+	public List<Employee> getAll(int first, int count) {
+		List<Employee> result= employeeDao.getAll(first,count);
+		return result;
 	}
 
+	@Override
+	public List<Employee> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<Employee> result= employeeDao.getAll(first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public List<Employee> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+			boolean orderType) {
+		List<Employee> result= employeeDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		return result;
+	}
+
+	@Override
+	public int getCount() {
+		return employeeDao.getCount();
+	}
+	
 }

@@ -13,6 +13,7 @@ import org.apache.wicket.validation.validator.StringValidator;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.JavaEEComponent.Singleton;
+import by.training.java.grodno.az.webapp.app.CustomSession;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.homePage.HomePage;
 
@@ -46,12 +47,12 @@ public class LoginPage extends AbstractPage {
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-				User user = service.getByLogPas(loginModel.getObject(), passwordModel.getObject());
-				if (user != null) {
-					Singleton.getInstance().setRole(user.getRole());
+				CustomSession.get().signIn(loginModel.getObject(), passwordModel.getObject());
+				setResponsePage(HomePage.class);
+				
+				if (CustomSession.get().isSignedIn()) {
 					Page homePage = new HomePage();
-					homePage.info(String.format("Welcome, %s %s !", user.getFirstName(), user.getLastName()));
-					;
+					homePage.info(String.format("Welcome, %s !", CustomSession.get().getFullName()));
 					setResponsePage(homePage);
 				} else {
 					Page loginPage = new LoginPage();
