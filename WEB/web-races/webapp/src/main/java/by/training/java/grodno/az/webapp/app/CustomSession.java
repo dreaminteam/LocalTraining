@@ -2,6 +2,7 @@ package by.training.java.grodno.az.webapp.app;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.Session;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
@@ -18,9 +19,9 @@ public class CustomSession extends AuthenticatedWebSession {
 	@Inject
 	private UserService userService;
 
-	private Integer currentUserId;
-
-	private String fullName;
+	public static MetaDataKey<UserMetaData> USER_METADATA_KEY = new MetaDataKey<UserMetaData>() {
+		private static final long serialVersionUID = 1L;
+	};
 
 	private Roles roles;
 
@@ -39,42 +40,33 @@ public class CustomSession extends AuthenticatedWebSession {
 			throw new IllegalArgumentException("user service is null");
 		}
 		User user = userService.getByLogPas(login, password);
-
 		if (user != null) {
-			currentUserId = user.getId();
+
+			UserMetaData metaData = new UserMetaData();
+			metaData.setUserId(user.getId());
+			metaData.setUserFName(user.getFirstName());
+			metaData.setUserLName(user.getLastName());
+			metaData.setUserEmail(user.getEmail());
+			Session.get().setMetaData(USER_METADATA_KEY, metaData);
 			roles=new Roles();
 			roles.add(user.getRole());
-			fullName = String.format("%s %s", user.getFirstName(), user.getLastName());
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 
 	}
 
 	@Override
 	public void signOut() {
 		super.signOut();
-		currentUserId = null;
-		fullName = null;
-		roles = null;
 	}
 
 	@Override
 	public Roles getRoles() {
-		if (currentUserId == null) {
+		if (!CustomSession.get().isSignedIn()) {
 			return null;
 		}
-
 		return roles;
-	}
-
-	public int getCurrentuserid() {
-		return currentUserId;
-	}
-
-	public String getFullName() {
-		return fullName;
 	}
 
 }

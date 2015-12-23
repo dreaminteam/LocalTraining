@@ -3,6 +3,7 @@ package by.training.java.grodno.az.webapp.page.loginPage;
 import javax.inject.Inject;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.SubmitLink;
@@ -47,12 +48,12 @@ public class LoginPage extends AbstractPage {
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
+				getLogger().info(String.format("%s %s",loginModel.getObject(), passwordModel.getObject()));
 				CustomSession.get().signIn(loginModel.getObject(), passwordModel.getObject());
-				setResponsePage(HomePage.class);
-				
+				getLogger().info(String.format("%s", CustomSession.get().isSignedIn()));
 				if (CustomSession.get().isSignedIn()) {
 					Page homePage = new HomePage();
-					homePage.info(String.format("Welcome, %s !", CustomSession.get().getFullName()));
+					homePage.info(String.format("Welcome, %s !", Session.get().getMetaData(CustomSession.USER_METADATA_KEY).getFullName()));
 					setResponsePage(homePage);
 				} else {
 					Page loginPage = new LoginPage();

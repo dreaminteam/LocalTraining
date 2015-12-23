@@ -58,14 +58,14 @@ public class UsersPage extends AbstractPage{
 				item.add(new Label("createDate"));
 				item.add(new Label("role"));
 				
-				item.add(new Link("edit-link") {
+				item.add(new Link("user-edit-link") {
 					@Override
 					public void onClick() {
 						setResponsePage(new RegistrationPage(user));
 					}
 				});
 				
-				item.add(new Link("delete-link") {
+				item.add(new Link("user-delete-link") {
 					@Override
 					public void onClick() {
 						userService.delete(user);

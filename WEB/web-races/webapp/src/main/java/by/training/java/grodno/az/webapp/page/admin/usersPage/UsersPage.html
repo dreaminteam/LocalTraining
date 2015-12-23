@@ -5,37 +5,40 @@
 </head>
 
 <wicket:extend>
-<h1>Users dataview</h1>
-	
-	<table>
-		<thead>
-			<tr>
-				<th wicket:id="sortId">ID</th>
-				<th>login</th>
-				<th wicket:id="sortfName">firts name</th>
-				<th>last name</th>
-				<th>email</th>
-				<th>create date</th>
-				<th>Role</th>
-				<th>Actions</th>
-				<th>Delete</th>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr wicket:id="users-list">
-				<td><span wicket:id="id"></span></td>
-				<td><span wicket:id="login"></span></td>
-				<td><span wicket:id="firstName"></span></td>
-				<td><span wicket:id="lastName"></span></td>
-				<td><span wicket:id="email"></span></td>
-				<td><span wicket:id="createDate"></span></td>
-				<td><span wicket:id="role"></span></td>
-				<td><button type="button" wicket:id="edit-link">Edit</button></td>
-				<td><button type="button" wicket:id="delete-link">Delete</button></td>
-			</tr>
-		</tbody>
-	</table>
+	<h1>Users dataview</h1><br/>
+	<div class="tableconteiner">
+		<table>
+
+			<tbody>
+				<tr>
+					<td wicket:id="sortId">ID</td>
+					<td>login</td>
+					<td wicket:id="sortfName">firts name</td>
+					<td>last name</td>
+					<td>email</td>
+					<td>create date</td>
+					<td>Role</td>
+					<td>Actions</td>
+					<td>Delete</td>
+
+				</tr>
+
+
+				<tr wicket:id="users-list">
+					<td><span wicket:id="id"></span></td>
+					<td><span wicket:id="login"></span></td>
+					<td><span wicket:id="firstName"></span></td>
+					<td><span wicket:id="lastName"></span></td>
+					<td><span wicket:id="email"></span></td>
+					<td><span wicket:id="createDate"></span></td>
+					<td><span wicket:id="role"></span></td>
+					<td><a class="button" wicket:id="user-edit-link">Edit...</a></td>
+					<td><a class="button" wicket:id="user-delete-link">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<div wicket:id="paging"></div>
+
 </wicket:extend>
 </html>

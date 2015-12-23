@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.component.headerHolder.userHeaderHolder;
+package by.training.java.grodno.az.webapp.component.headerHolder;
 
 import java.util.List;
 import java.util.Set;
@@ -12,6 +12,7 @@ import org.apache.wicket.model.Model;
 
 import by.training.java.grodno.az.webapp.JavaEEComponent.Singleton;
 import by.training.java.grodno.az.webapp.app.CustomSession;
+import by.training.java.grodno.az.webapp.component.LanguageSelectionComponent.LanguageSelectionComponent;
 import by.training.java.grodno.az.webapp.component.logoutInputPanel.InputPanel;
 import by.training.java.grodno.az.webapp.component.logoutInputPanel.LogoutPanel;
 import by.training.java.grodno.az.webapp.component.menuPanel.adminMenuPanel.AdminMainMenuPanel;
@@ -25,8 +26,8 @@ public class HeaderHolderPanel extends Panel {
 		PLAYER, ADMIN
 	}
 
-	private String titleForPlayer = "Онлайн ставки на скачки";
-	private String titleForAdmin = "Администрирование";
+	private String titleForPlayer = getString("component.headerHolderPanel.title.player");
+	private String titleForAdmin = getString("component.headerHolderPanel.title.admin");
 
 	public HeaderHolderPanel(String id) {
 		super(id);
@@ -35,18 +36,21 @@ public class HeaderHolderPanel extends Panel {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+
+		add(new LanguageSelectionComponent("language-panel"));
 		
-		String userName="Not authorizetion user";
-		if(CustomSession.get().isSignedIn()){
-			userName=CustomSession.get().getFullName();
+		String userName =getString("component.headerHolderPanel.user.notaut");
+		Label label;
+
+		if (CustomSession.get().isSignedIn()) {
+			userName = CustomSession.get().getMetaData(CustomSession.USER_METADATA_KEY).getFullName();
+			label = new Label("user-name-label", userName);
+			label.add(AttributeModifier.append("style", "color:white"));
+		} else {
+			label = new Label("user-name-label", userName);
 		}
 		
-		Label label = new Label("user-name-label", userName);
-		label.add(AttributeModifier.append("color", new Model<String>("white")));
-		add(label);
-		
 		Set<String> role = CustomSession.get().getRoles();
-
 		if (role == null) {
 			add(new InputPanel("logout-input-panel"));
 			add(new PlayerMainMenuPanel("main-menu-panel"));
@@ -67,5 +71,15 @@ public class HeaderHolderPanel extends Panel {
 
 			}
 		}
+
+		add(label);
+
+	}
+
+	@Override
+	protected void onConfigure() {
+		super.onConfigure();
+
+		
 	}
 }
