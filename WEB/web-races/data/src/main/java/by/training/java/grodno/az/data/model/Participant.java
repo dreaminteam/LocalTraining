@@ -1,5 +1,7 @@
 package by.training.java.grodno.az.data.model;
 
+import by.training.java.grodno.az.data.entities.AbstractEntity;
+
 public class Participant extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;

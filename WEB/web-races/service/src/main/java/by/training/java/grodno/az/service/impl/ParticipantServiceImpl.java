@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import by.training.java.grodno.az.data.dao.HourseDao;
 import by.training.java.grodno.az.data.dao.JockeyDao;
 import by.training.java.grodno.az.data.dao.ParticipantDao;
+import by.training.java.grodno.az.data.entities.ParticipantView;
 import by.training.java.grodno.az.data.model.Hourse;
 import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.data.model.Participant;
@@ -109,6 +110,11 @@ public class ParticipantServiceImpl implements ParticipantService {
 	@Override
 	public int getCount() {
 		return participantDao.getCount();
+	}
+
+	@Override
+	public List<ParticipantView> getView() {
+		return participantDao.getView();
 	}
 
 }

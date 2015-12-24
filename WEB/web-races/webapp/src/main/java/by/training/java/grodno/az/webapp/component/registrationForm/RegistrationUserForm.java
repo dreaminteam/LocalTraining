@@ -139,7 +139,6 @@ public class RegistrationUserForm extends Panel {
 				String pass = service.encryption(user.getPassword());
 				user.setPassword(pass);
 				user.setRole(roleModel.getObject());
-				System.out.println(user.toString());
 				if (!CustomSession.get().isSignedIn()) {
 
 					if (service.insert(user) < 0) {

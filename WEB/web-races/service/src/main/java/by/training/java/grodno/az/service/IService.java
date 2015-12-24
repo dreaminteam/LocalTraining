@@ -3,7 +3,7 @@ package by.training.java.grodno.az.service;
 import java.util.List;
 import java.util.Map;
 
-import by.training.java.grodno.az.data.model.AbstractEntity;
+import by.training.java.grodno.az.data.entities.AbstractEntity;
 
 public interface IService<T extends AbstractEntity> {
 

@@ -18,7 +18,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import by.training.java.grodno.az.data.dao.Dao;
-import by.training.java.grodno.az.data.model.AbstractEntity;
+import by.training.java.grodno.az.data.entities.AbstractEntity;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.data.util.DaoUtil;
 

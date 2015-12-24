@@ -5,7 +5,7 @@
 </head>
 
 <wicket:extend>
-	<p>Jockeys page</p>
+	<p>Participants page</p>
 
 	<div class="tableconteiner">
 		<table>
@@ -13,20 +13,20 @@
 			<tbody>
 				<tr>
 					<td>ID</td>
-					<td>firts name</td>
-					<td>last name</td>
+					<td>jockey</td>
+					<td>hourse</td>
 					<td>Actions</td>
 
 				</tr>
 
 
-				<tr wicket:id="jockeys-list">
+				<tr wicket:id="participants-list">
 					<td><span wicket:id="id"></span></td>
-					<td><span wicket:id="firstName"></span></td>
-					<td><span wicket:id="lastName"></span></td>
+					<td><span wicket:id="jockey"></span></td>
+					<td><span wicket:id="hourse"></span></td>
 					<td><div class="action-button">
-							<a class="button" wicket:id="jokey-edit-link"><wicket:message key="all.edit"/></a><a
-								class="button" wicket:id="jokey-delete-link"><wicket:message key="all.delete"/></a>
+							<a class="button" wicket:id="participant-edit-link"><wicket:message key="all.edit"/></a><a
+								class="button" wicket:id="participant-delete-link"><wicket:message key="all.delete"/></a>
 						</div></td>
 				</tr>
 			</tbody>
@@ -34,7 +34,7 @@
 	</div>
 	<br />
 	<div>
-		<a class="button" wicket:id="jokey-create-link"><wicket:message key="all.add"/></a>
+		<a class="button" wicket:id="participant-create-link"><wicket:message key="all.add"/></a>
 	</div>
 
 </wicket:extend>

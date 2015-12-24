@@ -3,6 +3,8 @@ package by.training.java.grodno.az.data.model;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import by.training.java.grodno.az.data.entities.AbstractEntity;
+
 public class User extends AbstractEntity {
 
 	private int id;

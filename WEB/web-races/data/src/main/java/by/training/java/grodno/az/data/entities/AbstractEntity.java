@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.data.model;
+package by.training.java.grodno.az.data.entities;
 
 import java.io.Serializable;
 

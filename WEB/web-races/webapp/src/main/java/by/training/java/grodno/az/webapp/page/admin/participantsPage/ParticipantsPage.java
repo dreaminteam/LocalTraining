@@ -10,9 +10,7 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
-import by.training.java.grodno.az.data.model.Jockey;
-import by.training.java.grodno.az.data.model.Participant;
-import by.training.java.grodno.az.service.JockeyService;
+import by.training.java.grodno.az.data.entities.ParticipantView;
 import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 
@@ -27,29 +25,31 @@ public class ParticipantsPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		List<Participant> allUsers = participantService.getAll();
+		List<ParticipantView> allUsers = participantService.getView();
 
-		add(new ListView<Participant>("participants-list", allUsers) {
+		add(new ListView<ParticipantView>("participants-list", allUsers) {
 			@Override
-			protected void populateItem(ListItem<Participant> item) {
+			protected void populateItem(ListItem<ParticipantView> item) {
 				
-				final Participant participant = item.getModelObject();
-				item.add(new Label("id",participant.getId()));
-				item.add(new Label("firstName",participant.getFirstName()));
-				item.add(new Label("lastName",participant.getLastName()));
+				final ParticipantView participantView = item.getModelObject();
+				
+				int participantId = participantView.getParticipantId();
+				item.add(new Label("id",participantId));
+				item.add(new Label("jockey",participantView.getJockeyFullName()));
+				item.add(new Label("hourse",participantView.getHourseName()));
 
-				item.add(new Link("jokey-edit-link") {
+				item.add(new Link("participant-edit-link") {
 					@Override
 					public void onClick() {
-						setResponsePage(new ParticipantEditPage(participant));
+						setResponsePage(new ParticipantEditPage(participantService.getById(participantId)));
 					}
 				});
 
-				item.add(new Link("jokey-delete-link") {
+				item.add(new Link("participant-delete-link") {
 
 					@Override
 					public void onClick() {
-						participantService.delete(participant);
+						participantService.delete(participantId);
 						setResponsePage(ParticipantsPage.class);
 					}
 				});
@@ -57,7 +57,7 @@ public class ParticipantsPage extends AbstractPage {
 			}
 		});
 
-		add(new Link("jokey-create-link") {
+		add(new Link("participant-create-link") {
 			@Override
 			public void onClick() {
 				setResponsePage(new ParticipantEditPage());
