@@ -53,7 +53,7 @@ public class HourseEditPage extends AbstractPage {
 
 				hourseService.insertOrUpdate(hourse);
 				HourseEditPage editPage = new HourseEditPage();
-				editPage.info("jockey saved");
+				editPage.info("hourse saved");
 				setResponsePage(editPage);
 
 			};

@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.JavaEEComponent;
+package by.training.java.grodno.az.webapp.javaEEComponent;
 
 import java.util.Date;
 

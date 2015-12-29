@@ -39,6 +39,11 @@
 			<artifactId>wicket-extensions</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.googlecode.wicket-jquery-ui</groupId>
+			<artifactId>wicket-kendo-ui</artifactId>
+		</dependency>
+
 
 		<!-- JETTY DEPENDENCIES FOR TESTING -->
 		<dependency>

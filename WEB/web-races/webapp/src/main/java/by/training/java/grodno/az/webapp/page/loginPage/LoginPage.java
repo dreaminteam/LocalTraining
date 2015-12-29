@@ -13,8 +13,8 @@ import org.apache.wicket.validation.validator.StringValidator;
 
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
-import by.training.java.grodno.az.webapp.JavaEEComponent.Singleton;
 import by.training.java.grodno.az.webapp.app.CustomSession;
+import by.training.java.grodno.az.webapp.javaEEComponent.Singleton;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.homePage.HomePage;
 

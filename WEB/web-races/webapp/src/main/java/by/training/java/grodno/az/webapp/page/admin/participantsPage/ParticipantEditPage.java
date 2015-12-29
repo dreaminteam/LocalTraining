@@ -21,7 +21,7 @@ import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.service.HourseService;
 import by.training.java.grodno.az.service.JockeyService;
 import by.training.java.grodno.az.service.ParticipantService;
-import by.training.java.grodno.az.webapp.JavaEEComponent.Role;
+import by.training.java.grodno.az.webapp.javaEEComponent.Role;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 import by.training.java.grodno.az.webapp.renderer.HourseChoiceRenderer;
 import by.training.java.grodno.az.webapp.renderer.JockeyChoiceRenderer;

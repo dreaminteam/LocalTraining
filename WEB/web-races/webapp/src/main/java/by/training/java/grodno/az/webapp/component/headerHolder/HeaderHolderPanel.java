@@ -10,13 +10,13 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
-import by.training.java.grodno.az.webapp.JavaEEComponent.Singleton;
 import by.training.java.grodno.az.webapp.app.CustomSession;
 import by.training.java.grodno.az.webapp.component.LanguageSelectionComponent.LanguageSelectionComponent;
 import by.training.java.grodno.az.webapp.component.logoutInputPanel.InputPanel;
 import by.training.java.grodno.az.webapp.component.logoutInputPanel.LogoutPanel;
 import by.training.java.grodno.az.webapp.component.menuPanel.adminMenuPanel.AdminMainMenuPanel;
 import by.training.java.grodno.az.webapp.component.menuPanel.playerMenuPanel.PlayerMainMenuPanel;
+import by.training.java.grodno.az.webapp.javaEEComponent.Singleton;
 
 public class HeaderHolderPanel extends Panel {
 

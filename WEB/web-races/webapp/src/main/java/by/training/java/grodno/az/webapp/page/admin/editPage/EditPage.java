@@ -4,6 +4,7 @@ import org.apache.wicket.authroles.authorization.strategies.role.annotations.Aut
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
+import by.training.java.grodno.az.webapp.page.admin.hourseRacing.HourseRacingEditPage;
 import by.training.java.grodno.az.webapp.page.admin.hoursesPage.HoursePage;
 import by.training.java.grodno.az.webapp.page.admin.jockeysPage.JockeysPage;
 import by.training.java.grodno.az.webapp.page.admin.participantsPage.ParticipantsPage;
@@ -22,6 +23,7 @@ public class EditPage extends AbstractPage {
 		add(new BookmarkablePageLink<Void>("jockeys-page-link", JockeysPage.class));
 		add(new BookmarkablePageLink<Void>("hourses-page-link", HoursePage.class));
 		add(new BookmarkablePageLink<Void>("participants-page-link", ParticipantsPage.class));
+		add(new BookmarkablePageLink<Void>("hourse-racing-edit-page-link", HourseRacingEditPage.class));
 	}
 
 }
