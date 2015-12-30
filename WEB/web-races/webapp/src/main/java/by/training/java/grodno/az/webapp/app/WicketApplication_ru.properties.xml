@@ -5,6 +5,11 @@
 	<entry key="all.delete">Удалить</entry>
 	<entry key="all.add">Добавить</entry>
 	<entry key="all.edit">Редактировать</entry>
+	<entry key="all.title">Загловие</entry>
+	<entry key="all.date">Дата</entry>
+	<entry key="all.action">Действие</entry>
+	<entry key="all.firstName">Имя</entry>
+	<entry key="all.lastName">Фамилия</entry>
 
 	<entry key="component.logoutInputPanel.logout">Выйти</entry>
 	<entry key="component.logoutInputPanel.registration">Регистрация</entry>

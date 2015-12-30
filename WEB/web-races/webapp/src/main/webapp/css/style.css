@@ -632,3 +632,7 @@ table
 .language-container div {
 	display: inline-block;
 }
+
+#time input{
+	width: 50px;
+}

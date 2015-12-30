@@ -28,6 +28,9 @@ public class HourseRacing extends AbstractEntity {
 	}
 
 	public Date getDate() {
+		if(date==null){
+			return null;
+		}
 		Timestamp timestamp = new Timestamp(date.getTime());
 		timestamp.setNanos(0);
 		return timestamp;

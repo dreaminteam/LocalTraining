@@ -5,7 +5,8 @@
 </head>
 
 <wicket:extend>
-	<h1>Users dataview</h1><br/>
+	<h1>Users dataview</h1>
+	<br />
 	<div class="tableconteiner">
 		<table>
 
@@ -13,13 +14,12 @@
 				<tr>
 					<td wicket:id="sortId">ID</td>
 					<td>login</td>
-					<td wicket:id="sortfName">firts name</td>
-					<td>last name</td>
+					<td wicket:id="sortfName"><wicket:message key="all.firstName" /></td>
+					<td><wicket:message key="all.lastName" /></td>
 					<td>email</td>
 					<td>create date</td>
 					<td>Role</td>
 					<td>Actions</td>
-					<td>Delete</td>
 
 				</tr>
 
@@ -32,8 +32,10 @@
 					<td><span wicket:id="email"></span></td>
 					<td><span wicket:id="createDate"></span></td>
 					<td><span wicket:id="role"></span></td>
-					<td><a class="button" wicket:id="user-edit-link">Edit...</a></td>
-					<td><a class="button" wicket:id="user-delete-link">Delete</a></td>
+					<td><div class="action-button">
+							<a class="button" wicket:id="user-edit-link">Edit...</a> <a
+								class="button" wicket:id="user-delete-link">Delete</a>
+						</div></td>
 				</tr>
 			</tbody>
 		</table>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import by.training.java.grodno.az.data.dao.HourseRacingDao;
 import by.training.java.grodno.az.data.dao.ParticipantDao;
 import by.training.java.grodno.az.data.dao.RacingLineDao;
+import by.training.java.grodno.az.data.entities.RacingLineView;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.data.model.RacingLine;
@@ -109,6 +110,11 @@ public class RacingLineServiceImpl implements RacingLineService {
 	@Override
 	public int getCount() {
 		return racingLineDao.getCount();
+	}
+
+	@Override
+	public List<RacingLineView> getView() {
+		return racingLineDao.getView();
 	}
 	
 }
