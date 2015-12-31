@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <wicket:extend>
 
-	<form class="contact_form" wicket:id="participant-edit-form">
+	<form class="contact_form" wicket:id="racing-line-edit-form">
 
 		<ul>
 			<li>
-				<h2>Participant</h2> <span class="required_notification"></span>
+				<h2>Rasing lines</h2> <span class="required_notification"></span>
 			</li>
 
 
 
-			<li><label wicket:for="drop-jockey">Jockey:</label> <select
-				wicket:id="drop-jockey" required></select></li>
+			<li><label wicket:for="drop-hourse-racing">Hourse racing:</label> <select
+				wicket:id="drop-hourse-racing" required></select></li>
 				
-				<li><label wicket:for="drop-hourse">Hourse:</label> <select
-				wicket:id="drop-hourse" required></select></li>
+				<li><label wicket:for="drop-participant">Participant:</label> <select
+				wicket:id="drop-participant" required></select></li>
 
 			<li>
-				<button class="submit" type="submit" wicket:id="participant-submit-button"><wicket:message key="all.save"/></button>
+				<button class="submit" type="submit" wicket:id="racing-line-submit-button"><wicket:message key="all.save"/></button>
 
 			</li>
 		</ul>
 	</form>
 	<br/>
-		<a class="button" wicket:id="participants-page-link">Participants list</a>
+		<a class="button" wicket:id="racing-lines-page-link">Participants list</a>
 
 </wicket:extend>

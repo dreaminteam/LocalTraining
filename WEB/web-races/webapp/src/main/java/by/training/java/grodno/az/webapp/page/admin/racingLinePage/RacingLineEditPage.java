@@ -50,13 +50,13 @@ public class RacingLineEditPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		Form<Void> form = new Form<>("participant-edit-form");
+		Form<Void> form = new Form<>("racing-line-edit-form");
 		add(form);
 
-		Model<HourseRacing> hourseRacingeModel = new Model<>();
+		Model<HourseRacing> hourseRacingModel = new Model<>();
 		List<HourseRacing> hourseRacingChoices = hourseRacingService.getAll();
-		DropDownChoice<HourseRacing> dropDownRacingLineChoice = new DropDownChoice<>("drop-racingLine",
-				hourseRacingeModel, hourseRacingChoices, new HourseRacingChoiceRenderer());
+		DropDownChoice<HourseRacing> dropDownRacingLineChoice = new DropDownChoice<>("drop-hourse-racing",
+				hourseRacingModel, hourseRacingChoices, new HourseRacingChoiceRenderer());
 		dropDownRacingLineChoice.setRequired(true);
 		form.add(dropDownRacingLineChoice);
 
@@ -70,8 +70,12 @@ public class RacingLineEditPage extends AbstractPage {
 		form.add(new SubmitLink("racing-line-submit-button") {
 			@Override
 			public void onSubmit() {
-				racingLine.setHourseRacingId(hourseRacingeModel.getObject().getId());
+				System.out.println("(hourseRacingModel.getObject().getId() "+(hourseRacingModel.getObject().getId()));
+				System.out.println("(participantViewModel.getObject().getParticipantId()) "+(participantViewModel.getObject().getParticipantId()));
+				racingLine.setHourseRacingId(hourseRacingModel.getObject().getId());
 				racingLine.setParticipantId(participantViewModel.getObject().getParticipantId());
+				System.out.println(racingLine.getHourseRacingId());
+				System.out.println(racingLine.getParticipantId());
 				racingLineService.insertOrUpdate(racingLine);
 				RacingLineEditPage editPage = new RacingLineEditPage();
 				editPage.info("racing line saved");
@@ -79,10 +83,10 @@ public class RacingLineEditPage extends AbstractPage {
 
 			};
 		});
-		add(new Link<Void>("racings-page-link") {
+		add(new Link<Void>("racing-lines-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(RacingsPage.class);
+				setResponsePage(RacingLinesPage.class);
 			}
 		});
 	}

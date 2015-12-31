@@ -15,7 +15,7 @@ import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin" })
-public class RacingsPage extends AbstractPage {
+public class RacingLinesPage extends AbstractPage {
 
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +50,7 @@ public class RacingsPage extends AbstractPage {
 					@Override
 					public void onClick() {
 						participantService.delete(participantId);
-						setResponsePage(RacingsPage.class);
+						setResponsePage(RacingLinesPage.class);
 					}
 				});
 

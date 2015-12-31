@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.Session;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -93,17 +94,15 @@ public class RegistrationUserForm extends Panel {
 		form.add(loginTextField);
 
 		PasswordTextField passwordTextField = new PasswordTextField("password");
-		
-		
-			passwordTextField.setRequired(true);
-			passwordTextField.add(StringValidator.maximumLength(40));
-	
+
+		passwordTextField.setRequired(true);
+		passwordTextField.add(StringValidator.maximumLength(40));
+
 		form.add(passwordTextField);
-		if (CustomSession.get().isSignedIn()) {
-			if(CustomSession.get().getRoles().contains("admin")){
-				passwordTextField.setVisible(false);
-			}
+		if (!isNew && CustomSession.get().getMetaData(CustomSession.USER_METADATA_KEY).getUserId()!=user.getId()) {
+			passwordTextField.setVisible(false);
 		}
+
 		Model<String> roleModel = new Model<>();
 		List<String> choices = Arrays.asList(Role.admin.name().toLowerCase(), Role.player.name().toLowerCase());
 		DropDownChoice<String> dropDownChoice = new DropDownChoice<>("drop-role", roleModel, choices);
@@ -174,19 +173,17 @@ public class RegistrationUserForm extends Panel {
 
 			};
 		});
-		
-		
+
 		add(new UsersPageLink("users-page-link", UsersPage.class));
 
-		
 	}
-	
+
 	@AuthorizeAction(roles = { "admin" }, action = Action.RENDER)
-	private class UsersPageLink extends BookmarkablePageLink{
+	private class UsersPageLink extends BookmarkablePageLink {
 
 		public UsersPageLink(String id, Class pageClass) {
 			super(id, pageClass);
 		}
-		
-	} 
+
+	}
 }

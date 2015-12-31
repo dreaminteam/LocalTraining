@@ -133,6 +133,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	public int insert(T entity) {
 		SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
 		jdbcInsert.withTableName(tableName).usingGeneratedKeyColumns("id");
+		System.out.println("tableNema "+tableName);
 		Number key = -1;
 		try {
 			key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(getMapAtributes(entity)));
@@ -185,6 +186,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 				}
 			}
 		}
+		System.out.println("getMapAtributes "+result.toString());
 		return result;
 	}
 

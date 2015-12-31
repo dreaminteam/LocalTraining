@@ -8,6 +8,7 @@ import by.training.java.grodno.az.webapp.page.admin.hourseRacing.HourseRacingPag
 import by.training.java.grodno.az.webapp.page.admin.hoursesPage.HoursePage;
 import by.training.java.grodno.az.webapp.page.admin.jockeysPage.JockeysPage;
 import by.training.java.grodno.az.webapp.page.admin.participantsPage.ParticipantsPage;
+import by.training.java.grodno.az.webapp.page.admin.racingLinePage.RacingLineEditPage;
 import by.training.java.grodno.az.webapp.page.admin.usersPage.UsersPage;
 
 @AuthorizeInstantiation(value = { "admin" })
@@ -24,6 +25,7 @@ public class EditPage extends AbstractPage {
 		add(new BookmarkablePageLink<Void>("hourses-page-link", HoursePage.class));
 		add(new BookmarkablePageLink<Void>("participants-page-link", ParticipantsPage.class));
 		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
+		add(new BookmarkablePageLink<Void>("racing-line-page-link", RacingLineEditPage.class));
 	}
 
 }

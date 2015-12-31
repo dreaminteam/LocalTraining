@@ -22,6 +22,7 @@ import org.apache.wicket.model.IModel;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
+import by.training.java.grodno.az.webapp.page.admin.jockeysPage.JockeyEditPage;
 import by.training.java.grodno.az.webapp.page.registrationPage.RegistrationPage;
 
 @AuthorizeInstantiation(value = { "admin" })
@@ -79,8 +80,14 @@ public class UsersPage extends AbstractPage{
 
 		add(new OrderByBorder<Object>("sortId", "id", usersDataProvider));
 		add(new OrderByBorder<Object>("sortfName", "firstName", usersDataProvider));
-
 		add(new PagingNavigator("paging", dataView));
+		
+		add(new Link("user-create-link") {
+			@Override
+			public void onClick() {
+				setResponsePage(new RegistrationPage());
+			}
+		});
 		
 	}
 
