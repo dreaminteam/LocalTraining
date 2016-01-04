@@ -73,15 +73,15 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `races`.`racing_line` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `horse_racing_id` INT NOT NULL COMMENT '',
+  `hourse_racing_id` INT NOT NULL COMMENT '',
   `participant_id` INT NOT NULL COMMENT '',
   `result` INT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)  COMMENT '',
-  INDEX `fk_racing_line_horse_racing1_idx` (`horse_racing_id` ASC)  COMMENT '',
+  INDEX `fk_racing_line_hourse_racing1_idx` (`hourse_racing_id` ASC)  COMMENT '',
   INDEX `fk_racing_line_hourse_2_jockey1_idx` (`participant_id` ASC)  COMMENT '',
-  CONSTRAINT `fk_racing_line_horse_racing1`
-    FOREIGN KEY (`horse_racing_id`)
+  CONSTRAINT `fk_racing_line_hourse_racing1`
+    FOREIGN KEY (`hourse_racing_id`)
     REFERENCES `races`.`hourse_racing` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,

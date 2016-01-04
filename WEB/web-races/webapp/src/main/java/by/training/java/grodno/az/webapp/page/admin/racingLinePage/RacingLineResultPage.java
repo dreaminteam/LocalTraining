@@ -1,7 +1,5 @@
 package by.training.java.grodno.az.webapp.page.admin.racingLinePage;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,8 +10,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
-
-import com.googlecode.wicket.kendo.ui.form.dropdown.DropDownList;
 
 import by.training.java.grodno.az.data.entities.ParticipantView;
 import by.training.java.grodno.az.data.model.HourseRacing;
@@ -26,7 +22,7 @@ import by.training.java.grodno.az.webapp.renderer.HourseRacingChoiceRenderer;
 import by.training.java.grodno.az.webapp.renderer.ParticipantViewChoiceRenderer;
 
 @AuthorizeInstantiation(value = { "admin" })
-public class RacingLineEditPage extends AbstractPage {
+public class RacingLineResultPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -40,12 +36,12 @@ public class RacingLineEditPage extends AbstractPage {
 
 	private RacingLine racingLine;
 
-	public RacingLineEditPage() {
+	public RacingLineResultPage() {
 		super();
 		this.racingLine = new RacingLine();
 	}
 
-	public RacingLineEditPage(RacingLine racingLine) {
+	public RacingLineResultPage(RacingLine racingLine) {
 		super();
 		this.racingLine = racingLine;
 	}
@@ -64,11 +60,6 @@ public class RacingLineEditPage extends AbstractPage {
 		dropDownRacingLineChoice.setRequired(true);
 		form.add(dropDownRacingLineChoice);
 
-		Model<Integer> quantityModel=new Model<>();
-		List<Integer> quantityModelChoise=Arrays.asList(2,3,4,5,6,7,8,9);
-		DropDownList<Integer> dropDownQuantity=new DropDownList<>("drop-quantity", quantityModel, quantityModelChoise);
-		form.add(dropDownQuantity);
-		
 		Model<ParticipantView> participantViewModel = new Model<>();
 		List<ParticipantView> participantViewChoices = participantService.getView();
 		DropDownChoice<ParticipantView> dropDownParticipantViewChoice = new DropDownChoice<>("drop-participant",
@@ -79,10 +70,18 @@ public class RacingLineEditPage extends AbstractPage {
 		form.add(new SubmitLink("racing-line-submit-button") {
 			@Override
 			public void onSubmit() {
+				System.out.println("(hourseRacingModel.getObject().getId() "+(hourseRacingModel.getObject().getId()));
+				System.out.println("(participantViewModel.getObject().getParticipantId()) "+(participantViewModel.getObject().getParticipantId()));
 				racingLine.setHourseRacingId(hourseRacingModel.getObject().getId());
 				racingLine.setParticipantId(participantViewModel.getObject().getParticipantId());
+				System.out.println(">>>>>>>>>>>>>>"+racingLine.getHourseRacingId());
+				
+				System.out.println("------->"+racingLine.toString());
+				
+				System.out.println("<<<<<<<<<<<<<<<"+racingLine.getParticipantId());
+				
 				racingLineService.insertOrUpdate(racingLine);
-				RacingLineEditPage editPage = new RacingLineEditPage();
+				RacingLineResultPage editPage = new RacingLineResultPage();
 				editPage.info("racing line saved");
 				setResponsePage(editPage);
 

@@ -3,7 +3,8 @@ package by.training.java.grodno.az.data.model;
 import by.training.java.grodno.az.data.entities.AbstractEntity;
 
 public class RacingLine extends AbstractEntity {
-
+	private static final long serialVersionUID = 1L;
+	
 	private int id;
 	private int hourseRacingId;
 	private int participantId;
