@@ -117,4 +117,9 @@ public class ParticipantServiceImpl implements ParticipantService {
 		return participantDao.getView();
 	}
 
+	@Override
+	public ParticipantView getViewById(int participant_id) {
+		return participantDao.getViewById(participant_id);
+	}
+
 }

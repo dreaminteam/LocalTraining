@@ -13,7 +13,6 @@ import by.training.java.grodno.az.data.entities.RacingLineView;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.data.model.RacingLine;
-import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.RacingLineService;
 
 @Service
@@ -113,8 +112,8 @@ public class RacingLineServiceImpl implements RacingLineService {
 	}
 
 	@Override
-	public List<RacingLineView> getView() {
-		return racingLineDao.getView();
+	public RacingLineView getViewById(int racingLineId) {
+		//transaction
 	}
 	
 }

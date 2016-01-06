@@ -52,7 +52,7 @@ public class HoursePage extends AbstractPage {
 						setResponsePage(HoursePage.class);
 					}
 				});
-
+				
 			}
 		});
 

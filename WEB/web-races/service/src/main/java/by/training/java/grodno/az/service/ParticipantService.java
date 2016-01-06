@@ -14,5 +14,9 @@ public interface ParticipantService extends IService<Participant> {
 	Jockey getJockey(int jockey_id);
 	
 	List<ParticipantView> getView();
+	
+	ParticipantView getViewById(int participant_id);
+	
+	
 
 }

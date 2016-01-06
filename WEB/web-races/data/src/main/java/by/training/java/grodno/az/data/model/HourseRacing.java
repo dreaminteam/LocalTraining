@@ -40,4 +40,9 @@ public class HourseRacing extends AbstractEntity {
 		this.date = date;
 	}
 
+	@Override
+	public String toString() {
+		return "HourseRacing [id=" + id + ", title=" + title + ", date=" + date + "]";
+	}
+
 }

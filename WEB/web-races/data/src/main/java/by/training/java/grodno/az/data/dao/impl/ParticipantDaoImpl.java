@@ -29,4 +29,16 @@ public class ParticipantDaoImpl extends GenericDao<Participant> implements Parti
 		return result;
 	}
 
+	@Override
+	public ParticipantView getViewById(int participant_id) {
+
+		String sql=String.format("select p.id,j.first_name as jockey_firstname,j.last_name as jockey_lastname,h.name as hourse_name"
+				+ " from participant as p join jockey as j on p.jockey_id=j.id"
+				+ " join hourse as h on p.hourse_id=h.id order by p.id where p.id=?;", participant_id);
+		
+		ParticipantView result = jdbcTemplate.queryForObject(sql, new ParticipantViewMapper());
+
+		return result;
+	}
+
 }

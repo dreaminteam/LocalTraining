@@ -10,6 +10,8 @@
 	<entry key="all.action">Действие</entry>
 	<entry key="all.firstName">Имя</entry>
 	<entry key="all.lastName">Фамилия</entry>
+	<entry key="all.participants">Участники</entry>
+	<entry key="all.hourse.racings">Конные скачки</entry>
 
 	<entry key="component.logoutInputPanel.logout">Выйти</entry>
 	<entry key="component.logoutInputPanel.registration">Регистрация</entry>

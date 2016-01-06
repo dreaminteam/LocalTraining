@@ -13,6 +13,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.service.HourseRacingService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
+import by.training.java.grodno.az.webapp.page.admin.racingLinePage.RacingLineEditPage;
 
 @AuthorizeInstantiation(value = { "admin" })
 public class HourseRacingPage extends AbstractPage {
@@ -49,6 +50,14 @@ public class HourseRacingPage extends AbstractPage {
 					public void onClick() {
 						racingService.delete(hourseRacing);
 						setResponsePage(HourseRacingPage.class);
+					}
+				});
+				
+				item.add(new Link("racing-line-edit-link") {
+
+					@Override
+					public void onClick() {
+						setResponsePage(new RacingLineEditPage(hourseRacing));
 					}
 				});
 

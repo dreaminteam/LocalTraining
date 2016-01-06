@@ -5,27 +5,24 @@
 
 		<ul>
 			<li>
-				<h2>Rasing lines</h2> <span class="required_notification"></span>
+				<h2>
+					<wicket:container wicket:id="hourse-racing-title"/>
+				</h2> <span class="required_notification"></span>
 			</li>
 
-
-
-			<li><label wicket:for="drop-hourse-racing">Hourse racing:</label> <select
-				wicket:id="drop-hourse-racing" required></select></li>
-				
-				<li><label wicket:for="drop-quantity">Participants quantity:</label> <select
-				wicket:id="drop-quantity" required></select></li>
-				
-				<li><label wicket:for="drop-participant">Participant:</label> <select
+			<li><label wicket:for="drop-participant"><wicket:message key="all.participants"/></label> <select
 				wicket:id="drop-participant" required></select></li>
 
 			<li>
-				<button class="submit" type="submit" wicket:id="racing-line-submit-button"><wicket:message key="all.save"/></button>
+				<button class="submit" type="submit"
+					wicket:id="racing-line-submit-button">
+					<wicket:message key="all.add" />
+				</button>
 
 			</li>
 		</ul>
 	</form>
-	<br/>
-		<a class="button" wicket:id="racing-lines-page-link">Participants list</a>
+	<br />
+	<a class="button" wicket:id="racing-lines-page-link"><span><wicket:message key="all.hourse.racings"/></span></a>
 
 </wicket:extend>

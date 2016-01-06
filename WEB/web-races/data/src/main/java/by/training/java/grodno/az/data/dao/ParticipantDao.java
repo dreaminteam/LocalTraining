@@ -9,4 +9,6 @@ public interface ParticipantDao extends Dao<Participant> {
 
 	List<ParticipantView> getView();
 
+	ParticipantView getViewById(int participant_id);
+
 }

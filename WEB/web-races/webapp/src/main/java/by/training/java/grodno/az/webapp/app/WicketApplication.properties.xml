@@ -3,13 +3,16 @@
 <properties>
 	<entry key="all.save">Save</entry>
 	<entry key="all.delete">Delete</entry>
-	<entry key="all.add">Add...</entry>
-	<entry key="all.edit">Edit...</entry>
+	<entry key="all.add">Add</entry>
+	<entry key="all.edit">Edit</entry>
 	<entry key="all.title">Title</entry>
 	<entry key="all.date">Date</entry>
 	<entry key="all.action">Action</entry>
 	<entry key="all.firstName">First name</entry>
 	<entry key="all.lastName">Last name</entry>
+	<entry key="all.participants">Participants</entry>
+	<entry key="all.hourse.racings">Hourse racings</entry>
+	
 
 	<entry key="component.logoutInputPanel.logout">Logout</entry>
 	<entry key="component.logoutInputPanel.registration">Registration</entry>
