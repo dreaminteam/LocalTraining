@@ -68,7 +68,7 @@ public class RacingLineEditPage extends AbstractPage {
 
 				final RacingLineView racingLineView = item.getModelObject();
 				item.add(new Label("id", racingLineView.getRacingLineId()));
-				item.add(new Label("jockey-name", racingLineView.getParticipantView().getJockeyFullName()));
+				item.add(new Label("jockey-name", racingLineView.getParticipantView().getJockeyFirstName()));
 				item.add(new Label("hourse-name", racingLineView.getParticipantView().getHourseName()));
 				item.add(new Label("result", racingLineView.getRusult()));
 

@@ -1,35 +1,117 @@
 <!DOCTYPE html>
 <wicket:extend>
 
-	<form class="contact_form" wicket:id="racing-line-result-edit-form">
+	<form class="contact_form div-contact_form"
+		wicket:id="racing-line-result-edit-form">
 
-		<ul>
-			<li>
+		<div class="ul">
+			<div class="form-title">
 				<h2>
 					<wicket:container wicket:id="hourse-racing-title" />
-				</h2> <span class="required_notification"></span>
-			</li>
+				</h2>
+				<span class="required_notification"></span>
+			</div><br/>
+
+			<div class="li logout-input">
+				<span wicket:id="result-label-0"></span> <select
+					wicket:id="drop-result-field-0" required></select>
+			</div>
+
+			<div class="li logout-input">
+				<wicket:container wicket:id="result-label-1"></wicket:container> <select
+					wicket:id="drop-result-field-1" required></select>
+			</div>
+
+			<div class="li logout-input">
+				<wicket:container wicket:id="result-label-2"></wicket:container> <select
+					wicket:id="drop-result-field-2" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-3"></wicket:container> <select
+					wicket:id="drop-result-field-3" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-4"></wicket:container> <select
+					wicket:id="drop-result-field-4" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-5"></wicket:container> <select
+					wicket:id="drop-result-field-5" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-6"></wicket:container> <select
+					wicket:id="drop-result-field-6" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-7"></wicket:container> <select
+					wicket:id="drop-result-field-7" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-8"></wicket:container> <select
+					wicket:id="drop-result-field-8" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-9"></wicket:container> <select
+					wicket:id="drop-result-field-9" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-10"></wicket:container> <select
+					wicket:id="drop-result-field-10" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-11"></wicket:container> <select
+					wicket:id="drop-result-field-11" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-12"></wicket:container> <select
+					wicket:id="drop-result-field-12" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-13"></wicket:container> <select
+					wicket:id="drop-result-field-13" required></select>
+			</div>
+
+			<div class="li">
+				<wicket:container wicket:id="result-label-14"></wicket:container> <select
+					wicket:id="drop-result-field-14" required></select>
+			</div>
+
+			<div class="li">
+				<button class="submit" type="submit"
+					wicket:id="racing-line-result-submit-button">
+					<wicket:message key="all.save" />
+				</button>
+
+			</div>
 
 
-
-			<li><label wicket:for="drop-result-field-0"><wicket:container
-						wicket:id="result-label-0" ></wicket:container>label-1</label> <select
+			<!-- 
+			<li><label wicket:id="result-label-0"></label> <select
 				wicket:id="drop-result-field-0" required></select></li>
 
-			<li><label wicket:for="drop-result-field-1"><wicket:container
-						wicket:id="result-label-1" /></label> <select
+			<li><label wicket:id="result-label-1"></label> <select
 				wicket:id="drop-result-field-1" required></select></li>
 
-			<li><label wicket:for="drop-result-field-2"><wicket:container
-						wicket:id="result-label-2" /></label> <select
+			<li><label wicket:id="result-label-2"></label> <select
 				wicket:id="drop-result-field-2" required></select></li>
 
-			<li><label wicket:for="drop-result-field-3"><wicket:container
-						wicket:id="result-label-3" /></label> <select
+			<li><wicket:container
+						wicket:id="result-label-3" /> <select
 				wicket:id="drop-result-field-3" required></select></li>
 
-			<li><label wicket:for="drop-result-field-4"><wicket:container
-						wicket:id="result-label-4" /></label> <select
+			<li><wicket:container
+						wicket:id="result-label-4" /> <select
 				wicket:id="drop-result-field-4" required></select></li>
 
 			<li><label wicket:for="drop-result-field-5"><wicket:container
@@ -80,9 +162,14 @@
 				</button>
 
 			</li>
-		</ul>
+			 -->
+
+		</div>
+		<br/>
+	<br/>	<br/>
+	<br/>
 	</form>
-	<br />
+	
 	<a class="button" wicket:id="hourse-racing-page-link"><span><wicket:message
 				key="all.hourse.racings" /></span></a>
 

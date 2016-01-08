@@ -44,7 +44,7 @@ public class HourseEditPage extends AbstractPage {
 
 		TextField<String> nameTextField = new TextField<String>("name");
 		nameTextField.setRequired(true);
-		nameTextField.add(StringValidator.maximumLength(45));
+		nameTextField.add(StringValidator.maximumLength(18));
 		form.add(nameTextField);
 
 		form.add(new SubmitLink("hourse-submit-button") {

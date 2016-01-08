@@ -17,7 +17,8 @@ public class ParticipantViewMapper implements RowMapper<ParticipantView> {
 		String hourseName=rs.getString("hourse_name");
 		ParticipantView pView=new ParticipantView();
 		pView.setParticipantId(id);
-		pView.setJockeyFullName(String.format("%s %s", jockeyFirstName,jockeyLastName));
+		pView.setJockeyFirstName(jockeyFirstName);
+		pView.setJockeyLastName(jockeyLastName);
 		pView.setHourseName(hourseName);
 		return pView;
 	}

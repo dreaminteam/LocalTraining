@@ -11,7 +11,7 @@ public class RacingLineViewChoiceRenderer  extends ChoiceRenderer<RacingLineView
 
 	@Override
 	public Object getDisplayValue(RacingLineView object) {
-		return String.format("%s and %s", object.getParticipantView().getJockeyFullName(), object.getParticipantView().getHourseName());
+		return String.format("%s and %s", object.getParticipantView().getJockeyFirstName(), object.getParticipantView().getHourseName());
 	}
 
 	@Override

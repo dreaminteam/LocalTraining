@@ -78,12 +78,13 @@ public class RacingLineResultEditPage extends AbstractPage {
 		}
 
 		for (Label label : resultLabelsList) {
+			System.out.println(label.getId());
 			form.add(label);
 		}
 
 		for (int i = RacingLineEditPage.maxParticipants - 1; i >= listSize; i--) {
 			dropDownFieldsdList.get(i).setVisible(false);
-			resultLabelsList.get(i).setVisible(false);
+//			resultLabelsList.get(i).setVisible(false);
 		}
 
 		form.add(new SubmitLink("racing-line-result-submit-button") {
@@ -121,7 +122,7 @@ public class RacingLineResultEditPage extends AbstractPage {
 
 	private String getParticipantView(List<RacingLineView> source, int index) {
 		if (index < source.size()) {
-			return String.format("", source.get(index).getParticipantView().toString());
+			return String.format("%s", source.get(index).getParticipantView().toStringShort());
 		}
 		return "";
 	}

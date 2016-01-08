@@ -9,7 +9,7 @@ body {
 	line-height: 18px;
 	font-family: Arial, sans-serif;
 	color: #565d54;
-	background: url(images/body-bg.gif) repeat 0 0п;
+	background: url(images/body-bg.gif) repeat 0 0;
 }
 
 html, body {
@@ -30,6 +30,7 @@ a:hover {
 a img {
 	border: 0;
 }
+
 
 input, textarea, select {
 	font-family: Arial, Helvetica, sans-serif;
@@ -441,7 +442,7 @@ ul.links li a {
 	float: right;
 }
 
-div .action-button a{
+div .action-button a {
 	margin-left: 5px;
 }
 
@@ -626,13 +627,12 @@ table
 .language-container {
 	padding-left: 3px;
 	height: 30px;
-	
 }
 
 .language-container div {
 	display: inline-block;
 }
 
-#time input{
+#time input {
 	width: 50px;
 }
