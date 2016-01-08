@@ -13,6 +13,6 @@ public interface RacingLineService extends IService<RacingLine> {
 
 	Participant getParticipant(int participant_id);
 	
-	RacingLineView getViewById(int racingLineId);
+	RacingLineView getView(RacingLine racingLine);
 
 }

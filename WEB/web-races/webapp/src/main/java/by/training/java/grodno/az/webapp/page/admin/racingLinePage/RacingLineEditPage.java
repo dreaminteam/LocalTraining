@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -16,19 +17,16 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
-
 import com.googlecode.wicket.kendo.ui.markup.html.link.BookmarkablePageLink;
 
 import by.training.java.grodno.az.data.entities.ParticipantView;
-import by.training.java.grodno.az.data.model.Hourse;
+import by.training.java.grodno.az.data.entities.RacingLineView;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.service.RacingLineService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.hourseRacing.HourseRacingPage;
-import by.training.java.grodno.az.webapp.page.admin.hoursesPage.HourseEditPage;
-import by.training.java.grodno.az.webapp.page.admin.hoursesPage.HoursePage;
 import by.training.java.grodno.az.webapp.renderer.ParticipantViewChoiceRenderer;
 
 @AuthorizeInstantiation(value = { "admin" })
@@ -41,6 +39,7 @@ public class RacingLineEditPage extends AbstractPage {
 	@Inject
 	private RacingLineService racingLineService;
 
+	public static final int maxParticipants = 15;
 	private HourseRacing hourseRacing;
 	private RacingLine racingLine;
 
@@ -53,6 +52,37 @@ public class RacingLineEditPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+
+		Map<String, Object> atributes = new HashMap<>();
+		atributes.put("hourseRacingId", hourseRacing.getId());
+		List<RacingLine> racings = racingLineService.getAll(atributes, "id", true);
+		int listSize = racings.size();
+		List<RacingLineView> racingLineViewsList = new ArrayList<>(listSize);
+		for (RacingLine rl : racings) {
+			racingLineViewsList.add(racingLineService.getView(rl));
+		}
+
+		add(new ListView<RacingLineView>("racing-line-list", racingLineViewsList) {
+			@Override
+			protected void populateItem(ListItem<RacingLineView> item) {
+
+				final RacingLineView racingLineView = item.getModelObject();
+				item.add(new Label("id", racingLineView.getRacingLineId()));
+				item.add(new Label("jockey-name", racingLineView.getParticipantView().getJockeyFullName()));
+				item.add(new Label("hourse-name", racingLineView.getParticipantView().getHourseName()));
+				item.add(new Label("result", racingLineView.getRusult()));
+
+				item.add(new Link("racing-line-delete-link") {
+
+					@Override
+					public void onClick() {
+						racingLineService.delete(racingLineView.getRacingLineId());
+						setResponsePage(new RacingLineEditPage(hourseRacing));
+					}
+				});
+
+			}
+		});
 
 		Form<Void> form = new Form<>("racing-line-edit-form");
 		add(form);
@@ -68,46 +98,22 @@ public class RacingLineEditPage extends AbstractPage {
 		form.add(new SubmitLink("racing-line-submit-button") {
 			@Override
 			public void onSubmit() {
-				racingLine.setHourseRacingId(hourseRacing.getId());
-				racingLine.setParticipantId(participantViewModel.getObject().getParticipantId());
-				racingLineService.insertOrUpdate(racingLine);
-				RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
-				editPage.info("participant added");
-				setResponsePage(editPage);
-
+				if (listSize < maxParticipants) {
+					racingLine.setHourseRacingId(hourseRacing.getId());
+					racingLine.setParticipantId(participantViewModel.getObject().getParticipantId());
+					racingLineService.insertOrUpdate(racingLine);
+					RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+					editPage.info("participant added");
+					setResponsePage(editPage);
+				}else {
+					RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+					editPage.warn(getString("page.racingLinePage.maxParticipants"));
+					setResponsePage(editPage);
+				}
 			};
 		});
 
-		add(new BookmarkablePageLink<Void>("racing-lines-page-link", HourseRacingPage.class));
-
-		Map<String, Object> atributes = new HashMap<>();
-		atributes.put("hourseRacingId", hourseRacing.getId());
-		List<RacingLine> racings = racingLineService.getAll(atributes, "id", true);
-		List<ParticipantView> participantViewsList = new ArrayList<>(racings.size());
-		for (RacingLine rl : racings) {
-			participantViewsList.add(participantService.getViewById(rl.getParticipantId()));
-		}
-
-		add(new ListView<ParticipantView>("participant-list", participantViewsList) {
-			@Override
-			protected void populateItem(ListItem<ParticipantView> item) {
-
-				final ParticipantView participantView = item.getModelObject();
-				item.add(new Label("id", participantView.getParticipantId()));
-				item.add(new Label("jackey-name", participantView.getJockeyFullName()));
-				item.add(new Label("hourse-name", participantView.getHourseName()));
-
-				item.add(new Link("racing-line-delete-link") {
-
-					@Override
-					public void onClick() {
-						hourseService.delete(participantView);
-						setResponsePage(HoursePage.class);
-					}
-				});
-
-			}
-		});
+		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
 	}
 
 }

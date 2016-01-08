@@ -25,7 +25,6 @@ public class EditPage extends AbstractPage {
 		add(new BookmarkablePageLink<Void>("hourses-page-link", HoursePage.class));
 		add(new BookmarkablePageLink<Void>("participants-page-link", ParticipantsPage.class));
 		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
-		add(new BookmarkablePageLink<Void>("racing-line-page-link", RacingLineEditPage.class));
 	}
 
 }

@@ -12,6 +12,8 @@
 	<entry key="all.lastName">Фамилия</entry>
 	<entry key="all.participants">Участники</entry>
 	<entry key="all.hourse.racings">Конные скачки</entry>
+	<entry key="all.results">Результаты</entry>
+	<entry key="all.data.saved">Данные успешно сохранены</entry>
 
 	<entry key="component.logoutInputPanel.logout">Выйти</entry>
 	<entry key="component.logoutInputPanel.registration">Регистрация</entry>
@@ -32,5 +34,8 @@
 	<entry key="component.headerHolderPanel.user.notaut">Пользователь не авторизирован</entry>
 	<entry key="component.headerHolderPanel.title.admin">Администрирование</entry>
 	<entry key="component.headerHolderPanel.title.player">Конные бега. Ставки онлайн</entry>
+	
+	<entry key="page.racingLinePage.maxParticipants">Максимальное количество участников = 15</entry>
+	<entry key="page.inputResultRacing.warn">Проверьте данные. Позиции не могут быть одинаковыми</entry>
 
 </properties>

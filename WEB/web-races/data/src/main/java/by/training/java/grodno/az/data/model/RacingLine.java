@@ -8,7 +8,7 @@ public class RacingLine extends AbstractEntity {
 	private int id;
 	private int hourseRacingId;
 	private int participantId;
-	private int result;
+	private Integer result;
 
 	public int getId() {
 		return id;
@@ -34,11 +34,11 @@ public class RacingLine extends AbstractEntity {
 		this.participantId = participantId;
 	}
 
-	public int getResult() {
+	public Integer getResult() {
 		return result;
 	}
 
-	public void setResult(int result) {
+	public void setResult(Integer result) {
 		this.result = result;
 	}
 

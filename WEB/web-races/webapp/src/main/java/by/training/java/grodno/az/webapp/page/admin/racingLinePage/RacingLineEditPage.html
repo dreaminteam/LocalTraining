@@ -6,12 +6,13 @@
 		<ul>
 			<li>
 				<h2>
-					<wicket:container wicket:id="hourse-racing-title"/>
+					<wicket:container wicket:id="hourse-racing-title" />
 				</h2> <span class="required_notification"></span>
 			</li>
 
-			<li><label wicket:for="drop-participant"><wicket:message key="all.participants"/></label> <select
-				wicket:id="drop-participant" required></select></li>
+			<li><label wicket:for="drop-participant"><wicket:message
+						key="all.participants" /></label> <select wicket:id="drop-participant"
+				required></select></li>
 
 			<li>
 				<button class="submit" type="submit"
@@ -23,6 +24,37 @@
 		</ul>
 	</form>
 	<br />
-	<a class="button" wicket:id="racing-lines-page-link"><span><wicket:message key="all.hourse.racings"/></span></a>
+
+	<div class="tableconteiner">
+		<table>
+
+			<tbody>
+				<tr>
+					<td>ID</td>
+					<td>Jockey</td>
+					<td>Hourse</td>
+					<td>Result</td>
+					<td>Actions</td>
+
+				</tr>
+
+
+				<tr wicket:id="racing-line-list">
+					<td><span wicket:id="id"></span></td>
+					<td><span wicket:id="jockey-name"></span></td>
+					<td><span wicket:id="hourse-name"></span></td>
+					<td><span wicket:id="result"></span></td>
+					<td><div class="action-button">
+							<a class="button" wicket:id="racing-line-delete-link"><wicket:message
+									key="all.delete" /></a>
+						</div></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br/>
+
+	<a class="button" wicket:id="hourse-racing-page-link"><span><wicket:message
+				key="all.hourse.racings" /></span></a>
 
 </wicket:extend>

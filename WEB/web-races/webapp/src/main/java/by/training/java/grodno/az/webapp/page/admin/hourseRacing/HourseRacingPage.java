@@ -14,6 +14,7 @@ import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.service.HourseRacingService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.racingLinePage.RacingLineEditPage;
+import by.training.java.grodno.az.webapp.page.admin.racingLinePage.RacingLineResultEditPage;
 
 @AuthorizeInstantiation(value = { "admin" })
 public class HourseRacingPage extends AbstractPage {
@@ -58,6 +59,14 @@ public class HourseRacingPage extends AbstractPage {
 					@Override
 					public void onClick() {
 						setResponsePage(new RacingLineEditPage(hourseRacing));
+					}
+				});
+				
+				item.add(new Link("racing-result-edit-link") {
+
+					@Override
+					public void onClick() {
+						setResponsePage(new RacingLineResultEditPage(hourseRacing));
 					}
 				});
 

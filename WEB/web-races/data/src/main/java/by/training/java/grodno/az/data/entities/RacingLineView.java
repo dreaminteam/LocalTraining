@@ -11,7 +11,7 @@ public class RacingLineView implements Serializable {
 	private int racingLineId;
 	private HourseRacing hourseRacing;
 	private ParticipantView participantView;
-	private int rusult;
+	private Integer rusult;
 
 	public int getRacingLineId() {
 		return racingLineId;
@@ -37,11 +37,11 @@ public class RacingLineView implements Serializable {
 		this.participantView = participantView;
 	}
 
-	public int getRusult() {
+	public Integer getRusult() {
 		return rusult;
 	}
 
-	public void setRusult(int rusult) {
+	public void setRusult(Integer rusult) {
 		this.rusult = rusult;
 	}
 

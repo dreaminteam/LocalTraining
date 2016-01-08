@@ -42,7 +42,7 @@ public class HourseRacing extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "HourseRacing [id=" + id + ", title=" + title + ", date=" + date + "]";
+		return "Hourse racing [id=" + id + ", title=" + title + ", date=" + date + "]";
 	}
 
 }

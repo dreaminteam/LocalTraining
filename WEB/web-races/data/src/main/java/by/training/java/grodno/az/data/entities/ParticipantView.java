@@ -3,6 +3,7 @@ package by.training.java.grodno.az.data.entities;
 import java.io.Serializable;
 
 public class ParticipantView implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	
 	private int participantId;
@@ -28,6 +29,10 @@ public class ParticipantView implements Serializable {
 		this.hourseName = hourseName;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Participant [Id=" + participantId + ", Jockey=" + jockeyFullName
+				+ ", Hourse=" + hourseName + "]";
+	}
 	
 }

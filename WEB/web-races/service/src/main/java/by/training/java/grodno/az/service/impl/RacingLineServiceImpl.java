@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 import by.training.java.grodno.az.data.dao.HourseRacingDao;
 import by.training.java.grodno.az.data.dao.ParticipantDao;
 import by.training.java.grodno.az.data.dao.RacingLineDao;
+import by.training.java.grodno.az.data.entities.ParticipantView;
 import by.training.java.grodno.az.data.entities.RacingLineView;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.data.model.RacingLine;
+import by.training.java.grodno.az.service.HourseRacingService;
+import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.service.RacingLineService;
 
 @Service
@@ -22,10 +25,11 @@ public class RacingLineServiceImpl implements RacingLineService {
 	private RacingLineDao racingLineDao;
 
 	@Autowired
-	private HourseRacingDao hourseRacingDao;
+	private HourseRacingService hourseRacingService;
 
 	@Autowired
-	private ParticipantDao participantDao;
+	private ParticipantService participantService;
+	
 
 	@Override
 	public RacingLine getById(int id) {
@@ -63,12 +67,12 @@ public class RacingLineServiceImpl implements RacingLineService {
 
 	@Override
 	public HourseRacing getHourseRacing(int hourseRacing_id) {
-		return hourseRacingDao.get(hourseRacing_id);
+		return hourseRacingService.getById(hourseRacing_id);
 	}
 
 	@Override
 	public Participant getParticipant(int participant_id) {
-		return participantDao.get(participant_id);
+		return participantService.getById(participant_id);
 	}
 
 	@Override
@@ -112,8 +116,18 @@ public class RacingLineServiceImpl implements RacingLineService {
 	}
 
 	@Override
-	public RacingLineView getViewById(int racingLineId) {
+	public RacingLineView getView(RacingLine racingLine) {
 		//transaction
+		RacingLineView result=new RacingLineView();
+		result.setRacingLineId(racingLine.getId());
+		result.setHourseRacing(hourseRacingService.getById(racingLine.getHourseRacingId()));
+		result.setParticipantView(participantService.getViewById(racingLine.getParticipantId()));
+		
+		result.setRusult(racingLine.getResult());
+		
+		return result;
+		
+		
 	}
 	
 }

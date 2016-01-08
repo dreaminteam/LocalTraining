@@ -12,6 +12,8 @@
 	<entry key="all.lastName">Last name</entry>
 	<entry key="all.participants">Participants</entry>
 	<entry key="all.hourse.racings">Hourse racings</entry>
+	<entry key="all.results">Results</entry>
+	<entry key="all.data.saved">Data saved successfully</entry>
 	
 
 	<entry key="component.logoutInputPanel.logout">Logout</entry>
@@ -33,5 +35,8 @@
 	<entry key="component.headerHolderPanel.user.notaut">User is not authorized</entry>
 	<entry key="component.headerHolderPanel.title.admin">Admin tool</entry>
 	<entry key="component.headerHolderPanel.title.player">Horse racing. Rates online</entry>
+	
+	<entry key="page.racingLinePage.maxParticipants">Maximum participants = 15</entry>
+	<entry key="page.inputResultRacing.warn">Check data. Positions can not be the same</entry>
 
 </properties>
