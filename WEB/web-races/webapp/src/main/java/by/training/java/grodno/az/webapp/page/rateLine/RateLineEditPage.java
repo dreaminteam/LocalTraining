@@ -14,8 +14,9 @@ import org.apache.wicket.validation.validator.StringValidator;
 import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.RateLineService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
+import by.training.java.grodno.az.webapp.page.admin.coefficientPage.CoefficientEditPage;
 
-@AuthorizeInstantiation(value = { "admin","bookmaker" })
+@AuthorizeInstantiation(value = { "admin", "bookmaker" })
 public class RateLineEditPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
 
@@ -54,11 +55,16 @@ public class RateLineEditPage extends AbstractPage {
 		form.add(new SubmitLink("rate-line-submit-button") {
 			@Override
 			public void onSubmit() {
-				System.out.println(">>> rateLine: "+rateLine);
-				rateLineService.insertOrUpdate(rateLine);
-				RateLineEditPage editPage = new RateLineEditPage();
-				editPage.info(getString("all.data.saved"));
-				setResponsePage(editPage);
+				if (rateLineService.getAll().size() < CoefficientEditPage.MAXQUANTITY) {
+					rateLineService.insertOrUpdate(rateLine);
+					RateLineEditPage editPage = new RateLineEditPage();
+					editPage.info(getString("all.data.saved"));
+					setResponsePage(editPage);
+				} else {
+					AbstractPage responsePage = new RateLineEditPage();
+					warn(getString("all.tableRecords.limit"));
+					setResponsePage(responsePage);
+				}
 
 			};
 		});

@@ -34,7 +34,7 @@ import by.training.java.grodno.az.webapp.page.admin.hourseRacing.HourseRacingPag
 @AuthorizeInstantiation(value = { "admin" })
 public class CoefficientEditPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
-	private static final int MAXQUANTITY = 7;
+	public static final int MAXQUANTITY = 7;
 
 	@Inject
 	private ParticipantService participantService;

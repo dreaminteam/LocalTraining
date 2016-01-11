@@ -30,6 +30,7 @@
 	<entry key="all.data.saved">Данные успешно сохранены</entry>
 	<entry key="all.rateLine">Линии ставок</entry>
 	<entry key="all.coefficients">Коэффициенты</entry>
+	<entry key="all.tableRecords.limit">Достигнут лимит записей в таблице </entry>
 
 	<entry key="component.logoutInputPanel.logout">Выйти</entry>
 	<entry key="component.logoutInputPanel.registration">Регистрация</entry>

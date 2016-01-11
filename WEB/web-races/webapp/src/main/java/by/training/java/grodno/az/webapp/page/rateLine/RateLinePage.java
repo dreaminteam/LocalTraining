@@ -15,6 +15,8 @@ import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.JockeyService;
 import by.training.java.grodno.az.service.RateLineService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
+import by.training.java.grodno.az.webapp.page.admin.coefficientPage.CoefficientEditPage;
+import by.training.java.grodno.az.webapp.page.admin.coefficientPage.CoefficientsPage;
 
 @AuthorizeInstantiation(value = { "admin" })
 public class RateLinePage extends AbstractPage {
@@ -32,11 +34,11 @@ public class RateLinePage extends AbstractPage {
 		add(new ListView<RateLine>("rate-line-list", rateLines) {
 			@Override
 			protected void populateItem(ListItem<RateLine> item) {
-				
+
 				final RateLine rateLine = item.getModelObject();
-				item.add(new Label("id",rateLine.getId()));
-				item.add(new Label("title",rateLine.getTitle()));
-				item.add(new Label("description",rateLine.getDescription()));
+				item.add(new Label("id", rateLine.getId()));
+				item.add(new Label("title", rateLine.getTitle()));
+				item.add(new Label("description", rateLine.getDescription()));
 
 				item.add(new Link("rate-line-edit-link") {
 					@Override
@@ -60,7 +62,13 @@ public class RateLinePage extends AbstractPage {
 		add(new Link("rate-line-create-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(new RateLineEditPage());
+				if (rateLines.size() < CoefficientEditPage.MAXQUANTITY) {
+					setResponsePage(new RateLineEditPage());
+				} else {
+					AbstractPage responsePage=new RateLinePage();
+					warn(getString("all.tableRecords.limit"));
+					setResponsePage(responsePage);
+				}
 			}
 		});
 	}

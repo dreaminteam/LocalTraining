@@ -30,6 +30,7 @@
 	<entry key="all.data.saved">Data saved successfully</entry>
 	<entry key="all.rateLine">Lines of rates</entry>
 	<entry key="all.coefficients">Coefficients</entry>
+	<entry key="all.tableRecords.limit">Reached the limit of table records </entry>
 
 
 
@@ -64,5 +65,7 @@
 	<entry key="page.admin.edit.category">Category</entry>
 	<entry key="page.login.password.input">Input login and password</entry>
 	<entry key="page.hourse.addHourse">Add new hourse</entry>
+	
+	
 
 </properties>
