@@ -33,11 +33,11 @@ public class HourseRacingPage extends AbstractPage {
 		add(new ListView<HourseRacing>("hourse-racing-list", allHourseRacings) {
 			@Override
 			protected void populateItem(ListItem<HourseRacing> item) {
-				
+
 				final HourseRacing hourseRacing = item.getModelObject();
-				item.add(new Label("id",hourseRacing.getId()));
-				item.add(new Label("title",hourseRacing.getTitle()));
-				item.add(new Label("date",hourseRacing.getDate()));
+				item.add(new Label("id", hourseRacing.getId()));
+				item.add(new Label("title", hourseRacing.getTitle()));
+				item.add(new Label("date", hourseRacing.getDate()));
 
 				item.add(new Link("hourse-racing-edit-link") {
 					@Override
@@ -54,7 +54,7 @@ public class HourseRacingPage extends AbstractPage {
 						setResponsePage(HourseRacingPage.class);
 					}
 				});
-				
+
 				item.add(new Link("racing-line-edit-link") {
 
 					@Override
@@ -62,7 +62,7 @@ public class HourseRacingPage extends AbstractPage {
 						setResponsePage(new RacingLineEditPage(hourseRacing));
 					}
 				});
-				
+
 				item.add(new Link("racing-result-edit-link") {
 
 					@Override
@@ -70,7 +70,7 @@ public class HourseRacingPage extends AbstractPage {
 						setResponsePage(new RacingLineResultEditPage(hourseRacing));
 					}
 				});
-				
+
 				item.add(new Link("coefficients-edit-link") {
 
 					@Override

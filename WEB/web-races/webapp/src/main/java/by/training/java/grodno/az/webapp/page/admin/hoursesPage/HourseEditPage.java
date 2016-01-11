@@ -11,9 +11,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.validation.validator.StringValidator;
 
 import by.training.java.grodno.az.data.model.Hourse;
-import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.service.HourseService;
-import by.training.java.grodno.az.service.JockeyService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin" })

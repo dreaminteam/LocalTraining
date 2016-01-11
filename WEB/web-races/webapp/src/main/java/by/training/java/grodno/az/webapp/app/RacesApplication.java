@@ -19,7 +19,7 @@ import by.training.java.grodno.az.webapp.page.loginPage.LoginPage;
  * @see com.epam.training.webapp.StartJetty#main(String[])
  */
 @Component("MyWebApplication")
-public class WicketApplication extends AuthenticatedWebApplication {
+public class RacesApplication extends AuthenticatedWebApplication {
 
 	@Autowired
 	private ApplicationContext context;
@@ -47,7 +47,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
 
 	@Override
 	protected Class<? extends AbstractAuthenticatedWebSession> getWebSessionClass() {
-		return CustomSession.class;
+		return UserSession.class;
 	}
 
 	@Override

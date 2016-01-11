@@ -12,7 +12,7 @@ import org.apache.wicket.request.Request;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 
-public class CustomSession extends AuthenticatedWebSession {
+public class UserSession extends AuthenticatedWebSession {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,13 +25,13 @@ public class CustomSession extends AuthenticatedWebSession {
 
 	private Roles roles;
 
-	public CustomSession(Request request) {
+	public UserSession(Request request) {
 		super(request);
 		Injector.get().inject(this);
 	}
 
-	public static CustomSession get() {
-		return (CustomSession) Session.get();
+	public static UserSession get() {
+		return (UserSession) Session.get();
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class CustomSession extends AuthenticatedWebSession {
 
 	@Override
 	public Roles getRoles() {
-		if (!CustomSession.get().isSignedIn()) {
+		if (!UserSession.get().isSignedIn()) {
 			return null;
 		}
 		return roles;

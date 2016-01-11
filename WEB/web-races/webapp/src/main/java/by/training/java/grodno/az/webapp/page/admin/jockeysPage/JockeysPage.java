@@ -30,11 +30,11 @@ public class JockeysPage extends AbstractPage {
 		add(new ListView<Jockey>("jockeys-list", allUsers) {
 			@Override
 			protected void populateItem(ListItem<Jockey> item) {
-				
+
 				final Jockey jokey = item.getModelObject();
-				item.add(new Label("id",jokey.getId()));
-				item.add(new Label("firstName",jokey.getFirstName()));
-				item.add(new Label("lastName",jokey.getLastName()));
+				item.add(new Label("id", jokey.getId()));
+				item.add(new Label("firstName", jokey.getFirstName()));
+				item.add(new Label("lastName", jokey.getLastName()));
 
 				item.add(new Link("jokey-edit-link") {
 					@Override

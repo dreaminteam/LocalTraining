@@ -7,18 +7,15 @@ import by.training.java.grodno.az.webapp.page.aboutUsPage.AboutUsPage;
 import by.training.java.grodno.az.webapp.page.admin.adminPage.AdminPage;
 import by.training.java.grodno.az.webapp.page.admin.editPage.EditPage;
 import by.training.java.grodno.az.webapp.page.admin.hourseRacing.HourseRacingPage;
-import by.training.java.grodno.az.webapp.page.admin.usersPage.UsersPage;
-import by.training.java.grodno.az.webapp.page.ratePage.RatePage;
 import by.training.java.grodno.az.webapp.page.rulesPage.RulesPage;
 
-public class AdminMainMenuPanel extends Panel{
+public class AdminMainMenuPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
 	public AdminMainMenuPanel(String id) {
 		super(id);
 	}
-
 
 	@Override
 	protected void onInitialize() {

@@ -18,10 +18,6 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.util.parse.metapattern.parsers.IntegerVariableAssignmentParser;
-import org.apache.wicket.validation.validator.RangeValidator;
-import org.apache.wicket.validation.validator.StringValidator;
-import org.springframework.validation.Validator;
 
 import com.googlecode.wicket.kendo.ui.markup.html.link.BookmarkablePageLink;
 
@@ -74,7 +70,7 @@ public class RacingLineResultEditPage extends AbstractPage {
 
 		Label titleRacing = new Label("hourse-racing-title", hourseRacing.toString());
 		form.add(titleRacing);
-		FeedbackPanel warnPanel=new FeedbackPanel("warn-panel");
+		FeedbackPanel warnPanel = new FeedbackPanel("warn-panel");
 		form.add(warnPanel);
 
 		form.add(new ListView<RacingLineResult>("racing-line-result-list-view", lineResults) {
@@ -89,7 +85,8 @@ public class RacingLineResultEditPage extends AbstractPage {
 				DropDownChoice<Integer> dropDownChoice = new DropDownChoice<>("drop-position",
 						racingLineResult.positionModel, positionListChoise);
 				dropDownChoice.setRequired(true);
-//				form.add(dropDownChoice).add(RangeValidator.<Integer>range(1, 99));
+				// form.add(dropDownChoice).add(RangeValidator.<Integer>range(1,
+				// 99));
 				item.add(dropDownChoice);
 			}
 		});

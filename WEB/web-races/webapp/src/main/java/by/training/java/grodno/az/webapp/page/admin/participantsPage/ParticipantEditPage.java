@@ -1,6 +1,5 @@
 package by.training.java.grodno.az.webapp.page.admin.participantsPage;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,11 +10,8 @@ import org.apache.wicket.authroles.authorization.strategies.role.annotations.Aut
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
-import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.validation.validator.StringValidator;
 
 import by.training.java.grodno.az.data.model.Hourse;
 import by.training.java.grodno.az.data.model.Jockey;
@@ -23,7 +19,6 @@ import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.service.HourseService;
 import by.training.java.grodno.az.service.JockeyService;
 import by.training.java.grodno.az.service.ParticipantService;
-import by.training.java.grodno.az.webapp.javaEEComponent.Role;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 import by.training.java.grodno.az.webapp.renderer.HourseChoiceRenderer;
 import by.training.java.grodno.az.webapp.renderer.JockeyChoiceRenderer;
@@ -85,7 +80,7 @@ public class ParticipantEditPage extends AbstractPage {
 				findParamerers.put("jockeyId", jockeyId);
 				findParamerers.put("hourseId", hourseId);
 
-				if (participantService.getAll(findParamerers, null, true).size()==0) {
+				if (participantService.getAll(findParamerers, null, true).size() == 0) {
 
 					participant.setJockeyId(jockeyId);
 					participant.setHourseId(hourseId);
@@ -93,7 +88,7 @@ public class ParticipantEditPage extends AbstractPage {
 					ParticipantEditPage editPage = new ParticipantEditPage();
 					editPage.info(getString("all.data.saved"));
 					setResponsePage(editPage);
-				}else{
+				} else {
 					ParticipantEditPage editPage = new ParticipantEditPage();
 					editPage.warn(getString("page.participantPage.participantCheck"));
 					setResponsePage(editPage);

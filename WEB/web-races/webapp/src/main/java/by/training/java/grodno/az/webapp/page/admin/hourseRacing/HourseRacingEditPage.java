@@ -1,15 +1,11 @@
 package by.training.java.grodno.az.webapp.page.admin.hourseRacing;
 
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.inject.Inject;
 
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.extensions.yui.calendar.DateField;
 import org.apache.wicket.extensions.yui.calendar.DateTimeField;
-import org.apache.wicket.extensions.yui.calendar.TimeField;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
@@ -18,12 +14,8 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.validation.validator.StringValidator;
 
-import com.googlecode.wicket.kendo.ui.form.datetime.DateTimePicker;
-
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.service.HourseRacingService;
-import by.training.java.grodno.az.webapp.app.date.DateText;
-import by.training.java.grodno.az.webapp.app.date.TimeText;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin" })
@@ -59,7 +51,7 @@ public class HourseRacingEditPage extends AbstractPage {
 
 		Model<Date> dateModel = new Model<Date>();
 
-		DateTimeField dateTimeField=new DateTimeField("dateTimeField",dateModel);
+		DateTimeField dateTimeField = new DateTimeField("dateTimeField", dateModel);
 		form.add(dateTimeField);
 
 		form.add(new SubmitLink("hourse-racing-submit-button") {

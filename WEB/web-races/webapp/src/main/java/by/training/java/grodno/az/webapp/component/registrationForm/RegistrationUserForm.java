@@ -1,13 +1,11 @@
 package by.training.java.grodno.az.webapp.component.registrationForm;
 
-import java.awt.im.InputContext;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.wicket.Session;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -24,18 +22,15 @@ import org.apache.wicket.validation.validator.EmailAddressValidator;
 import org.apache.wicket.validation.validator.StringValidator;
 
 import by.training.java.grodno.az.data.model.User;
-import by.training.java.grodno.az.data.util.UserRole;
 import by.training.java.grodno.az.service.UserService;
-import by.training.java.grodno.az.webapp.app.CustomSession;
-import by.training.java.grodno.az.webapp.component.logoutInputPanel.InputPanel;
-import by.training.java.grodno.az.webapp.javaEEComponent.Role;
-import by.training.java.grodno.az.webapp.javaEEComponent.Singleton;
+import by.training.java.grodno.az.webapp.app.UserSession;
+import by.training.java.grodno.az.webapp.enums.Role;
 import by.training.java.grodno.az.webapp.page.admin.usersPage.UsersPage;
 import by.training.java.grodno.az.webapp.page.homePage.HomePage;
-import by.training.java.grodno.az.webapp.page.loginPage.LoginPage;
 import by.training.java.grodno.az.webapp.page.registrationPage.RegistrationPage;
 
 public class RegistrationUserForm extends Panel {
+	private static final long serialVersionUID = 1L;
 
 	private double startBalance = 1000.0;
 
@@ -47,7 +42,7 @@ public class RegistrationUserForm extends Panel {
 		this.user = new User();
 		isNew = true;
 		this.user.setCreateDate(new Date());
-		this.user.setBalance(1000.0);
+		this.user.setBalance(startBalance);
 	}
 
 	public RegistrationUserForm(String id, User user) {
@@ -55,7 +50,7 @@ public class RegistrationUserForm extends Panel {
 		if (user == null) {
 			this.user = new User();
 			this.user.setCreateDate(new Date());
-			this.user.setBalance(1000.0);
+			this.user.setBalance(startBalance);
 			isNew = true;
 		} else {
 			this.user = user;
@@ -99,7 +94,7 @@ public class RegistrationUserForm extends Panel {
 		passwordTextField.add(StringValidator.maximumLength(40));
 
 		form.add(passwordTextField);
-		if (!isNew && CustomSession.get().getMetaData(CustomSession.USER_METADATA_KEY).getUserId()!=user.getId()) {
+		if (!isNew && UserSession.get().getMetaData(UserSession.USER_METADATA_KEY).getUserId() != user.getId()) {
 			passwordTextField.setVisible(false);
 		}
 
@@ -109,36 +104,13 @@ public class RegistrationUserForm extends Panel {
 		dropDownChoice.setRequired(true);
 		form.add(dropDownChoice);
 
-		// Label label = new Label("this_component_will_determine_visibility");
-		// form.add(label.setVisible(true));
-
-		// if(role.equals("admin")){
-		// label.setVisible(true);
-		// }
-
-		// form.add(new CheckBox("active"));
-		//
-		// DateTextField dateTextField = new DateTextField("birthDate",
-		// new StyleDateConverter("S-", true));
-		// form.add(dateTextField);
-		// DatePicker datePicker = new DatePicker() {
-		// @Override
-		// protected String getAdditionalJavaScript() {
-		// return "${calendar}.cfg.setProperty(\"navigator\",true,false);
-		// ${calendar}.render();";
-		// }
-		// };
-		// datePicker.setShowOnFieldClick(true);
-		// datePicker.setAutoHide(true);
-		// dateTextField.add(datePicker);
-
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
 				String pass = service.encryption(user.getPassword());
 				user.setPassword(pass);
 				user.setRole(roleModel.getObject());
-				if (!CustomSession.get().isSignedIn()) {
+				if (!UserSession.get().isSignedIn()) {
 
 					if (service.insert(user) < 0) {
 						RegistrationPage registrPage = new RegistrationPage(user);
@@ -161,15 +133,6 @@ public class RegistrationUserForm extends Panel {
 					}
 					setResponsePage(pageToResponse);
 				}
-
-				// String curentRole =
-				// CustomSession.get().getRoles().toString();
-				// if (curentRole.equalsIgnoreCase("admin") ||
-				// curentRole.equalsIgnoreCase(user.getRole())) {
-				// service.insertOrUpdate(user);
-				// } else {
-				// service.insert(user);
-				// }
 
 			};
 		});

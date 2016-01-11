@@ -11,10 +11,8 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.validation.validator.StringValidator;
 
-import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
-import by.training.java.grodno.az.webapp.app.CustomSession;
-import by.training.java.grodno.az.webapp.javaEEComponent.Singleton;
+import by.training.java.grodno.az.webapp.app.UserSession;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.homePage.HomePage;
 
@@ -48,12 +46,13 @@ public class LoginPage extends AbstractPage {
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-				getLogger().info(String.format("%s %s",loginModel.getObject(), passwordModel.getObject()));
-				CustomSession.get().signIn(loginModel.getObject(), passwordModel.getObject());
-				getLogger().info(String.format("%s", CustomSession.get().isSignedIn()));
-				if (CustomSession.get().isSignedIn()) {
+				getLogger().info(String.format("%s %s", loginModel.getObject(), passwordModel.getObject()));
+				UserSession.get().signIn(loginModel.getObject(), passwordModel.getObject());
+				getLogger().info(String.format("%s", UserSession.get().isSignedIn()));
+				if (UserSession.get().isSignedIn()) {
 					Page homePage = new HomePage();
-					homePage.info(String.format("%s, %s !", getString("all.welcome"),Session.get().getMetaData(CustomSession.USER_METADATA_KEY).getFullName()));
+					homePage.info(String.format("%s, %s !", getString("all.welcome"),
+							Session.get().getMetaData(UserSession.USER_METADATA_KEY).getFullName()));
 					setResponsePage(homePage);
 				} else {
 					Page loginPage = new LoginPage();

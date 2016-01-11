@@ -11,9 +11,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
 import by.training.java.grodno.az.data.model.Hourse;
-import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.service.HourseService;
-import by.training.java.grodno.az.service.JockeyService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin" })
@@ -32,10 +30,10 @@ public class HoursePage extends AbstractPage {
 		add(new ListView<Hourse>("hourses-list", allUsers) {
 			@Override
 			protected void populateItem(ListItem<Hourse> item) {
-				
+
 				final Hourse hourse = item.getModelObject();
-				item.add(new Label("id",hourse.getId()));
-				item.add(new Label("name",hourse.getName()));
+				item.add(new Label("id", hourse.getId()));
+				item.add(new Label("name", hourse.getName()));
 
 				item.add(new Link("hourse-edit-link") {
 					@Override
@@ -52,7 +50,7 @@ public class HoursePage extends AbstractPage {
 						setResponsePage(HoursePage.class);
 					}
 				});
-				
+
 			}
 		});
 

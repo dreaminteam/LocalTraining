@@ -1,22 +1,17 @@
 package by.training.java.grodno.az.webapp.component.headerHolder;
 
-import java.util.List;
 import java.util.Set;
 
-import org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter.White;
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
 
-import by.training.java.grodno.az.webapp.app.CustomSession;
+import by.training.java.grodno.az.webapp.app.UserSession;
 import by.training.java.grodno.az.webapp.component.LanguageSelectionComponent.LanguageSelectionComponent;
 import by.training.java.grodno.az.webapp.component.logoutInputPanel.InputPanel;
 import by.training.java.grodno.az.webapp.component.logoutInputPanel.LogoutPanel;
 import by.training.java.grodno.az.webapp.component.menuPanel.adminMenuPanel.AdminMainMenuPanel;
 import by.training.java.grodno.az.webapp.component.menuPanel.playerMenuPanel.PlayerMainMenuPanel;
-import by.training.java.grodno.az.webapp.javaEEComponent.Singleton;
 
 public class HeaderHolderPanel extends Panel {
 
@@ -42,15 +37,15 @@ public class HeaderHolderPanel extends Panel {
 		String userName =getString("component.headerHolderPanel.user.notaut");
 		Label label;
 
-		if (CustomSession.get().isSignedIn()) {
-			userName = CustomSession.get().getMetaData(CustomSession.USER_METADATA_KEY).getFullName();
+		if (UserSession.get().isSignedIn()) {
+			userName = UserSession.get().getMetaData(UserSession.USER_METADATA_KEY).getFullName();
 			label = new Label("user-name-label", userName);
 			label.add(AttributeModifier.append("style", "color:white"));
 		} else {
 			label = new Label("user-name-label", userName);
 		}
 		
-		Set<String> role = CustomSession.get().getRoles();
+		Set<String> role = UserSession.get().getRoles();
 		if (role == null) {
 			add(new InputPanel("logout-input-panel"));
 			add(new PlayerMainMenuPanel("main-menu-panel"));

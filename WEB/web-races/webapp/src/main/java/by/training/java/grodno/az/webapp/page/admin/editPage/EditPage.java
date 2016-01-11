@@ -12,7 +12,6 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
-import by.training.java.grodno.az.webapp.page.admin.coefficientPage.CoefficientEditPage;
 import by.training.java.grodno.az.webapp.page.admin.hourseRacing.HourseRacingPage;
 import by.training.java.grodno.az.webapp.page.admin.hoursesPage.HoursePage;
 import by.training.java.grodno.az.webapp.page.admin.jockeysPage.JockeysPage;
@@ -51,9 +50,9 @@ public class EditPage extends AbstractPage {
 
 	};
 
-	private class ActionLink implements Serializable{
+	private class ActionLink implements Serializable {
 		private static final long serialVersionUID = 1L;
-		
+
 		private String title;
 		private Class pageClass;
 

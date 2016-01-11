@@ -30,13 +30,14 @@ public class ParticipantsPage extends AbstractPage {
 		add(new ListView<ParticipantView>("participants-list", allUsers) {
 			@Override
 			protected void populateItem(ListItem<ParticipantView> item) {
-				
+
 				final ParticipantView participantView = item.getModelObject();
-				
+
 				int participantId = participantView.getParticipantId();
-				item.add(new Label("id",participantId));
-				item.add(new Label("jockey",participantView.getJockeyFirstName()+" "+participantView.getJockeyLastName()));
-				item.add(new Label("hourse",participantView.getHourseName()));
+				item.add(new Label("id", participantId));
+				item.add(new Label("jockey",
+						participantView.getJockeyFirstName() + " " + participantView.getJockeyLastName()));
+				item.add(new Label("hourse", participantView.getHourseName()));
 
 				item.add(new Link("participant-edit-link") {
 					@Override
