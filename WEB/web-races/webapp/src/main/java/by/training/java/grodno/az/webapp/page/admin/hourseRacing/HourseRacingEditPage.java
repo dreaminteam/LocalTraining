@@ -69,7 +69,7 @@ public class HourseRacingEditPage extends AbstractPage {
 				hourseRacing.setDate(dateModel.getObject());
 				hourseRacingService.insertOrUpdate(hourseRacing);
 				HourseRacingEditPage editPage = new HourseRacingEditPage();
-				editPage.info("hourse racing saved");
+				editPage.info(getString("all.data.saved"));
 				setResponsePage(editPage);
 
 			};

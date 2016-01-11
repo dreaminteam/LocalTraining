@@ -16,6 +16,11 @@ import by.training.java.grodno.az.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	
+	public static void main(String[] args){
+		String password="admin";
+		System.out.println(new UserServiceImpl().encryption(password));
+	}
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired

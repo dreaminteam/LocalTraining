@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.page.admin.racingLinePage;
+package by.training.java.grodno.az.webapp.page.admin.coefficientPage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,15 +26,19 @@ import org.springframework.validation.Validator;
 import com.googlecode.wicket.kendo.ui.markup.html.link.BookmarkablePageLink;
 
 import by.training.java.grodno.az.data.entities.ParticipantView;
+import by.training.java.grodno.az.data.entities.RacingLineView;
+import by.training.java.grodno.az.data.model.Coefficient;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
+import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.service.RacingLineService;
+import by.training.java.grodno.az.service.RateLineService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.hourseRacing.HourseRacingPage;
 
 @AuthorizeInstantiation(value = { "admin" })
-public class RacingLineResultEditPage extends AbstractPage {
+public class CoefficientsPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -43,11 +47,16 @@ public class RacingLineResultEditPage extends AbstractPage {
 	@Inject
 	private ParticipantService participantService;
 
+	@Inject
+	private RateLineService rateLineService;
+	
 	private HourseRacing hourseRacing;
+	private List<RateLine> rateLinesList;
 
-	public RacingLineResultEditPage(HourseRacing hourseRacing) {
+	public CoefficientsPage(HourseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
+		rateLinesList=rateLineService.getAll();
 	}
 
 	@SuppressWarnings("serial")
@@ -59,11 +68,10 @@ public class RacingLineResultEditPage extends AbstractPage {
 		atributes.put("hourseRacingId", hourseRacing.getId());
 		List<RacingLine> racings = racingLineService.getAll(atributes, "id", true);
 		int listSize = racings.size();
-		List<Integer> positionListChoise = initNumberList(listSize);
 
-		List<RacingLineResult> lineResults = new ArrayList<>(listSize);
+		List<CoefficientView> lineResults = new ArrayList<>(listSize);
 		for (RacingLine rl : racings) {
-			RacingLineResult rLineResult = new RacingLineResult();
+			CoefficientView rLineResult = new CoefficientView();
 			rLineResult.racingLine = rl;
 			rLineResult.participantView = participantService.getViewById(rl.getParticipantId());
 			lineResults.add(rLineResult);
@@ -77,12 +85,12 @@ public class RacingLineResultEditPage extends AbstractPage {
 		FeedbackPanel warnPanel=new FeedbackPanel("warn-panel");
 		form.add(warnPanel);
 
-		form.add(new ListView<RacingLineResult>("racing-line-result-list-view", lineResults) {
+		form.add(new ListView<CoefficientView>("racing-line-result-list-view", lineResults) {
 
 			@Override
-			protected void populateItem(ListItem<RacingLineResult> item) {
+			protected void populateItem(ListItem<CoefficientView> item) {
 
-				final RacingLineResult racingLineResult = item.getModelObject();
+				final CoefficientView racingLineResult = item.getModelObject();
 
 				item.add(new Label("id", racingLineResult.racingLine.getId()));
 				item.add(new Label("participant", racingLineResult.participantView.toStringShort()));
@@ -98,17 +106,17 @@ public class RacingLineResultEditPage extends AbstractPage {
 			@Override
 			public void onSubmit() {
 				Set<Integer> checkSet = new HashSet<>();
-				for (RacingLineResult rlr : lineResults) {
+				for (CoefficientView rlr : lineResults) {
 					checkSet.add(rlr.positionModel.getObject().intValue());
 				}
 				if (checkSet.size() != listSize) {
-					RacingLineResultEditPage editPage = new RacingLineResultEditPage(hourseRacing);
+					CoefficientsPage editPage = new CoefficientsPage(hourseRacing);
 					editPage.warn(getString("page.inputResultRacing.warn"));
 					warnPanel.warn(getString("page.inputResultRacing.warn"));
 					setResponsePage(editPage);
 				} else {
 
-					for (RacingLineResult rlr : lineResults) {
+					for (CoefficientView rlr : lineResults) {
 						int position = rlr.positionModel.getObject().intValue();
 						RacingLine racingLine = rlr.racingLine;
 						racingLine.setResult(position);
@@ -116,7 +124,7 @@ public class RacingLineResultEditPage extends AbstractPage {
 						racingLineService.update(racingLine);
 					}
 
-					RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+					CoefficientEditPage editPage = new CoefficientEditPage(hourseRacing);
 					editPage.info(getString("all.data.saved"));
 					setResponsePage(editPage);
 
@@ -128,23 +136,16 @@ public class RacingLineResultEditPage extends AbstractPage {
 		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
 	}
 
-	private List<Integer> initNumberList(int size) {
-		List<Integer> resultList = new ArrayList<>();
-		for (int i = 0; i < size; i++) {
-			resultList.add(i + 1);
-		}
-		return resultList;
-	}
+	private class CoefficientView {
 
-	private class RacingLineResult {
-
-		private RacingLineResult() {
+		private CoefficientView() {
 			positionModel = new Model<>();
 		}
-
+		
+		private Coefficient coefficient;
 		private RacingLine racingLine;
 		private ParticipantView participantView;
-		private Model<Integer> positionModel;
+		private Model<Double> positionModel;
 
 	}
 }

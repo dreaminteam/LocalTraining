@@ -5,15 +5,15 @@
 
 		<ul>
 			<li>
-				<h2>Participant</h2> <span class="required_notification"></span>
+				<h2><wicket:message key="all.participant"/></h2> <span class="required_notification"></span>
 			</li>
 
 
 
-			<li><label wicket:for="drop-jockey">Jockey:</label> <select
+			<li><label wicket:for="drop-jockey"><wicket:message key="all.jockey"/></label> <select
 				wicket:id="drop-jockey" required></select></li>
 				
-				<li><label wicket:for="drop-hourse">Hourse:</label> <select
+				<li><label wicket:for="drop-hourse"><wicket:message key="all.hourse"/></label> <select
 				wicket:id="drop-hourse" required></select></li>
 
 			<li>
@@ -23,6 +23,6 @@
 		</ul>
 	</form>
 	<br/>
-		<a class="button" wicket:id="participants-page-link">Participants list</a>
+		<a class="button" wicket:id="participants-page-link"><wicket:message key="all.participants"/></a>
 
 </wicket:extend>

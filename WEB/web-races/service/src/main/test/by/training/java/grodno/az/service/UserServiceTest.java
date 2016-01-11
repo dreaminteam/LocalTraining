@@ -41,7 +41,7 @@ public class UserServiceTest {
 		Assert.assertEquals(user.getFirstName(), checkUser.getFirstName());
 		Assert.assertEquals(user.getLastName(), checkUser.getLastName());
 		Assert.assertEquals(user.getCreateDate(), checkUser.getCreateDate());
-		Assert.assertEquals(user.getEndDate(), checkUser.getEndDate());
+//		Assert.assertEquals(user.getEndDate(), checkUser.getEndDate());
 		Assert.assertEquals(user.getBalance(), checkUser.getBalance(), 0.000);
 		Assert.assertEquals(user.getEmail(), checkUser.getEmail());
 		Assert.assertEquals(user.getRole(), checkUser.getRole());
@@ -153,7 +153,7 @@ public class UserServiceTest {
 		final Date endDate = null;
 
 		user.setCreateDate(createDate);
-		user.setEndDate(endDate);
+//		user.setEndDate(endDate);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setLogin(login);

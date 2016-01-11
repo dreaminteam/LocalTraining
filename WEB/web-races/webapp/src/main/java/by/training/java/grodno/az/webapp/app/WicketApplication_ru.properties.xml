@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+	<entry key="all.login">Логин</entry>
+	<entry key="all.password">Пароль</entry>
+	<entry key="all.welcome">Добро пожаловать</entry>
+	<entry key="all.data.review">Обзор данных</entry>
 	<entry key="all.save">Сохранить</entry>
 	<entry key="all.delete">Удалить</entry>
 	<entry key="all.add">Добавить</entry>
 	<entry key="all.edit">Редактировать</entry>
-	<entry key="all.title">Загловие</entry>
+	<entry key="all.title">Заглавие</entry>
+	<entry key="all.description">Описание</entry>
 	<entry key="all.date">Дата</entry>
 	<entry key="all.action">Действие</entry>
+	<entry key="all.name">Имя</entry>
 	<entry key="all.firstName">Имя</entry>
 	<entry key="all.lastName">Фамилия</entry>
+	<entry key="all.users">Пользователи</entry>
+	<entry key="all.jockey">Наездник</entry>
+	<entry key="all.jockeys">Наездники</entry>
+	<entry key="all.hourse">Лошадь</entry>
+	<entry key="all.hourses">Лошади</entry>
+	<entry key="all.participant">Участник</entry>
 	<entry key="all.participants">Участники</entry>
+	<entry key="all.addRace">Добавить гонку</entry>
 	<entry key="all.hourse.racings">Конные скачки</entry>
+	<entry key="all.result">Результат</entry>
 	<entry key="all.results">Результаты</entry>
 	<entry key="all.data.saved">Данные успешно сохранены</entry>
+	<entry key="all.rateLine">Линии ставок</entry>
+	<entry key="all.coefficients">Коэффициенты</entry>
 
 	<entry key="component.logoutInputPanel.logout">Выйти</entry>
 	<entry key="component.logoutInputPanel.registration">Регистрация</entry>
@@ -34,8 +50,16 @@
 	<entry key="component.headerHolderPanel.user.notaut">Пользователь не авторизирован</entry>
 	<entry key="component.headerHolderPanel.title.admin">Администрирование</entry>
 	<entry key="component.headerHolderPanel.title.player">Конные бега. Ставки онлайн</entry>
-	
-	<entry key="page.racingLinePage.maxParticipants">Максимальное количество участников = 15</entry>
+
+	<entry key="page.racingLinePage.isResult">Новый участник не может быть добавлен. Результаты
+		забега уже зафиксированы</entry>
+	<entry key="page.racingLinePage.isResult.delete">Удаление невозможно. Результаты забега уже
+		зафиксированы</entry>
+	<entry key="page.racingLinePage.participantCheck">Этот участник уже представлен в этой гонке</entry>
+	<entry key="page.participantPage.participantCheck">Этот участник уже присутствует в базе данных</entry>
 	<entry key="page.inputResultRacing.warn">Проверьте данные. Позиции не могут быть одинаковыми</entry>
+	<entry key="page.admin.edit.category">Категория</entry>
+	<entry key="page.login.password.input">Введите логин и пароль</entry>
+	<entry key="page.hourse.addHourse">Добавить новую лошадь</entry>
 
 </properties>

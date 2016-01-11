@@ -5,10 +5,10 @@
 
 		<ul>
 			<li>
-				<h2>Hourses</h2> <span class="required_notification">*
+				<h2><wicket:message key="page.hourse.addHourse"/></h2> <span class="required_notification">*
 					Denotes Required Field</span>
 			</li>
-			<li><label wicket:for="name">First name:</label> <input
+			<li><label wicket:for="name"><wicket:message key="all.name"/></label> <input
 				type="text" wicket:id="name" placeholder="Lucky" required /></li>
 
 
@@ -19,6 +19,6 @@
 		</ul>
 	</form>
 	<br/>
-		<a class="button" wicket:id="hourses-page-link">Hourses list</a>
+		<a class="button" wicket:id="hourses-page-link"><wicket:message key="all.hourses"/></a>
 
 </wicket:extend>

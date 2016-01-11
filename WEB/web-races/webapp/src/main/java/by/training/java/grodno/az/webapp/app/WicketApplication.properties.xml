@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+	<entry key="all.login">Login</entry>
+	<entry key="all.password">Password</entry>
+	<entry key="all.welcome">Welcome</entry>
+	<entry key="all.data.review">Data review</entry>
 	<entry key="all.save">Save</entry>
 	<entry key="all.delete">Delete</entry>
 	<entry key="all.add">Add</entry>
 	<entry key="all.edit">Edit</entry>
 	<entry key="all.title">Title</entry>
+	<entry key="all.description">Description</entry>
 	<entry key="all.date">Date</entry>
 	<entry key="all.action">Action</entry>
+	<entry key="all.name">Name</entry>
 	<entry key="all.firstName">First name</entry>
 	<entry key="all.lastName">Last name</entry>
+	<entry key="all.users">Users</entry>
+	<entry key="all.jockey">Jockey</entry>
+	<entry key="all.jockeys">Jockeys</entry>
+	<entry key="all.hourse">Hourse</entry>
+	<entry key="all.hourses">Hourses</entry>
+	<entry key="all.participant">Participant</entry>
 	<entry key="all.participants">Participants</entry>
+	<entry key="all.addRace">Add race</entry>
 	<entry key="all.hourse.racings">Hourse racings</entry>
+	<entry key="all.result">Result</entry>
 	<entry key="all.results">Results</entry>
 	<entry key="all.data.saved">Data saved successfully</entry>
-	
+	<entry key="all.rateLine">Lines of rates</entry>
+	<entry key="all.coefficients">Coefficients</entry>
+
+
 
 	<entry key="component.logoutInputPanel.logout">Logout</entry>
 	<entry key="component.logoutInputPanel.registration">Registration</entry>
@@ -35,8 +52,17 @@
 	<entry key="component.headerHolderPanel.user.notaut">User is not authorized</entry>
 	<entry key="component.headerHolderPanel.title.admin">Admin tool</entry>
 	<entry key="component.headerHolderPanel.title.player">Horse racing. Rates online</entry>
-	
-	<entry key="page.racingLinePage.maxParticipants">Maximum participants = 15</entry>
+
+	<entry key="page.racingLinePage.isResult">New participant can not be added. The results of the
+		race are already fixed</entry>
+	<entry key="page.racingLinePage.isResult.delete">Deleting is not possible. The results of the race are
+		already fixed</entry>
+	<entry key="page.racingLinePage.participantCheck">This participant already presented by in this race</entry>
+	<entry key="page.participantPage.participantCheck">Database has this participant</entry>
+
 	<entry key="page.inputResultRacing.warn">Check data. Positions can not be the same</entry>
+	<entry key="page.admin.edit.category">Category</entry>
+	<entry key="page.login.password.input">Input login and password</entry>
+	<entry key="page.hourse.addHourse">Add new hourse</entry>
 
 </properties>

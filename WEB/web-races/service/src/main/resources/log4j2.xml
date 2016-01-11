@@ -8,7 +8,7 @@
 		RollingFile name="SERVER_LOGFILE" fileName="/logs/training.log" - for
 		windows
 		<RollingFile name="SERVER_LOGFILE" fileName="/home/dreaminteam/logs/training.log"
-			filePattern="/logs/training-%d{MM-dd-yyyy}.log.gz">
+			filePattern="/home/dreaminteam/logs/training-%d{MM-dd-yyyy}.log.gz">
 			<PatternLayout>
 				<Charset>UTF-8</Charset>
 				<Pattern>%d %-5p %-5c{3}:%L %x -> %m%n</Pattern>

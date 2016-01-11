@@ -60,6 +60,8 @@
 	width: 300px;
 }
 
+
+
 .contact_form button {
 	margin-left: 156px;
 }
@@ -81,6 +83,14 @@
 	border: 1px solid #555;
 	box-shadow: 0 0 3px #aaa;
 	padding-right: 70px;
+}
+
+.coefficient input{
+	width: 25px;
+}
+
+.coefficient input:focus{
+	padding-right: 30px;
 }
 
 /* === HTML5 validation styles === */
@@ -202,4 +212,7 @@ button.submit:active {
 
 .div-contact_form .li span{
 	width:500px;
+}
+
+.text-area textarea {
 }

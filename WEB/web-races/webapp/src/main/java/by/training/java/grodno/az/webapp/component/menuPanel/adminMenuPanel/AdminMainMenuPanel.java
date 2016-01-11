@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import by.training.java.grodno.az.webapp.page.aboutUsPage.AboutUsPage;
 import by.training.java.grodno.az.webapp.page.admin.adminPage.AdminPage;
 import by.training.java.grodno.az.webapp.page.admin.editPage.EditPage;
+import by.training.java.grodno.az.webapp.page.admin.hourseRacing.HourseRacingPage;
 import by.training.java.grodno.az.webapp.page.admin.usersPage.UsersPage;
 import by.training.java.grodno.az.webapp.page.ratePage.RatePage;
 import by.training.java.grodno.az.webapp.page.rulesPage.RulesPage;
@@ -26,7 +27,7 @@ public class AdminMainMenuPanel extends Panel{
 		add(new BookmarkablePageLink<Void>("edit-page-link", EditPage.class));
 		add(new BookmarkablePageLink<Void>("rules-page-link", RulesPage.class));
 		add(new BookmarkablePageLink<Void>("about-us-page-link", AboutUsPage.class));
-		add(new BookmarkablePageLink<Void>("rates-page-link", RatePage.class));
+		add(new BookmarkablePageLink<Void>("rates-page-link", HourseRacingPage.class));
 
 	}
 

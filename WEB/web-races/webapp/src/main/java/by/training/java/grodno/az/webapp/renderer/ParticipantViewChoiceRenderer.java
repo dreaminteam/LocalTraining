@@ -10,7 +10,7 @@ public class ParticipantViewChoiceRenderer  extends ChoiceRenderer<ParticipantVi
 
 	@Override
 	public Object getDisplayValue(ParticipantView object) {
-		return String.format("%s and %s", object.getJockeyFirstName(), object.getHourseName());
+		return String.format("%s %s and %s", object.getJockeyFirstName(),object.getJockeyLastName(), object.getHourseName());
 	}
 
 	@Override

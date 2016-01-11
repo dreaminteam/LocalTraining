@@ -6,18 +6,17 @@
 
 		<ul>
 			<li>
-				<h2>Input login and password</h2> <span
+				<h2><wicket:message key="page.login.password.input"/></h2> <span
 				class="required_notification">* Denotes Required Field</span>
 			</li>
-			<li><label wicket:for="login">Login:</label> <input type="text"
+			<li><label wicket:for="login"><wicket:message key="all.login"/>:</label> <input type="text"
 				wicket:id="login" placeholder="login" required /></li>
 
-			<li><label wicket:for="password">Password:</label> <input
+			<li><label wicket:for="password"><wicket:message key="all.password"/>:</label> <input
 				type="password" wicket:id="password" required /></li>
 
 			<li>
-				<button class="submit" type="submit" wicket:id="submit-button">Submit
-					Form</button>
+				<button class="submit" type="submit" wicket:id="submit-button"><wicket:message key="component.logoutInputPanel.input"/></button>
 
 			</li>
 		</ul>

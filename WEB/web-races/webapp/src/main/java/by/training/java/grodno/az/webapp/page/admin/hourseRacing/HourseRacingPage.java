@@ -13,6 +13,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.service.HourseRacingService;
 import by.training.java.grodno.az.webapp.page.abstractPage.AbstractPage;
+import by.training.java.grodno.az.webapp.page.admin.coefficientPage.CoefficientEditPage;
 import by.training.java.grodno.az.webapp.page.admin.racingLinePage.RacingLineEditPage;
 import by.training.java.grodno.az.webapp.page.admin.racingLinePage.RacingLineResultEditPage;
 
@@ -67,6 +68,14 @@ public class HourseRacingPage extends AbstractPage {
 					@Override
 					public void onClick() {
 						setResponsePage(new RacingLineResultEditPage(hourseRacing));
+					}
+				});
+				
+				item.add(new Link("coefficients-edit-link") {
+
+					@Override
+					public void onClick() {
+						setResponsePage(new CoefficientEditPage(hourseRacing));
 					}
 				});
 

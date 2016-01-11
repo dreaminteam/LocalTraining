@@ -53,7 +53,7 @@ public class LoginPage extends AbstractPage {
 				getLogger().info(String.format("%s", CustomSession.get().isSignedIn()));
 				if (CustomSession.get().isSignedIn()) {
 					Page homePage = new HomePage();
-					homePage.info(String.format("Welcome, %s !", Session.get().getMetaData(CustomSession.USER_METADATA_KEY).getFullName()));
+					homePage.info(String.format("%s, %s !", getString("all.welcome"),Session.get().getMetaData(CustomSession.USER_METADATA_KEY).getFullName()));
 					setResponsePage(homePage);
 				} else {
 					Page loginPage = new LoginPage();

@@ -2,8 +2,10 @@ package by.training.java.grodno.az.webapp.page.admin.racingLinePage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -39,20 +41,22 @@ public class RacingLineEditPage extends AbstractPage {
 	@Inject
 	private RacingLineService racingLineService;
 
-	public static final int maxParticipants = 15;
 	private HourseRacing hourseRacing;
 	private RacingLine racingLine;
+	private boolean isResult;
 
 	public RacingLineEditPage(HourseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
 		this.racingLine = new RacingLine();
+		isResult = false;
 	}
 
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
 
+		Set<Integer> particioantCheckSet = new HashSet<>();
 		Map<String, Object> atributes = new HashMap<>();
 		atributes.put("hourseRacingId", hourseRacing.getId());
 		List<RacingLine> racings = racingLineService.getAll(atributes, "id", true);
@@ -60,6 +64,12 @@ public class RacingLineEditPage extends AbstractPage {
 		List<RacingLineView> racingLineViewsList = new ArrayList<>(listSize);
 		for (RacingLine rl : racings) {
 			racingLineViewsList.add(racingLineService.getView(rl));
+			particioantCheckSet.add(rl.getParticipantId());
+		}
+		if (!racingLineViewsList.isEmpty()) {
+			if (!(racingLineViewsList.get(0).getRusult() == null)) {
+				isResult = true;
+			}
 		}
 
 		add(new ListView<RacingLineView>("racing-line-list", racingLineViewsList) {
@@ -76,8 +86,14 @@ public class RacingLineEditPage extends AbstractPage {
 
 					@Override
 					public void onClick() {
-						racingLineService.delete(racingLineView.getRacingLineId());
-						setResponsePage(new RacingLineEditPage(hourseRacing));
+						if (!isResult) {
+							racingLineService.delete(racingLineView.getRacingLineId());
+							setResponsePage(new RacingLineEditPage(hourseRacing));
+						} else {
+							RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+							editPage.warn(getString("page.racingLinePage.isResult.delete"));
+							setResponsePage(editPage);
+						}
 					}
 				});
 
@@ -87,6 +103,11 @@ public class RacingLineEditPage extends AbstractPage {
 		Form<Void> form = new Form<>("racing-line-edit-form");
 		add(form);
 		form.add(new Label("hourse-racing-title", hourseRacing.toString()));
+
+		// Label isResultlabel = new Label("is-result-worn",
+		// getString("page.racingLinePage.isResult"));
+		// form.add(isResultlabel);
+		// isResultlabel.setVisible(false);
 
 		Model<ParticipantView> participantViewModel = new Model<>();
 		List<ParticipantView> participantViewChoices = participantService.getView();
@@ -98,17 +119,24 @@ public class RacingLineEditPage extends AbstractPage {
 		form.add(new SubmitLink("racing-line-submit-button") {
 			@Override
 			public void onSubmit() {
-				if (listSize < maxParticipants) {
-					racingLine.setHourseRacingId(hourseRacing.getId());
-					racingLine.setParticipantId(participantViewModel.getObject().getParticipantId());
-					racingLineService.insertOrUpdate(racingLine);
+				if (!particioantCheckSet.add(participantViewModel.getObject().getParticipantId())) {
 					RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
-					editPage.info("participant added");
+					editPage.warn(getString("page.racingLinePage.participantCheck"));
 					setResponsePage(editPage);
-				}else {
-					RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
-					editPage.warn(getString("page.racingLinePage.maxParticipants"));
-					setResponsePage(editPage);
+				} else {
+
+					if (!isResult) {
+						racingLine.setHourseRacingId(hourseRacing.getId());
+						racingLine.setParticipantId(participantViewModel.getObject().getParticipantId());
+						racingLineService.insertOrUpdate(racingLine);
+						RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+						editPage.info(getString("all.data.saved"));
+						setResponsePage(editPage);
+					} else {
+						RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+						editPage.warn(getString("page.racingLinePage.isResult"));
+						setResponsePage(editPage);
+					}
 				}
 			};
 		});

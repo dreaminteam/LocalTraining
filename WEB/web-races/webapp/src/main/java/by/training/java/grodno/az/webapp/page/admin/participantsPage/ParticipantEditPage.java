@@ -1,7 +1,9 @@
 package by.training.java.grodno.az.webapp.page.admin.participantsPage;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -32,10 +34,10 @@ public class ParticipantEditPage extends AbstractPage {
 
 	@Inject
 	private JockeyService jockeyService;
-	
+
 	@Inject
 	private HourseService hourseService;
-	
+
 	@Inject
 	private ParticipantService participantService;
 
@@ -58,32 +60,44 @@ public class ParticipantEditPage extends AbstractPage {
 		Form<Jockey> form = new Form<>("participant-edit-form");
 		add(form);
 
-
 		Model<Jockey> jockeyModel = new Model<>();
-		List<Jockey> jockeyChoices =jockeyService.getAll() ;
-		DropDownChoice<Jockey> dropDownJockeyChoice = new DropDownChoice<>("drop-jockey",
-		jockeyModel, jockeyChoices, new JockeyChoiceRenderer());
+		List<Jockey> jockeyChoices = jockeyService.getAll();
+		DropDownChoice<Jockey> dropDownJockeyChoice = new DropDownChoice<>("drop-jockey", jockeyModel, jockeyChoices,
+				new JockeyChoiceRenderer());
 		dropDownJockeyChoice.setRequired(true);
 		form.add(dropDownJockeyChoice);
-		
+
 		Model<Hourse> hourseModel = new Model<>();
-		List<Hourse> hourseChoices =hourseService.getAll() ;
-		DropDownChoice<Hourse> dropDownHourseChoice = new DropDownChoice<>("drop-hourse",
-		hourseModel, hourseChoices, new HourseChoiceRenderer());
+		List<Hourse> hourseChoices = hourseService.getAll();
+		DropDownChoice<Hourse> dropDownHourseChoice = new DropDownChoice<>("drop-hourse", hourseModel, hourseChoices,
+				new HourseChoiceRenderer());
 		dropDownHourseChoice.setRequired(true);
 		form.add(dropDownHourseChoice);
-		
-		
+
 		form.add(new SubmitLink("participant-submit-button") {
 			@Override
 			public void onSubmit() {
-				participant.setJockeyId(jockeyModel.getObject().getId());
-				participant.setHourseId(hourseModel.getObject().getId());
-				participantService.insertOrUpdate(participant);
-				ParticipantEditPage editPage = new ParticipantEditPage();
-				editPage.info("participant saved");
-				setResponsePage(editPage);
 
+				int jockeyId = jockeyModel.getObject().getId();
+				int hourseId = hourseModel.getObject().getId();
+
+				Map<String, Object> findParamerers = new HashMap<>();
+				findParamerers.put("jockeyId", jockeyId);
+				findParamerers.put("hourseId", hourseId);
+
+				if (participantService.getAll(findParamerers, null, true).size()==0) {
+
+					participant.setJockeyId(jockeyId);
+					participant.setHourseId(hourseId);
+					participantService.insertOrUpdate(participant);
+					ParticipantEditPage editPage = new ParticipantEditPage();
+					editPage.info(getString("all.data.saved"));
+					setResponsePage(editPage);
+				}else{
+					ParticipantEditPage editPage = new ParticipantEditPage();
+					editPage.warn(getString("page.participantPage.participantCheck"));
+					setResponsePage(editPage);
+				}
 			};
 		});
 		add(new Link<Void>("participants-page-link") {

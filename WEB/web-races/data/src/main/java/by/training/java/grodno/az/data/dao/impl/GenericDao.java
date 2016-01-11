@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -97,7 +98,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	@Override
 	public List<T> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		String atributes = getParametersStringForUpdate(atributesFinding);
+		String atributes = getParametersStringForFinding(atributesFinding);
 		if (atributes.equals("")) {
 			return getAll(first, count, orderBy, orderType);
 		}
@@ -107,7 +108,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 			sql = String.format("%s where %s limit %s offset %s", sql, atributes, count, first);
 		} else {
 			String ordering = (orderType == true ? "asc" : "desc");
-			sql = String.format("%s where %s order by %s %s  limit %s offset %s", sql,atributes, orderBy, ordering, 
+			sql = String.format("%s where %s order by %s %s  limit %s offset %s", sql, atributes, orderBy, ordering,
 					count, first);
 		}
 		List<T> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<T>(getGenericType()));
@@ -116,7 +117,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 
 	@Override
 	public List<T> getAll(Map<String, Object> atributesFinding, String orderBy, boolean orderType) {
-		String atributes = getParametersStringForUpdate(atributesFinding);
+		String atributes = getParametersStringForFinding(atributesFinding);
 		String sql = String.format("select * from %s", tableName);
 		if (!atributes.equals("")) {
 			sql = String.format("%s where %s", sql, atributes);
@@ -125,7 +126,12 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		if (orderBy != null) {
 			sql = String.format("%s ORDER BY %s %s", sql, orderBy, ordering);
 		}
-		List<T> result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<T>(getGenericType()));
+		List<T> result = null;
+		try {
+			result = jdbcTemplate.query(sql, new BeanPropertyRowMapper<T>(getGenericType()));
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+		}
 		return result;
 	}
 
@@ -133,7 +139,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	public int insert(T entity) {
 		SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
 		jdbcInsert.withTableName(tableName).usingGeneratedKeyColumns("id");
-		System.out.println("tableNema "+tableName);
+		System.out.println("tableNema " + tableName);
 		Number key = -1;
 		try {
 			key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(getMapAtributes(entity)));
@@ -186,7 +192,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 				}
 			}
 		}
-		System.out.println("getMapAtributes "+result.toString());
+		System.out.println("getMapAtributes " + result.toString());
 		return result;
 	}
 
@@ -210,6 +216,24 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		return sb.toString();
 	}
 
+	private String getParametersStringForFinding(Map<String, Object> mapSource) {
+		Map<String, Object> map = new HashMap<>();
+		StringBuilder result = new StringBuilder();
+		if (mapSource == null) {
+			return "";
+		}
+		Iterator it = mapSource.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, Object> entry = (Map.Entry) it.next();
+			result.append(String.format("%s=%s", getNameDBField(entry.getKey()), entry.getValue()));
+			if (it.hasNext()) {
+				result.append(" and ");
+			}
+			it.remove(); // avoids a ConcurrentModificationException
+		}
+		return result.toString();
+	}
+	
 	private String getParametersStringForUpdate(Map<String, Object> mapSource) {
 		Map<String, Object> map = new HashMap<>();
 		if (mapSource == null) {
@@ -217,9 +241,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		}
 		for (Map.Entry<String, Object> entry : mapSource.entrySet()) {
 			String key = getNameDBField(entry.getKey());
-			// if (!key.contains("Date")) {
 			map.put(key, String.format("'%s'", entry.getValue()));
-			// }
 		}
 		String source = map.toString();
 		return String.format("%s", source.substring(1, source.length() - 1));
