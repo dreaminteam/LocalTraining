@@ -5,13 +5,13 @@
 
 		<ul>
 			<li>
-				<h2>Jockey</h2> <span class="required_notification">*
+					<h2><wicket:message key="all.jockey"/></h2> <span class="required_notification">*
 					Denotes Required Field</span>
 			</li>
-			<li><label wicket:for="firstName">First name:</label> <input
+			<li><label wicket:for="firstName"><wicket:message key="all.firstName"/>:</label> <input
 				type="text" wicket:id="firstName" placeholder="Andrew" required /></li>
 
-			<li><label wicket:for="lastName">Surname:</label> <input
+			<li><label wicket:for="lastName"><wicket:message key="all.lastName"/>:</label> <input
 				type="text" wicket:id="lastName" placeholder="Zenov" required /></li>
 
 
@@ -22,6 +22,6 @@
 		</ul>
 	</form>
 	<br/>
-		<a class="button" wicket:id="jockeys-page-link">Jockeys list</a>
+		<a class="button" wicket:id="jockeys-page-link"><wicket:message key="all.jockeys"/></a>
 
 </wicket:extend>

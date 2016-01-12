@@ -36,7 +36,7 @@
 
 	<entry key="component.logoutInputPanel.logout">Logout</entry>
 	<entry key="component.logoutInputPanel.registration">Registration</entry>
-	<entry key="component.logoutInputPanel.input">Input</entry>
+	<entry key="component.logoutInputPanel.input">Log In</entry>
 
 	<entry key="component.menuPanel.admin.home">Home</entry>
 	<entry key="component.menuPanel.admin.rates">Rates</entry>

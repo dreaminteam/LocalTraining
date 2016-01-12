@@ -17,6 +17,7 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 
 import com.googlecode.wicket.kendo.ui.markup.html.link.BookmarkablePageLink;
 
@@ -61,71 +62,83 @@ public class CoefficientEditPage extends AbstractPage {
 
 		Map<String, Object> atributes = new HashMap<>();
 		atributes.put("hourseRacingId", hourseRacing.getId());
-		List<RacingLine> racings = racingLineService.getAll(atributes, "id", true);
-		int racingsSize = racings.size();
-		System.out.println("List<RacingLine> racings=" + racingsSize);
+		List<RacingLine> racingLineList = new ArrayList<>(racingLineService.getAll(atributes, "id", true));
 
-		List<RateLine> rateLines = rateLineService.getAll();
-		int rateLineSize = rateLines.size();
-		System.out.println("List<RateLine> rateLines=" + rateLineSize);
+		List<RateLine> rateLineList = new ArrayList<>(rateLineService.getAll(null, "id", true));
+		int rateLineSize = rateLineList.size();
 
 		List<CoefficientView> coefficientViewList = new ArrayList<>();
 
-		System.out.println("racingsSize=" + racingsSize);
-		for (int i = 0; i < racingsSize; i++) {
-			CoefficientView coefftView = new CoefficientView();
-			coefftView.racingLineId = racings.get(i).getId();
-			coefftView.participantName = participantService.getViewById(racings.get(i).getParticipantId())
+		for (int i = 0; i < racingLineList.size(); i++) {
+			coefficientViewList.add(new CoefficientView());
+		}
+
+		for (int i = 0; i < racingLineList.size(); i++) {
+			RacingLine racingline=racingLineList.get(i);
+			CoefficientView coefficientView = new CoefficientView();
+			int racingLineId = racingline.getId();
+			coefficientView.racingLineId = racingLineId;
+			coefficientView.participantName = participantService.getViewById(racingline.getParticipantId())
 					.toStringShort();
-			for (int j = 0; j < rateLineSize; j++) {
-				coefftView.models.put(rateLines.get(j).getId(), new Model<Double>());
-				j++;
+			for (RateLine rateLine : rateLineList) {
 
+				int rateLineId = rateLine.getId();
+				Map<String, Object> findingAtributes = new HashMap<>();
+				findingAtributes.put("rateLineId", rateLineId);
+				findingAtributes.put("racingLineId", racingLineId);
+				List<Coefficient> coefficients = coefficientService.getAll(findingAtributes, null, true);
+				Coefficient coefficient;
+				if (coefficients.size() != 0) {
+					coefficient = coefficients.get(0);
+				} else {
+					coefficient = new Coefficient();
+				}
+				coefficientView.coefficient = coefficient;
+				coefficientView.models.put(rateLineId, new PropertyModel<>(coefficient, "value"));
 			}
-
-			coefficientViewList.add(coefftView);
+			coefficientViewList.add(coefficientView);
 		}
 
 		Form<Void> form = new Form<>("coefficient-edit-form");
 		add(form);
 		form.add(new FeedbackPanel("feedback-panel"));
 		form.add(new Label("hourse-racing-title", hourseRacing.toString()));
+
 		for (int i = 0; i < CoefficientEditPage.MAXQUANTITY; i++) {
 			String title = "Empty";
 			if (i < rateLineSize) {
-				title = rateLines.get(i).getTitle();
+				title = rateLineList.get(i).getTitle();
 			}
 			form.add(new Label(String.format("title-%s", i), title));
 		}
+
 		form.add(new ListView<CoefficientView>("coefficient-list", coefficientViewList) {
 			@Override
 			protected void populateItem(ListItem<CoefficientView> item) {
 
-				final CoefficientView coefficientEntity = item.getModelObject();
-				item.add(new Label("participant", coefficientEntity.participantName));
-				int modelsSize = coefficientEntity.models.size();
+				final CoefficientView coefficientView = item.getModelObject();
+				item.add(new Label("participant", coefficientView.participantName));
+				int modelsSize = coefficientView.models.size();
 				for (int q = 0; q < CoefficientEditPage.MAXQUANTITY; q++) {
 
-					if (q < rateLineSize) {
+					if (q < modelsSize) {
 
 						String id = String.valueOf(q);
-						System.out.println(modelsSize);
-						System.out.println("j=" + q);
-						Model<Double> model = new Model<>();
-						TextField<Double> field = new TextField<Double>(id, model);
-						coefficientEntity.models.put(rateLines.get(q).getId(), model);
+						int key = rateLineList.get(q).getId();
+						TextField<Double> field = new TextField<>(id, coefficientView.models.get(key));
 						field.setRequired(true);
 						item.add(field);
+						// .add(RangeValidator.<Double> range(0.0, 99.0));
 					} else {
-						TextField<Double> sleepTextField = new TextField<Double>(String.valueOf(q),
-								new Model<Double>());
+						TextField<Double> sleepTextField = new TextField<>(String.valueOf(q), new Model<Double>(),
+								Double.class);
 						sleepTextField.setVisible(false);
 						item.add(sleepTextField);
-
 					}
 				}
 
 			}
+
 		});
 
 		form.add(new SubmitLink("coefficient-submit-button") {
@@ -133,23 +146,24 @@ public class CoefficientEditPage extends AbstractPage {
 			public void onSubmit() {
 				for (CoefficientView c : coefficientViewList) {
 					for (int i = 0; i < c.models.size(); i++) {
-						Coefficient coefficient = new Coefficient();
+						Coefficient coefficient = c.coefficient;
 						coefficient.setRacingLineId(c.racingLineId);
-						int rateLineId = rateLines.get(i).getId();
+						int rateLineId = rateLineList.get(i).getId();
 						coefficient.setRateLineId(rateLineId);
-						System.out.println(c.models.toString());
-						System.out.println(
-								"c.models.get(rateLineId).getObject()=" + c.models.get(rateLineId).getObject());
-						Double coefficientValue = c.models.get(rateLineId).getObject();
+						Double coefficientValue = c.models.get(rateLineId).getObject().doubleValue();
 						coefficient.setValue(coefficientValue);
+						System.out.println("coefficient=" + coefficient);
 						coefficientService.insertOrUpdate(coefficient);
+						CoefficientEditPage editPage = new CoefficientEditPage(hourseRacing);
+						editPage.info(getString("all.data.saved"));
+						setResponsePage(editPage);
 					}
 				}
-
 			};
 		});
 
 		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
+
 	}
 
 	private class CoefficientView implements Serializable {
@@ -160,9 +174,11 @@ public class CoefficientEditPage extends AbstractPage {
 			this.models = new HashMap<>();
 		}
 
+		private Coefficient coefficient;
 		private int racingLineId;
 		private String participantName;
-		private Map<Integer, Model<Double>> models;
+		private Map<Integer, PropertyModel<Double>> models;
+
 	}
 
 }

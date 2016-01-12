@@ -3,7 +3,6 @@ package by.training.java.grodno.az.data.dao.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Repository;
 
 import by.training.java.grodno.az.data.dao.Dao;
 import by.training.java.grodno.az.data.entities.AbstractEntity;
-import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.data.util.DaoUtil;
 
 @Repository
@@ -43,15 +41,17 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		return daoUtil.getEntity(sql, getGenericType(), parameters);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public int getCount() {
 
 		String sql = String.format("SELECT COUNT(*) FROM %s", tableName);
-		int coutn = jdbcTemplate.queryForInt(sql);
-		return coutn;
+		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
+	
+	/**
+	 * If response is empty then returned empty List<T> with size=0;
+	 */
 	@Override
 	public List<T> getAll() {
 		String sql = "select * from " + tableName;
@@ -185,7 +185,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 			if (m.getName().indexOf("get") == 0 && m.getName() != "getClass" && m.getName() != "getId") {
 				String str = m.getName();
 				try {
-					result.put(getFieldNameByGetter(str), entity.getClass().getMethod(str, null).invoke(entity, null));
+					result.put(getFieldNameByGetter(str), entity.getClass().getMethod(str).invoke(entity));
 				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
 						| NoSuchMethodException | SecurityException e) {
 					e.printStackTrace();
@@ -217,7 +217,6 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 	}
 
 	private String getParametersStringForFinding(Map<String, Object> mapSource) {
-		Map<String, Object> map = new HashMap<>();
 		StringBuilder result = new StringBuilder();
 		if (mapSource == null) {
 			return "";
@@ -233,7 +232,7 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		}
 		return result.toString();
 	}
-	
+
 	private String getParametersStringForUpdate(Map<String, Object> mapSource) {
 		Map<String, Object> map = new HashMap<>();
 		if (mapSource == null) {

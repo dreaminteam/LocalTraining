@@ -11,7 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<common.project.version>1.0</common.project.version>
-		<spring.version>4.0.3.RELEASE</spring.version>
+		<spring.version>4.2.4.RELEASE</spring.version>
 		<wicket.version>7.1.0</wicket.version>
 		<jetty9.version>9.2.13.v20150730</jetty9.version>
 	</properties>
@@ -262,5 +262,22 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
 	</build>
 </project>

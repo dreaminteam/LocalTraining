@@ -1,5 +1,7 @@
 package by.training.java.grodno.az.webapp.app;
 
+import org.apache.wicket.ConverterLocator;
+import org.apache.wicket.IConverterLocator;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.WebPage;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import by.training.java.grodno.az.webapp.converterLocator.RacesDoubleConvertor;
 import by.training.java.grodno.az.webapp.page.homePage.HomePage;
 import by.training.java.grodno.az.webapp.page.loginPage.LoginPage;
 
@@ -54,4 +57,11 @@ public class RacesApplication extends AuthenticatedWebApplication {
 	protected Class<? extends WebPage> getSignInPageClass() {
 		return LoginPage.class;
 	}
+	
+//	@Override
+//	protected IConverterLocator newConverterLocator() {
+//	    ConverterLocator converterLocator = new ConverterLocator();
+//	    converterLocator.set(Double.class, new RacesDoubleConvertor());
+//	    return converterLocator;
+//	}
 }

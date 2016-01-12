@@ -59,7 +59,7 @@ public class JockeyEditPage extends AbstractPage {
 
 				jockeyService.insertOrUpdate(jockey);
 				JockeyEditPage editPage = new JockeyEditPage();
-				editPage.info("jockey saved");
+				editPage.info(getString("all.data.saved"));
 				setResponsePage(editPage);
 
 			};

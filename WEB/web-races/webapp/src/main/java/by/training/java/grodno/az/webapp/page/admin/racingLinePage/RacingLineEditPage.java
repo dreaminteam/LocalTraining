@@ -104,11 +104,6 @@ public class RacingLineEditPage extends AbstractPage {
 		add(form);
 		form.add(new Label("hourse-racing-title", hourseRacing.toString()));
 
-		// Label isResultlabel = new Label("is-result-worn",
-		// getString("page.racingLinePage.isResult"));
-		// form.add(isResultlabel);
-		// isResultlabel.setVisible(false);
-
 		Model<ParticipantView> participantViewModel = new Model<>();
 		List<ParticipantView> participantViewChoices = participantService.getView();
 		DropDownChoice<ParticipantView> dropDownParticipantViewChoice = new DropDownChoice<>("drop-participant",
@@ -142,6 +137,13 @@ public class RacingLineEditPage extends AbstractPage {
 		});
 
 		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
-	}
+		add(new Link("racing-result-edit-link") {
 
+			@Override
+			public void onClick() {
+				setResponsePage(new RacingLineResultEditPage(hourseRacing));
+			}
+		});
+
+	}
 }
