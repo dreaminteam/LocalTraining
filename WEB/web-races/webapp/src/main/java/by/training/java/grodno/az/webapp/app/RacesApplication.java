@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import by.training.java.grodno.az.webapp.converterLocator.RacesDoubleConvertor;
-import by.training.java.grodno.az.webapp.page.homePage.HomePage;
-import by.training.java.grodno.az.webapp.page.loginPage.LoginPage;
+import by.training.java.grodno.az.webapp.converterlocator.RacesDoubleConvertor;
+import by.training.java.grodno.az.webapp.page.homepage.HomePage;
+import by.training.java.grodno.az.webapp.page.loginpage.LoginPage;
 
 /**
  * Application object for your web application. If you want to run this
