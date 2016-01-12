@@ -58,6 +58,8 @@
 		race are already fixed</entry>
 	<entry key="page.racingLinePage.isResult.delete">Deleting is not possible. The results of the race are
 		already fixed</entry>
+	<entry key="page.rateLinePage.not.delete">Deleting is not possible. The type of the rate has
+		reference to table 'coefficient'</entry>
 	<entry key="page.racingLinePage.participantCheck">This participant already presented by in this race</entry>
 	<entry key="page.participantPage.participantCheck">Database has this participant</entry>
 
@@ -65,7 +67,7 @@
 	<entry key="page.admin.edit.category">Category</entry>
 	<entry key="page.login.password.input">Input login and password</entry>
 	<entry key="page.hourse.addHourse">Add new hourse</entry>
-	
-	
+
+
 
 </properties>

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import by.training.java.grodno.az.data.dao.EmployeeDao;
 import by.training.java.grodno.az.data.dao.UserDao;
 import by.training.java.grodno.az.data.model.Employee;
-import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.EmployeeService;
 
@@ -71,28 +70,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<Employee> result = employeeDao.getAll(orderBy, orderType);
 		return result;
 	}
-	
+
 	@Override
-	public List<Employee> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return employeeDao.getAll(atributesFinding,orderBy,type);
+	public List<Employee> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return employeeDao.getAll(atributesFinding, orderBy, type);
 	}
-	
+
 	@Override
 	public List<Employee> getAll(int first, int count) {
-		List<Employee> result= employeeDao.getAll(first,count);
+		List<Employee> result = employeeDao.getAll(first, count);
 		return result;
 	}
 
 	@Override
 	public List<Employee> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<Employee> result= employeeDao.getAll(first,count,orderBy,orderType);
+		List<Employee> result = employeeDao.getAll(first, count, orderBy, orderType);
 		return result;
 	}
 
 	@Override
 	public List<Employee> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<Employee> result= employeeDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		List<Employee> result = employeeDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		return result;
 	}
 
@@ -100,5 +99,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int getCount() {
 		return employeeDao.getCount();
 	}
-	
+
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		return employeeDao.getCount(atributesFinding);
+	}
+
 }

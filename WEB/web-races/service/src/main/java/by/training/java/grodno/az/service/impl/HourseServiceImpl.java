@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.HourseDao;
 import by.training.java.grodno.az.data.model.Hourse;
-import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.service.HourseService;
 
 @Service
@@ -55,7 +54,7 @@ public class HourseServiceImpl implements HourseService {
 	public List<Hourse> getAll() {
 		return hourseDao.getAll();
 	}
-	
+
 	@Override
 	public List<Hourse> getAll(String orderBy, boolean orderType) {
 		List<Hourse> result = hourseDao.getAll(orderBy, orderType);
@@ -63,26 +62,26 @@ public class HourseServiceImpl implements HourseService {
 	}
 
 	@Override
-	public List<Hourse> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return hourseDao.getAll(atributesFinding,orderBy,type);
+	public List<Hourse> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return hourseDao.getAll(atributesFinding, orderBy, type);
 	}
-	
+
 	@Override
 	public List<Hourse> getAll(int first, int count) {
-		List<Hourse> result= hourseDao.getAll(first,count);
+		List<Hourse> result = hourseDao.getAll(first, count);
 		return result;
 	}
 
 	@Override
 	public List<Hourse> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<Hourse> result= hourseDao.getAll(first,count,orderBy,orderType);
+		List<Hourse> result = hourseDao.getAll(first, count, orderBy, orderType);
 		return result;
 	}
 
 	@Override
 	public List<Hourse> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<Hourse> result= hourseDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		List<Hourse> result = hourseDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		return result;
 	}
 
@@ -90,5 +89,10 @@ public class HourseServiceImpl implements HourseService {
 	public int getCount() {
 		return hourseDao.getCount();
 	}
-	
+
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		return hourseDao.getCount(atributesFinding);
+	}
+
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.RateLineDao;
-import by.training.java.grodno.az.data.model.Rate;
 import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.RateLineService;
 
@@ -55,34 +54,34 @@ public class RateLineServiceImpl implements RateLineService {
 	public List<RateLine> getAll() {
 		return rateLineDao.getAll();
 	}
-	
+
 	@Override
 	public List<RateLine> getAll(String orderBy, boolean orderType) {
 		List<RateLine> result = rateLineDao.getAll(orderBy, orderType);
 		return result;
 	}
-	
+
 	@Override
-	public List<RateLine> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return rateLineDao.getAll(atributesFinding,orderBy,type);
+	public List<RateLine> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return rateLineDao.getAll(atributesFinding, orderBy, type);
 	}
-	
+
 	@Override
 	public List<RateLine> getAll(int first, int count) {
-		List<RateLine> result= rateLineDao.getAll(first,count);
+		List<RateLine> result = rateLineDao.getAll(first, count);
 		return result;
 	}
 
 	@Override
 	public List<RateLine> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<RateLine> result= rateLineDao.getAll(first,count,orderBy,orderType);
+		List<RateLine> result = rateLineDao.getAll(first, count, orderBy, orderType);
 		return result;
 	}
 
 	@Override
 	public List<RateLine> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<RateLine> result= rateLineDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		List<RateLine> result = rateLineDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		return result;
 	}
 
@@ -90,5 +89,10 @@ public class RateLineServiceImpl implements RateLineService {
 	public int getCount() {
 		return rateLineDao.getCount();
 	}
-	
+
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		return rateLineDao.getCount(atributesFinding);
+	}
+
 }

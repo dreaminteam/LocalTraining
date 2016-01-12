@@ -6,10 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import by.training.java.grodno.az.data.dao.HourseRacingDao;
-import by.training.java.grodno.az.data.dao.ParticipantDao;
 import by.training.java.grodno.az.data.dao.RacingLineDao;
-import by.training.java.grodno.az.data.entities.ParticipantView;
 import by.training.java.grodno.az.data.entities.RacingLineView;
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.Participant;
@@ -29,7 +26,6 @@ public class RacingLineServiceImpl implements RacingLineService {
 
 	@Autowired
 	private ParticipantService participantService;
-	
 
 	@Override
 	public RacingLine getById(int id) {
@@ -79,34 +75,34 @@ public class RacingLineServiceImpl implements RacingLineService {
 	public List<RacingLine> getAll() {
 		return racingLineDao.getAll();
 	}
-	
+
 	@Override
 	public List<RacingLine> getAll(String orderBy, boolean orderType) {
 		List<RacingLine> result = racingLineDao.getAll(orderBy, orderType);
 		return result;
 	}
-	
+
 	@Override
-	public List<RacingLine> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return racingLineDao.getAll(atributesFinding,orderBy,type);
+	public List<RacingLine> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return racingLineDao.getAll(atributesFinding, orderBy, type);
 	}
-	
+
 	@Override
 	public List<RacingLine> getAll(int first, int count) {
-		List<RacingLine> result= racingLineDao.getAll(first,count);
+		List<RacingLine> result = racingLineDao.getAll(first, count);
 		return result;
 	}
 
 	@Override
 	public List<RacingLine> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<RacingLine> result= racingLineDao.getAll(first,count,orderBy,orderType);
+		List<RacingLine> result = racingLineDao.getAll(first, count, orderBy, orderType);
 		return result;
 	}
 
 	@Override
 	public List<RacingLine> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<RacingLine> result= racingLineDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		List<RacingLine> result = racingLineDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		return result;
 	}
 
@@ -117,17 +113,20 @@ public class RacingLineServiceImpl implements RacingLineService {
 
 	@Override
 	public RacingLineView getView(RacingLine racingLine) {
-		//transaction
-		RacingLineView result=new RacingLineView();
+		// transaction
+		RacingLineView result = new RacingLineView();
 		result.setRacingLineId(racingLine.getId());
 		result.setHourseRacing(hourseRacingService.getById(racingLine.getHourseRacingId()));
 		result.setParticipantView(participantService.getViewById(racingLine.getParticipantId()));
-		
+
 		result.setRusult(racingLine.getResult());
-		
+
 		return result;
-		
-		
 	}
-	
+
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		return racingLineDao.getCount(atributesFinding);
+	}
+
 }

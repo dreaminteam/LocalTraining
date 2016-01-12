@@ -471,7 +471,7 @@ a.button:active {
 }
 
 .feedbackPanel span {
-	font-size: 150%;
+	font-size: 130%;
 }
 
 .feedbackPanelINFO {
@@ -486,7 +486,7 @@ a.button:active {
 
 .feedbackPanelERROR {
 	background-color: rgb(250, 20, 60);
-	font-size: 200%;
+	font-size: 180%;
 	color: white;
 }
 

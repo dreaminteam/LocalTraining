@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.JockeyDao;
 import by.training.java.grodno.az.data.model.Jockey;
-import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.service.JockeyService;
 
 @Service
@@ -55,34 +54,34 @@ public class JockeyServiceImpl implements JockeyService {
 	public List<Jockey> getAll() {
 		return jockeyDao.getAll();
 	}
-	
+
 	@Override
 	public List<Jockey> getAll(String orderBy, boolean orderType) {
 		List<Jockey> result = jockeyDao.getAll(orderBy, orderType);
 		return result;
 	}
-	
+
 	@Override
-	public List<Jockey> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return jockeyDao.getAll(atributesFinding,orderBy,type);
+	public List<Jockey> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return jockeyDao.getAll(atributesFinding, orderBy, type);
 	}
-	
+
 	@Override
 	public List<Jockey> getAll(int first, int count) {
-		List<Jockey> result= jockeyDao.getAll(first,count);
+		List<Jockey> result = jockeyDao.getAll(first, count);
 		return result;
 	}
 
 	@Override
 	public List<Jockey> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<Jockey> result= jockeyDao.getAll(first,count,orderBy,orderType);
+		List<Jockey> result = jockeyDao.getAll(first, count, orderBy, orderType);
 		return result;
 	}
 
 	@Override
 	public List<Jockey> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<Jockey> result= jockeyDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		List<Jockey> result = jockeyDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		return result;
 	}
 
@@ -90,5 +89,10 @@ public class JockeyServiceImpl implements JockeyService {
 	public int getCount() {
 		return jockeyDao.getCount();
 	}
-	
+
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		return jockeyDao.getCount(atributesFinding);
+	}
+
 }

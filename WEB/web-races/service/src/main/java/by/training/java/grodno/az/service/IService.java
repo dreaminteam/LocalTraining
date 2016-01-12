@@ -32,5 +32,7 @@ public interface IService<T extends AbstractEntity> {
 	List<T> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy, boolean orderType);
 	
 	int getCount();
+	
+	int getCount(Map<String, Object> atributesFinding);
 
 }

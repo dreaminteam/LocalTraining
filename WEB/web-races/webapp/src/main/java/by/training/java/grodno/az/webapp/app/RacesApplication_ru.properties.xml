@@ -56,6 +56,7 @@
 		забега уже зафиксированы</entry>
 	<entry key="page.racingLinePage.isResult.delete">Удаление невозможно. Результаты забега уже
 		зафиксированы</entry>
+		<entry key="page.rateLinePage.not.delete">Удаление невозможно. Тип ставки имеет ссылку на таблицу 'coefficient'</entry>
 	<entry key="page.racingLinePage.participantCheck">Этот участник уже представлен в этой гонке</entry>
 	<entry key="page.participantPage.participantCheck">Этот участник уже присутствует в базе данных</entry>
 	<entry key="page.inputResultRacing.warn">Проверьте данные. Позиции не могут быть одинаковыми</entry>

@@ -13,7 +13,6 @@ import by.training.java.grodno.az.data.entities.ParticipantView;
 import by.training.java.grodno.az.data.model.Hourse;
 import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.data.model.Participant;
-import by.training.java.grodno.az.data.model.Player;
 import by.training.java.grodno.az.service.ParticipantService;
 
 @Service
@@ -82,31 +81,31 @@ public class ParticipantServiceImpl implements ParticipantService {
 		List<Participant> result = participantDao.getAll(orderBy, orderType);
 		return result;
 	}
-	
+
 	@Override
-	public List<Participant> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return participantDao.getAll(atributesFinding,orderBy,type);
+	public List<Participant> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return participantDao.getAll(atributesFinding, orderBy, type);
 	}
-	
+
 	@Override
 	public List<Participant> getAll(int first, int count) {
-		List<Participant> result= participantDao.getAll(first,count);
+		List<Participant> result = participantDao.getAll(first, count);
 		return result;
 	}
 
 	@Override
 	public List<Participant> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<Participant> result= participantDao.getAll(first,count,orderBy,orderType);
+		List<Participant> result = participantDao.getAll(first, count, orderBy, orderType);
 		return result;
 	}
 
 	@Override
 	public List<Participant> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<Participant> result= participantDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		List<Participant> result = participantDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		return result;
 	}
-	
+
 	@Override
 	public int getCount() {
 		return participantDao.getCount();
@@ -120,6 +119,11 @@ public class ParticipantServiceImpl implements ParticipantService {
 	@Override
 	public ParticipantView getViewById(int participant_id) {
 		return participantDao.getViewById(participant_id);
+	}
+
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		return participantDao.getCount(atributesFinding);
 	}
 
 }

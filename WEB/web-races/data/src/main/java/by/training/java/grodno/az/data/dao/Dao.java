@@ -31,6 +31,8 @@ public interface Dao<T extends AbstractEntity> {
 	
 	int getCount();
 
+	int getCount(Map<String, Object> atributesFinding);
+
 	
 
 	

@@ -55,13 +55,13 @@ public class RateLineEditPage extends AbstractPage {
 		form.add(new SubmitLink("rate-line-submit-button") {
 			@Override
 			public void onSubmit() {
-				if (rateLineService.getAll().size() < CoefficientEditPage.MAXQUANTITY) {
+				if (rateLineService.getCount() < CoefficientEditPage.MAXQUANTITY) {
 					rateLineService.insertOrUpdate(rateLine);
-					RateLineEditPage editPage = new RateLineEditPage();
+					RateLineEditPage editPage = new RateLineEditPage(rateLine);
 					editPage.info(getString("all.data.saved"));
 					setResponsePage(editPage);
 				} else {
-					AbstractPage responsePage = new RateLineEditPage();
+					AbstractPage responsePage = new RateLineEditPage(rateLine);
 					warn(getString("all.tableRecords.limit"));
 					setResponsePage(responsePage);
 				}

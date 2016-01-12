@@ -15,12 +15,12 @@ import by.training.java.grodno.az.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
-	public static void main(String[] args){
-		String password="admin";
+
+	public static void main(String[] args) {
+		String password = "admin";
 		System.out.println(new UserServiceImpl().encryption(password));
 	}
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
@@ -78,14 +78,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAll() {
-		List<User> result= userDao.getAll();
+		List<User> result = userDao.getAll();
 		LOGGER.info("Return list of all users.");
 		return result;
 	}
 
 	@Override
-	public List<User> getAll(Map<String, Object> atributesFinding, String orderBy,boolean type) {
-		return userDao.getAll(atributesFinding,orderBy,type);
+	public List<User> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+		return userDao.getAll(atributesFinding, orderBy, type);
 	}
 
 	@Override
@@ -95,21 +95,21 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAll(String orderBy, boolean orderType) {
-		List<User> result= userDao.getAll(orderBy,orderType);
+		List<User> result = userDao.getAll(orderBy, orderType);
 		LOGGER.info("Return list of all users.");
 		return result;
 	}
 
 	@Override
 	public List<User> getAll(int first, int count) {
-		List<User> result= userDao.getAll(first,count);
+		List<User> result = userDao.getAll(first, count);
 		LOGGER.info("Return list of all users.");
 		return result;
 	}
 
 	@Override
 	public List<User> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<User> result= userDao.getAll(first,count,orderBy,orderType);
+		List<User> result = userDao.getAll(first, count, orderBy, orderType);
 		LOGGER.info("Return list of all users.");
 		return result;
 	}
@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<User> result= userDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		List<User> result = userDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		LOGGER.info("Return list of all users.");
 		return result;
 	}
@@ -125,6 +125,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int getCount() {
 		return userDao.getCount();
+	}
+
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		return userDao.getCount(atributesFinding);
 	}
 
 }

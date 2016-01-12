@@ -10,7 +10,6 @@ import by.training.java.grodno.az.data.dao.CoefficientDao;
 import by.training.java.grodno.az.data.dao.RacingLineDao;
 import by.training.java.grodno.az.data.dao.RateLineDao;
 import by.training.java.grodno.az.data.model.Coefficient;
-import by.training.java.grodno.az.data.model.Employee;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.CoefficientService;
@@ -86,28 +85,33 @@ public class CoefficientServiceImpl implements CoefficientService {
 	public List<Coefficient> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
 		return coefficientDao.getAll(atributesFinding, orderBy, type);
 	}
-	
+
 	@Override
 	public List<Coefficient> getAll(int first, int count) {
-		List<Coefficient> result= coefficientDao.getAll(first,count);
+		List<Coefficient> result = coefficientDao.getAll(first, count);
 		return result;
 	}
 
 	@Override
 	public List<Coefficient> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<Coefficient> result= coefficientDao.getAll(first,count,orderBy,orderType);
+		List<Coefficient> result = coefficientDao.getAll(first, count, orderBy, orderType);
 		return result;
 	}
 
 	@Override
 	public List<Coefficient> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<Coefficient> result= coefficientDao.getAll(atributesFinding,first,count,orderBy,orderType);
+		List<Coefficient> result = coefficientDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		return result;
 	}
-	
+
 	@Override
 	public int getCount() {
 		return coefficientDao.getCount();
+	}
+
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		return coefficientDao.getCount(atributesFinding);
 	}
 }

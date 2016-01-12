@@ -58,10 +58,10 @@ public class RacesApplication extends AuthenticatedWebApplication {
 		return LoginPage.class;
 	}
 	
-//	@Override
-//	protected IConverterLocator newConverterLocator() {
-//	    ConverterLocator converterLocator = new ConverterLocator();
-//	    converterLocator.set(Double.class, new RacesDoubleConvertor());
-//	    return converterLocator;
-//	}
+	@Override
+	protected IConverterLocator newConverterLocator() {
+	    ConverterLocator converterLocator = new ConverterLocator();
+	    converterLocator.set(Double.class, new RacesDoubleConvertor());
+	    return converterLocator;
+	}
 }

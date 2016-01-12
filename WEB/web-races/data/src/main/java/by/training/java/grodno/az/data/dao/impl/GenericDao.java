@@ -43,8 +43,17 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 
 	@Override
 	public int getCount() {
-
 		String sql = String.format("SELECT COUNT(*) FROM %s", tableName);
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+	
+	@Override
+	public int getCount(Map<String, Object> atributesFinding) {
+		String atributes = getParametersStringForFinding(atributesFinding);
+		if (atributes.equals("")) {
+			return getCount();
+		}
+		String sql = String.format("SELECT COUNT(*) FROM %s where %s", tableName,atributes);
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
