@@ -14,6 +14,7 @@ import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.service.HourseRacingService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.coefficientpage.CoefficientEditPage;
+import by.training.java.grodno.az.webapp.page.admin.coefficientpage.SelectCoefficient;
 import by.training.java.grodno.az.webapp.page.admin.racinglinepage.RacingLineEditPage;
 import by.training.java.grodno.az.webapp.page.admin.racinglinepage.RacingLineResultEditPage;
 
@@ -76,6 +77,14 @@ public class HourseRacingPage extends AbstractPage {
 					@Override
 					public void onClick() {
 						setResponsePage(new CoefficientEditPage(hourseRacing));
+					}
+				});
+
+				item.add(new Link("select-coefficients-link") {
+
+					@Override
+					public void onClick() {
+						setResponsePage(new SelectCoefficient(hourseRacing));
 					}
 				});
 

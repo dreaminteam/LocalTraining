@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<wicket:extend>
+
+
+	<h2>
+		<wicket:container wicket:id="sel-hourse-racing-title" />
+	</h2>
+	<span class="required_notification"></span>
+
+
+
+	<div class="tableconteiner coefficient">
+		<table>
+
+			<tbody>
+				<tr>
+					<td><wicket:message key="all.participants" /></td>
+					<td><span wicket:id="title-0"></span></td>
+					<td><span wicket:id="title-1"></span></td>
+					<td><span wicket:id="title-2"></span></td>
+					<td><span wicket:id="title-3"></span></td>
+					<td><span wicket:id="title-4"></span></td>
+					<td><span wicket:id="title-5"></span></td>
+					<td><span wicket:id="title-6"></span></td>
+				</tr>
+
+
+				<tr wicket:id="sel-coefficient-list">
+					<td><span wicket:id="participant"></span></td>
+					<td><a class="button" wicket:id="0"><span
+							wicket:id="coef-value-0"></span></a></td>
+					<td><a class="button" wicket:id="1"><span
+							wicket:id="coef-value-1"></span></a></td>
+					<td><a class="button" wicket:id="2"><span
+							wicket:id="coef-value-2"></span></a></td>
+					<td><a class="button" wicket:id="3"><span
+							wicket:id="coef-value-3"></span></a></td>
+					<td><a class="button" wicket:id="4"><span
+							wicket:id="coef-value-4"></span></a></td>
+					<td><a class="button" wicket:id="5"><span
+							wicket:id="coef-value-5"></span></a></td>
+					<td><a class="button" wicket:id="6"><span
+							wicket:id="coef-value-6"></span></a></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+
+	<br />
+
+
+	<a class="button" wicket:id="sel-hourse-racing-page-link"><span><wicket:message
+				key="all.hourse.racings" /></span></a>
+
+
+
+</wicket:extend>

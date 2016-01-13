@@ -27,6 +27,8 @@
 	<entry key="all.hourse.racings">Конные скачки</entry>
 	<entry key="all.result">Результат</entry>
 	<entry key="all.results">Результаты</entry>
+	<entry key="all.rate">Ставка</entry>
+	<entry key="all.rates">Ставки</entry>
 	<entry key="all.data.saved">Данные успешно сохранены</entry>
 	<entry key="all.rateLine">Линии ставок</entry>
 	<entry key="all.coefficients">Коэффициенты</entry>
@@ -56,7 +58,8 @@
 		забега уже зафиксированы</entry>
 	<entry key="page.racingLinePage.isResult.delete">Удаление невозможно. Результаты забега уже
 		зафиксированы</entry>
-		<entry key="page.rateLinePage.not.delete">Удаление невозможно. Тип ставки имеет ссылку на таблицу 'coefficient'</entry>
+	<entry key="page.rateLinePage.not.delete">Удаление невозможно. Тип ставки имеет ссылку на
+		таблицу 'coefficient'</entry>
 	<entry key="page.racingLinePage.participantCheck">Этот участник уже представлен в этой гонке</entry>
 	<entry key="page.participantPage.participantCheck">Этот участник уже присутствует в базе данных</entry>
 	<entry key="page.inputResultRacing.warn">Проверьте данные. Позиции не могут быть одинаковыми</entry>
