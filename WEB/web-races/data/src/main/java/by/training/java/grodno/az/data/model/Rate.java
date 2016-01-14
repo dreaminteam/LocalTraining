@@ -3,9 +3,12 @@ package by.training.java.grodno.az.data.model;
 import by.training.java.grodno.az.data.entities.AbstractEntity;
 
 public class Rate extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 	private double value;
+	private double coefficientValue;
+
 	private int playerId;
 	private int rateTypeId;
 	private int coefficientId;
@@ -48,6 +51,14 @@ public class Rate extends AbstractEntity {
 
 	public void setCoefficientId(int coefficientId) {
 		this.coefficientId = coefficientId;
+	}
+
+	public double getCoefficientValue() {
+		return coefficientValue;
+	}
+
+	public void setCoefficientValue(double coefficientValue) {
+		this.coefficientValue = coefficientValue;
 	}
 
 	@Override

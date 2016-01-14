@@ -9,7 +9,16 @@ public class RateLine extends AbstractEntity{
 	private int id;
 	private String title;
 	private String description;
+	private String positions;
 	
+	public String getPositions() {
+		return positions;
+	}
+
+	public void setPositions(String positions) {
+		this.positions = positions;
+	}
+
 	public String getDescription() {
 		return description;
 	}

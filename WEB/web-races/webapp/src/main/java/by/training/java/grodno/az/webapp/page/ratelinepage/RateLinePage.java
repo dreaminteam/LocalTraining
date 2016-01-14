@@ -41,6 +41,7 @@ public class RateLinePage extends AbstractPage {
 				final RateLine rateLine = item.getModelObject();
 				item.add(new Label("id", rateLine.getId()));
 				item.add(new Label("title", rateLine.getTitle()));
+				item.add(new Label("positions", rateLine.getPositions()));
 				item.add(new Label("description", rateLine.getDescription()));
 
 				item.add(new Link("rate-line-edit-link") {
