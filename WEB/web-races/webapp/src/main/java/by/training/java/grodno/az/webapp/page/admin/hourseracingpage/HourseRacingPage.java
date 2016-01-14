@@ -20,6 +20,8 @@ import by.training.java.grodno.az.webapp.page.admin.coefficientpage.CoefficientE
 import by.training.java.grodno.az.webapp.page.admin.coefficientpage.SelectCoefficient;
 import by.training.java.grodno.az.webapp.page.admin.racinglinepage.RacingLineEditParticipantPage;
 import by.training.java.grodno.az.webapp.page.admin.racinglinepage.RacingLineResultEditPage;
+import by.training.java.grodno.az.webapp.page.loginpage.LoginPage;
+import by.training.java.grodno.az.webapp.page.registrationpage.RegistrationPage;
 import by.training.java.grodno.az.webapp.page.resultpage.ResultPage;
 
 public class HourseRacingPage extends AbstractPage {
@@ -92,19 +94,23 @@ public class HourseRacingPage extends AbstractPage {
 				if (!isAfter) {
 					model.setObject(getString("all.result"));
 				}
-				
+
 				Link link = new Link("select-coefficients-link") {
 
 					@Override
 					public void onClick() {
-						if (isAfter) {
-							setResponsePage(new SelectCoefficient(hourseRacing));
+						if (UserSession.get().isSignedIn()) {
+							if (isAfter) {
+								setResponsePage(new SelectCoefficient(hourseRacing));
+							} else {
+								setResponsePage(new ResultPage(hourseRacing));
+							}
 						} else {
-							setResponsePage(new ResultPage(hourseRacing));
+							setResponsePage(LoginPage.class);
 						}
 					}
 				};
-				
+
 				item.add(link.add(label));
 
 			}
@@ -117,6 +123,5 @@ public class HourseRacingPage extends AbstractPage {
 			}
 		});
 	}
-	
-	
+
 }
