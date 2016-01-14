@@ -620,6 +620,10 @@ table
 	border-width: 0px 0px 1px 1px;
 }
 
+.tableconteiner a{
+	color: white;
+}
+
 .wicket_orderDown .wicket_orderUp {
 	color: white;
 }

@@ -12,11 +12,16 @@
 	<entry key="all.title">Заглавие</entry>
 	<entry key="all.description">Описание</entry>
 	<entry key="all.date">Дата</entry>
+	<entry key="all.registration.date">Дата регистрации</entry>
 	<entry key="all.action">Действие</entry>
+	<entry key="all.actions">Действия</entry>
 	<entry key="all.name">Имя</entry>
 	<entry key="all.firstName">Имя</entry>
 	<entry key="all.lastName">Фамилия</entry>
+	<entry key="all.email">Электронная почта</entry>
+	<entry key="all.role">Роль</entry>
 	<entry key="all.users">Пользователи</entry>
+	<entry key="all.user">Пользователь</entry>
 	<entry key="all.jockey">Наездник</entry>
 	<entry key="all.jockeys">Наездники</entry>
 	<entry key="all.hourse">Лошадь</entry>
@@ -37,6 +42,10 @@
 	<entry key="component.logoutInputPanel.logout">Выйти</entry>
 	<entry key="component.logoutInputPanel.registration">Регистрация</entry>
 	<entry key="component.logoutInputPanel.input">Вход</entry>
+
+	<entry key="component.registration.user.data">Данные пользователя</entry>
+	<entry key="component.registration.required.field">
+		Поля, обязательные для заполнения</entry>
 
 	<entry key="component.menuPanel.admin.home">Домашняя</entry>
 	<entry key="component.menuPanel.admin.rates">Ставки</entry>

@@ -12,11 +12,16 @@
 	<entry key="all.title">Title</entry>
 	<entry key="all.description">Description</entry>
 	<entry key="all.date">Date</entry>
+	<entry key="all.registration.date">Registration date</entry>
 	<entry key="all.action">Action</entry>
+	<entry key="all.actions">Actions</entry>
 	<entry key="all.name">Name</entry>
 	<entry key="all.firstName">First name</entry>
 	<entry key="all.lastName">Last name</entry>
+	<entry key="all.email">Email</entry>
+	<entry key="all.role">Role</entry>
 	<entry key="all.users">Users</entry>
+	<entry key="all.user">User</entry>
 	<entry key="all.jockey">Jockey</entry>
 	<entry key="all.jockeys">Jockeys</entry>
 	<entry key="all.hourse">Hourse</entry>
@@ -39,6 +44,10 @@
 	<entry key="component.logoutInputPanel.logout">Logout</entry>
 	<entry key="component.logoutInputPanel.registration">Registration</entry>
 	<entry key="component.logoutInputPanel.input">Log In</entry>
+
+	<entry key="component.registration.user.data">User's data</entry>
+	<entry key="component.registration.required.field">Denotes Required Field</entry>
+
 
 	<entry key="component.menuPanel.admin.home">Home</entry>
 	<entry key="component.menuPanel.admin.rates">Rates</entry>

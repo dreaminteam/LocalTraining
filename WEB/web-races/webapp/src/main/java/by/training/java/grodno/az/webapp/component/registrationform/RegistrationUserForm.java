@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.EmailTextField;
 import org.apache.wicket.markup.html.form.Form;
@@ -88,11 +89,13 @@ public class RegistrationUserForm extends Panel {
 		loginTextField.add(StringValidator.maximumLength(20));
 		form.add(loginTextField);
 
+		Label passwordLabel = new Label("password-label", getString("all.password") + ":");
 		PasswordTextField passwordTextField = new PasswordTextField("password");
 
 		passwordTextField.setRequired(true);
 		passwordTextField.add(StringValidator.maximumLength(40));
 
+		form.add(passwordLabel);
 		form.add(passwordTextField);
 		if (!isNew && UserSession.get().getMetaData(UserSession.USER_METADATA_KEY).getUserId() != user.getId()) {
 			passwordTextField.setVisible(false);

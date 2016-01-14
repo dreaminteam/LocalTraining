@@ -113,7 +113,7 @@ public class RacingLineResultEditPage extends AbstractPage {
 						racingLineService.update(racingLine);
 					}
 
-					RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+					RacingLineEditParticipantPage editPage = new RacingLineEditParticipantPage(hourseRacing);
 					editPage.info(getString("all.data.saved"));
 					setResponsePage(editPage);
 

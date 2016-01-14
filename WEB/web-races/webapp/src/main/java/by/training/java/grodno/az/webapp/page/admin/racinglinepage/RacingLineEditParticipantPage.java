@@ -32,7 +32,7 @@ import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacin
 import by.training.java.grodno.az.webapp.renderer.ParticipantViewChoiceRenderer;
 
 @AuthorizeInstantiation(value = { "admin" })
-public class RacingLineEditPage extends AbstractPage {
+public class RacingLineEditParticipantPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -45,7 +45,7 @@ public class RacingLineEditPage extends AbstractPage {
 	private RacingLine racingLine;
 	private boolean isResult;
 
-	public RacingLineEditPage(HourseRacing hourseRacing) {
+	public RacingLineEditParticipantPage(HourseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
 		this.racingLine = new RacingLine();
@@ -88,9 +88,9 @@ public class RacingLineEditPage extends AbstractPage {
 					public void onClick() {
 						if (!isResult) {
 							racingLineService.delete(racingLineView.getRacingLineId());
-							setResponsePage(new RacingLineEditPage(hourseRacing));
+							setResponsePage(new RacingLineEditParticipantPage(hourseRacing));
 						} else {
-							RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+							RacingLineEditParticipantPage editPage = new RacingLineEditParticipantPage(hourseRacing);
 							editPage.warn(getString("page.racingLinePage.isResult.delete"));
 							setResponsePage(editPage);
 						}
@@ -115,7 +115,7 @@ public class RacingLineEditPage extends AbstractPage {
 			@Override
 			public void onSubmit() {
 				if (!particioantCheckSet.add(participantViewModel.getObject().getParticipantId())) {
-					RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+					RacingLineEditParticipantPage editPage = new RacingLineEditParticipantPage(hourseRacing);
 					editPage.warn(getString("page.racingLinePage.participantCheck"));
 					setResponsePage(editPage);
 				} else {
@@ -124,11 +124,11 @@ public class RacingLineEditPage extends AbstractPage {
 						racingLine.setHourseRacingId(hourseRacing.getId());
 						racingLine.setParticipantId(participantViewModel.getObject().getParticipantId());
 						racingLineService.insertOrUpdate(racingLine);
-						RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+						RacingLineEditParticipantPage editPage = new RacingLineEditParticipantPage(hourseRacing);
 						editPage.info(getString("all.data.saved"));
 						setResponsePage(editPage);
 					} else {
-						RacingLineEditPage editPage = new RacingLineEditPage(hourseRacing);
+						RacingLineEditParticipantPage editPage = new RacingLineEditParticipantPage(hourseRacing);
 						editPage.warn(getString("page.racingLinePage.isResult"));
 						setResponsePage(editPage);
 					}
