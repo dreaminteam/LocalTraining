@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <wicket:panel xmlns:wicket="http://wicket.apache.org">
 
+
+
+
+
 	<form class="contact_form" wicket:id="registration-form">
 
 		<ul>
 			<li>
 				<h2>
 					<wicket:message key="component.registration.user.data" />
+					<span wicket:id="user-login-label"></span>
 				</h2> <span class="required_notification">* <wicket:message
 						key="component.registration.required.field" /></span>
 			</li>
@@ -22,20 +27,21 @@
 						key="all.email" />:</label> <input type="email" wicket:id="email"
 				placeholder="andrew_zenov@example.com" required /> <span
 				class="form_hint">Proper format "name@something.com"</span></li>
+			<wicket:enclosure child="login">
+			
+				<li><label wicket:for="login"><wicket:message
+							key="all.login" />:</label> <input type="text" wicket:id="login"
+					placeholder="login" required /></li>
 
-			<li><label wicket:for="login"><wicket:message
-						key="all.login" />:</label> <input type="text" wicket:id="login"
-				placeholder="login" required /></li>
-				
-			<wicket:enclosure child="password">
 				<li><label wicket:for="password"><span
 						wicket:id="password-label"></span></label><input type="password"
 					wicket:id="password" required /></li>
 			</wicket:enclosure>
-			
-			<li><label wicket:for="drop-role"><wicket:message
-						key="all.role" />:</label> <select wicket:id="drop-role" required></select></li>
 
+			<wicket:enclosure child="drop-role">
+				<li><label wicket:for="drop-role"><wicket:message
+							key="all.role" />:</label> <select wicket:id="drop-role" required></select></li>
+			</wicket:enclosure>
 
 
 			<li>

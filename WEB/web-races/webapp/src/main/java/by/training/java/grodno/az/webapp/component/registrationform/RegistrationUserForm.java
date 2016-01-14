@@ -3,6 +3,7 @@ package by.training.java.grodno.az.webapp.component.registrationform;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -25,10 +26,14 @@ import org.apache.wicket.validation.validator.StringValidator;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.app.UserSession;
+import by.training.java.grodno.az.webapp.component.logoutinputpanel.InputPanel;
+import by.training.java.grodno.az.webapp.component.logoutinputpanel.LogoutPanel;
+import by.training.java.grodno.az.webapp.component.menupanel.adminmenupanel.AdminMainMenuPanel;
+import by.training.java.grodno.az.webapp.component.menupanel.playermenupanel.PlayerMainMenuPanel;
 import by.training.java.grodno.az.webapp.enums.Role;
-import by.training.java.grodno.az.webapp.page.admin.userspage.UsersPage;
 import by.training.java.grodno.az.webapp.page.homepage.HomePage;
 import by.training.java.grodno.az.webapp.page.registrationpage.RegistrationPage;
+import by.training.java.grodno.az.webapp.page.userpage.UsersPage;
 
 public class RegistrationUserForm extends Panel {
 	private static final long serialVersionUID = 1L;
@@ -69,6 +74,13 @@ public class RegistrationUserForm extends Panel {
 		Form<User> form = new Form<>("registration-form", new CompoundPropertyModel<>(user));
 		add(form);
 
+		Label loginLabel = new Label("user-login-label", ". " + getString("all.login") + ": " + user.getLogin());
+
+		form.add(loginLabel);
+		if (isNew) {
+			loginLabel.setVisible(false);
+		}
+
 		TextField<String> fNameTextField = new TextField<String>("firstName");
 		fNameTextField.setRequired(true);
 		fNameTextField.add(StringValidator.maximumLength(45));
@@ -97,8 +109,9 @@ public class RegistrationUserForm extends Panel {
 
 		form.add(passwordLabel);
 		form.add(passwordTextField);
-		if (!isNew && UserSession.get().getMetaData(UserSession.USER_METADATA_KEY).getUserId() != user.getId()) {
-			passwordTextField.setVisible(false);
+
+		if (!isNew) {
+			loginTextField.setVisible(false);
 		}
 
 		Model<String> roleModel = new Model<>();
@@ -106,6 +119,15 @@ public class RegistrationUserForm extends Panel {
 		DropDownChoice<String> dropDownChoice = new DropDownChoice<>("drop-role", roleModel, choices);
 		dropDownChoice.setRequired(true);
 		form.add(dropDownChoice);
+		dropDownChoice.setVisible(false);
+
+		Set<String> role = UserSession.get().getRoles();
+		if (role == null) {
+		} else {
+			if (role.toString().equalsIgnoreCase(Role.admin.name())) {
+				dropDownChoice.setVisible(true);
+			}
+		}
 
 		form.add(new SubmitLink("submit-button") {
 			@Override

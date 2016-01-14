@@ -43,12 +43,9 @@ public class UserSession extends AuthenticatedWebSession {
 		if (user != null) {
 
 			UserMetaData metaData = new UserMetaData();
-			metaData.setUserId(user.getId());
-			metaData.setUserFName(user.getFirstName());
-			metaData.setUserLName(user.getLastName());
-			metaData.setUserEmail(user.getEmail());
+			metaData.setUser(user);
 			Session.get().setMetaData(USER_METADATA_KEY, metaData);
-			roles=new Roles();
+			roles = new Roles();
 			roles.add(user.getRole());
 			return true;
 		}

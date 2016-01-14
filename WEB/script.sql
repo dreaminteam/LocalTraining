@@ -155,3 +155,5 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 insert into races.user(login,password,first_name,last_name,email,role,balance,create_date) values('admin','21232f297a57a5a743894a0e4a801fc3','admin','admin','admin@admin.com','admin',0,'2016.01.01');
 
+insert into races.rate_type(name) values('Ordinar');
+

@@ -5,14 +5,16 @@
 </head>
 
 <wicket:extend>
-	<h2><wicket:message key="all.hourse.racings"/></h2>
+	<h2>
+		<wicket:message key="all.hourse.racings" />
+	</h2>
 
 	<div class="tableconteiner">
 		<table>
 
 			<tbody>
 				<tr>
-					<td>ID</td>
+					<td>Id</td>
 					<td><wicket:message key="all.title" /></td>
 					<td><wicket:message key="all.date" /></td>
 					<td><wicket:message key="all.action" /></td>
@@ -34,14 +36,13 @@
 								wicket:id="racing-result-edit-link"><wicket:message
 									key="all.results" /></a><a class="button"
 								wicket:id="coefficients-edit-link"><wicket:message
-									key="all.coefficients" /></a>
-									<a class="button"
-								wicket:id="select-coefficients-link"><wicket:message
-									key="all.rate" /></a>
-									
-									
-									
-									
+									key="all.coefficients" /></a> <a class="button"
+								wicket:id="select-coefficients-link"><span
+								wicket:id="select-label"></span></a>
+
+
+
+
 						</div></td>
 				</tr>
 			</tbody>

@@ -38,10 +38,19 @@
 	<entry key="all.rateLine">Линии ставок</entry>
 	<entry key="all.coefficients">Коэффициенты</entry>
 	<entry key="all.tableRecords.limit">Достигнут лимит записей в таблице </entry>
+	<entry key="all.password.chang">Изменение пароля</entry>
+	<entry key="all.password.current">Текущий пароль</entry>
+	<entry key="all.password.new">Новый пароль</entry>
+	<entry key="all.balance">Баланс</entry>
+	<entry key="all.balance.add">Пополнить баланс</entry>
+	<entry key="all.value">Значение</entry>
+	
+	
 
 	<entry key="component.logoutInputPanel.logout">Выйти</entry>
 	<entry key="component.logoutInputPanel.registration">Регистрация</entry>
 	<entry key="component.logoutInputPanel.input">Вход</entry>
+	<entry key="component.logoutInputPanel.area">Личный кабинет</entry>
 
 	<entry key="component.registration.user.data">Данные пользователя</entry>
 	<entry key="component.registration.required.field">
@@ -71,6 +80,7 @@
 		таблицу 'coefficient'</entry>
 	<entry key="page.racingLinePage.participantCheck">Этот участник уже представлен в этой гонке</entry>
 	<entry key="page.participantPage.participantCheck">Этот участник уже присутствует в базе данных</entry>
+	<entry key="page.loginpage.data.incorrect">Данные не корректны</entry>
 	<entry key="page.inputResultRacing.warn">Проверьте данные. Позиции не могут быть одинаковыми</entry>
 	<entry key="page.admin.edit.category">Категория</entry>
 	<entry key="page.login.password.input">Введите логин и пароль</entry>

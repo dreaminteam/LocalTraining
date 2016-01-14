@@ -38,12 +38,19 @@
 	<entry key="all.rateLine">Lines of rates</entry>
 	<entry key="all.coefficients">Coefficients</entry>
 	<entry key="all.tableRecords.limit">Reached the limit of table records </entry>
+	<entry key="all.password.chang">Password changing</entry>
+	<entry key="all.password.current">Current password</entry>
+	<entry key="all.password.new">New password</entry>
+	<entry key="all.balance">Balance</entry>
+	<entry key="all.balance.add">Replenish balance</entry>
+	<entry key="all.value">Value</entry>
 
 
 
 	<entry key="component.logoutInputPanel.logout">Logout</entry>
 	<entry key="component.logoutInputPanel.registration">Registration</entry>
 	<entry key="component.logoutInputPanel.input">Log In</entry>
+	<entry key="component.logoutInputPanel.area">Personal area</entry>
 
 	<entry key="component.registration.user.data">User's data</entry>
 	<entry key="component.registration.required.field">Denotes Required Field</entry>
@@ -75,6 +82,7 @@
 	<entry key="page.participantPage.participantCheck">Database has this participant</entry>
 
 	<entry key="page.inputResultRacing.warn">Check data. Positions can not be the same</entry>
+	<entry key="page.loginpage.data.incorrect">Data incorrect</entry>
 	<entry key="page.admin.edit.category">Category</entry>
 	<entry key="page.login.password.input">Input login and password</entry>
 	<entry key="page.hourse.addHourse">Add new hourse</entry>

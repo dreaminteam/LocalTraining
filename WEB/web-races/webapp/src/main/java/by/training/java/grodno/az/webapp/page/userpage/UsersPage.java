@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.page.admin.userspage;
+package by.training.java.grodno.az.webapp.page.userpage;
 
 import java.util.Iterator;
 

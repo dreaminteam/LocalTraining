@@ -5,15 +5,16 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.wicket.authorization.Action;
-import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeAction;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.Model;
 
 import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.service.HourseRacingService;
+import by.training.java.grodno.az.webapp.app.UserSession;
+import by.training.java.grodno.az.webapp.links.AdminLinkRender;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.coefficientpage.CoefficientEditPage;
 import by.training.java.grodno.az.webapp.page.admin.coefficientpage.SelectCoefficient;
@@ -38,18 +39,21 @@ public class HourseRacingPage extends AbstractPage {
 			protected void populateItem(ListItem<HourseRacing> item) {
 
 				final HourseRacing hourseRacing = item.getModelObject();
+
+				boolean isAfter = hourseRacing.getDate().after(new Date());
+
 				item.add(new Label("id", hourseRacing.getId()));
 				item.add(new Label("title", hourseRacing.getTitle()));
 				item.add(new Label("date", hourseRacing.getDate()));
 
-				item.add(new AdminLink("hourse-racing-edit-link") {
+				item.add(new AdminLinkRender("hourse-racing-edit-link") {
 					@Override
 					public void onClick() {
 						setResponsePage(new HourseRacingEditPage(hourseRacing));
 					}
 				});
 
-				item.add(new AdminLink("hourse-racing-delete-link") {
+				item.add(new AdminLinkRender("hourse-racing-delete-link") {
 
 					@Override
 					public void onClick() {
@@ -58,7 +62,7 @@ public class HourseRacingPage extends AbstractPage {
 					}
 				});
 
-				item.add(new AdminLink("racing-line-edit-link") {
+				item.add(new AdminLinkRender("racing-line-edit-link") {
 
 					@Override
 					public void onClick() {
@@ -66,7 +70,7 @@ public class HourseRacingPage extends AbstractPage {
 					}
 				});
 
-				item.add(new AdminLink("racing-result-edit-link") {
+				item.add(new AdminLinkRender("racing-result-edit-link") {
 
 					@Override
 					public void onClick() {
@@ -74,7 +78,7 @@ public class HourseRacingPage extends AbstractPage {
 					}
 				});
 
-				item.add(new AdminLink("coefficients-edit-link") {
+				item.add(new AdminLinkRender("coefficients-edit-link") {
 
 					@Override
 					public void onClick() {
@@ -82,41 +86,37 @@ public class HourseRacingPage extends AbstractPage {
 					}
 				});
 
-				item.add(new Link("select-coefficients-link") {
+				Model<String> model = new Model<>(getString("all.rate"));
+				Label label = new Label("select-label", model);
+
+				if (!isAfter) {
+					model.setObject(getString("all.result"));
+				}
+				
+				Link link = new Link("select-coefficients-link") {
 
 					@Override
 					public void onClick() {
-						if (hourseRacing.getDate().after(new Date())) {
+						if (isAfter) {
 							setResponsePage(new SelectCoefficient(hourseRacing));
 						} else {
 							setResponsePage(new ResultPage(hourseRacing));
 						}
 					}
-				});
+				};
+				
+				item.add(link.add(label));
 
 			}
 		});
 
-		add(new AdminLink("hourse-racing-create-link") {
+		add(new AdminLinkRender("hourse-racing-create-link") {
 			@Override
 			public void onClick() {
 				setResponsePage(new HourseRacingEditPage());
 			}
 		});
 	}
-
-	@AuthorizeAction(roles = { "admin" }, action = Action.RENDER)
-	private class AdminLink extends Link<Void> {
-		private static final long serialVersionUID = 1L;
-
-		public AdminLink(String id) {
-			super(id);
-		}
-
-		@Override
-		public void onClick() {
-		}
-
-	}
-
+	
+	
 }

@@ -16,9 +16,8 @@ import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacin
 import by.training.java.grodno.az.webapp.page.admin.hoursespage.HoursePage;
 import by.training.java.grodno.az.webapp.page.admin.jockeyspage.JockeysPage;
 import by.training.java.grodno.az.webapp.page.admin.participantspage.ParticipantsPage;
-import by.training.java.grodno.az.webapp.page.admin.userspage.UsersPage;
-import by.training.java.grodno.az.webapp.page.events.EventsPage;
 import by.training.java.grodno.az.webapp.page.ratelinepage.RateLinePage;
+import by.training.java.grodno.az.webapp.page.userpage.UsersPage;
 
 @AuthorizeInstantiation(value = { "admin" })
 public class EditPage extends AbstractPage {
@@ -37,7 +36,6 @@ public class EditPage extends AbstractPage {
 		links.add(new ActionLink(getString("all.participants"), ParticipantsPage.class));
 		links.add(new ActionLink(getString("all.hourse.racings"), HourseRacingPage.class));
 		links.add(new ActionLink(getString("all.rateLine"), RateLinePage.class));
-		links.add(new ActionLink("Event", EventsPage.class));
 
 		add(new ListView<ActionLink>("action-link", links) {
 
