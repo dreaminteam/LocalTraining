@@ -13,6 +13,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -20,7 +21,6 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 
-import com.googlecode.wicket.kendo.ui.markup.html.link.SubmitLink;
 
 import by.training.java.grodno.az.data.model.Coefficient;
 import by.training.java.grodno.az.data.model.HourseRacing;
@@ -37,8 +37,6 @@ import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.app.UserSession;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacingPage;
-import by.training.java.grodno.az.webapp.page.homepage.HomePage;
-import by.training.java.grodno.az.webapp.page.registrationpage.RegistrationPage;
 
 public class SelectCoefficient extends AbstractPage {
 	private static final long serialVersionUID = 1L;
@@ -52,13 +50,13 @@ public class SelectCoefficient extends AbstractPage {
 
 	@Inject
 	private RateLineService rateLineService;
-	
+
 	@Inject
 	private RateService rateService;
 
 	@Inject
 	private UserService userService;
-	
+
 	@Inject
 	private CoefficientService coefficientService;
 
@@ -74,8 +72,6 @@ public class SelectCoefficient extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		
-		
 
 		int playerId = Session.get().getMetaData(UserSession.USER_METADATA_KEY).getUser().getId();
 		List<Rate> rates = new ArrayList<>();
@@ -114,9 +110,10 @@ public class SelectCoefficient extends AbstractPage {
 				}
 				coefficientsList.add(coefficient);
 				final PropertyModel<Double> propertyModel = new PropertyModel<>(coefficient, "value");
-				coefficientView.models.put(rateLineId, propertyModel);
+				coefficientView.coefficientsModels.put(coefficient.getId(), propertyModel);
 			}
 			coefficientViewList.add(coefficientView);
+			System.out.println(coefficientView.coefficientsModels.toString());
 		}
 
 		add(new Label("sel-hourse-racing-title", hourseRacing.toString()));
@@ -131,43 +128,74 @@ public class SelectCoefficient extends AbstractPage {
 
 		Form form = new Form<>("rate-form");
 		add(form);
+		Model<Double> rateValueModel = new Model<>();
+		form.add((new TextField<Double>("rate-value", rateValueModel, Double.class)).setRequired(true));
+
+		ListView<Rate> listView = new ListView<Rate>("rate-list", rates) {
+
+			@Override
+			protected void populateItem(ListItem<Rate> item) {
+				final Rate rate = item.getModelObject();
+				item.add(new Label("rate-coefficient-label", rate.getCoefficientValue()));
+			}
+		};
+		form.add(listView);
+		form.setOutputMarkupId(true);
 		
+
+		form.add(new SubmitLink("submit-button") {
+			@Override
+			public void onSubmit() {
+				for (Rate rate : rates) {
+					rate.setValue(rateValueModel.getObject());
+					rateService.insertOrUpdate(rate);
+					User user = userService.getById(rate.getPlayerId());
+					user.setBalance(user.getBalance() - rate.getValue());
+					userService.update(user);
+				}
+			}
+		});
+
 		add(new ListView<CoefficientView>("sel-coefficient-list", coefficientViewList) {
 			@Override
 			protected void populateItem(ListItem<CoefficientView> item) {
 
 				final CoefficientView coefficientView = item.getModelObject();
 				item.add(new Label("participant", coefficientView.participantName));
-				int modelsSize = coefficientView.models.size();
+				int modelsSize = coefficientView.coefficientsModels.size();
 
 				for (int q = 0; q < CoefficientEditPage.MAXQUANTITY; q++) {
 					index = q;
 					if (q < modelsSize) {
 						String id = String.valueOf(q);
-						int key = rateLineList.get(q).getId();
+						int key = coefficientView.coefficient.getId();
 
-						Label coefValue = new Label("coef-value-" + id, coefficientView.models.get(key));
+						PropertyModel<Double> coefModel = coefficientView.coefficientsModels.get(key);
+						Label coefValue = new Label("coef-value-" + id, coefModel);
 
-						item.add((new AjaxLink<Void>(id) {
+						item.add(((new AjaxLink<Void>(id) {
 
 							@Override
 							public void onClick(AjaxRequestTarget target) {
-								for(int i=0;i<rates.size();i++){
-									if(rates.get(i).getCoefficientId()==coefficientView.coefficient.getId()){
+								
+								System.out.println("rates.size()="+rates.size());
+								for (int i = 0; i < rates.size(); i++) {
+									if (rates.get(i).getCoefficientId() == key) {
 										rates.remove(i);
-									} else {
+										System.out.println("if>true");}
+									} 
+								
 										Rate rate = new Rate();
 										rate.setPlayerId(playerId);
-										final PropertyModel<Double> valueModel = coefficientView.models.get(index);
-										rate.setCoefficientValue(valueModel.getObject());
-										rate.setCoefficientId(coefficientView.coefficient.getId());
+										rate.setCoefficientValue(coefModel.getObject());
+										rate.setCoefficientId(key);
 										rates.add(rate);
-									}
-								}
+										System.out.println("if>false");
+									
 								System.out.println(rates);
 								target.add(form);
 							}
-						}).add(coefValue));
+						}).add(coefValue)).setOutputMarkupId(true));
 
 					} else {
 
@@ -177,13 +205,14 @@ public class SelectCoefficient extends AbstractPage {
 
 							@Override
 							public void onClick(AjaxRequestTarget target) {
-								for(int i=0;i<rates.size();i++){
-									if(rates.get(i).getCoefficientId()==coefficientView.coefficient.getId()){
+								System.out.println("rates.size()="+rates.size());
+								for (int i = 0; i < rates.size(); i++) {
+									if (rates.get(i).getCoefficientId() == coefficientView.coefficient.getId()) {
 										rates.remove(i);
 									} else {
 										Rate rate = new Rate();
 										rate.setPlayerId(playerId);
-										final PropertyModel<Double> valueModel = coefficientView.models.get(index);
+										final PropertyModel<Double> valueModel = coefficientView.coefficientsModels.get(index);
 										rate.setCoefficientValue(valueModel.getObject());
 										rate.setCoefficientId(coefficientView.coefficient.getId());
 										rates.add(rate);
@@ -203,30 +232,6 @@ public class SelectCoefficient extends AbstractPage {
 
 		add(new BookmarkablePageLink<Void>("sel-hourse-racing-page-link", HourseRacingPage.class));
 
-		Model<Double> rateValueModel=new Model<>();
-		form.add((new TextField<Double>("rate-value", rateValueModel,Double.class)).setRequired(true));
-		
-		form.add(new ListView<Rate>("rate-list",rates) {
-
-			@Override
-			protected void populateItem(ListItem<Rate> item) {
-				final Rate rate = item.getModelObject();
-				item.add(new Label("rate-coefficient-label", rate.getCoefficientValue()));
-			}
-		});
-
-		form.add(new SubmitLink("submit-button") {
-			@Override
-			public void onSubmit() {
-			for(Rate rate:rates){
-				rate.setValue(rateValueModel.getObject());
-				rateService.insertOrUpdate(rate);
-				User user=userService.getById(rate.getPlayerId());
-				user.setBalance(user.getBalance()-rate.getValue());
-				userService.update(user);
-			}
-			}
-		});
 	}
 
 	private class CoefficientView implements Serializable {
@@ -234,12 +239,12 @@ public class SelectCoefficient extends AbstractPage {
 
 		public CoefficientView() {
 			super();
-			this.models = new HashMap<>();
+			this.coefficientsModels = new HashMap<>();
 		}
 
 		private Coefficient coefficient;
 		private String participantName;
-		private Map<Integer, PropertyModel<Double>> models;
+		private Map<Integer, PropertyModel<Double>> coefficientsModels;
 
 	}
 

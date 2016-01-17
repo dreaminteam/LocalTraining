@@ -143,9 +143,7 @@ public class CoefficientEditPage extends AbstractPage {
 		form.add(new SubmitLink("coefficient-submit-button") {
 			@Override
 			public void onSubmit() {
-				for (Coefficient coef : coefficientsList) {
-					coefficientService.insertOrUpdate(coef);
-				}
+				coefficientService.insert(coefficientsList);
 
 				CoefficientEditPage editPage = new CoefficientEditPage(hourseRacing);
 				editPage.info(getString("all.data.saved"));

@@ -12,6 +12,7 @@ import org.apache.wicket.markup.html.list.ListView;
 
 import by.training.java.grodno.az.data.model.Hourse;
 import by.training.java.grodno.az.service.HourseService;
+import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin" })
@@ -21,6 +22,9 @@ public class HoursePage extends AbstractPage {
 
 	@Inject
 	private HourseService hourseService;
+
+	@Inject
+	private ParticipantService participantService;
 
 	@Override
 	protected void onInitialize() {
@@ -46,8 +50,14 @@ public class HoursePage extends AbstractPage {
 
 					@Override
 					public void onClick() {
-						hourseService.delete(hourse);
-						setResponsePage(HoursePage.class);
+						if (participantService.getHourse(hourse.getId()) == null) {
+							hourseService.delete(hourse);
+							setResponsePage(HoursePage.class);
+						} else {
+							HoursePage editPage = new HoursePage();
+							editPage.error(getString("all.delete.inposible"));
+							setResponsePage(editPage);
+						}
 					}
 				});
 

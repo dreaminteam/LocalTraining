@@ -1,7 +1,9 @@
 package by.training.java.grodno.az.webapp.page.admin.hourseracingpage;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -12,7 +14,9 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 
 import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.service.HourseRacingService;
+import by.training.java.grodno.az.service.RacingLineService;
 import by.training.java.grodno.az.webapp.app.UserSession;
 import by.training.java.grodno.az.webapp.links.AdminLinkRender;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
@@ -29,12 +33,17 @@ public class HourseRacingPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private HourseRacingService racingService;
+	private HourseRacingService hourseRacingService;
+
+	@Inject
+	private RacingLineService racingLineService;
+	private boolean isResult = false;
 
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		List<HourseRacing> allHourseRacings = racingService.getAll();
+
+		List<HourseRacing> allHourseRacings = hourseRacingService.getAll();
 
 		add(new ListView<HourseRacing>("hourse-racing-list", allHourseRacings) {
 			@Override
@@ -59,7 +68,7 @@ public class HourseRacingPage extends AbstractPage {
 
 					@Override
 					public void onClick() {
-						racingService.delete(hourseRacing);
+						hourseRacingService.delete(hourseRacing);
 						setResponsePage(HourseRacingPage.class);
 					}
 				});
@@ -91,7 +100,21 @@ public class HourseRacingPage extends AbstractPage {
 				Model<String> model = new Model<>(getString("all.rate"));
 				Label label = new Label("select-label", model);
 
-				if (!isAfter) {
+				Map<String, Object> findingAtributes = new HashMap<>();
+				findingAtributes.put("hourseRacingId", hourseRacing.getId());
+
+				List<RacingLine> rList = racingLineService.getAll(findingAtributes, "id", true);
+
+				for (RacingLine r : rList) {
+					if (r.getResult() != null) {
+						if (r.getResult() > 0) {
+							isResult = true;
+							break;
+						}
+					}
+				}
+
+				if (!isAfter || !isResult) {
 					model.setObject(getString("all.result"));
 				}
 
@@ -100,7 +123,7 @@ public class HourseRacingPage extends AbstractPage {
 					@Override
 					public void onClick() {
 						if (UserSession.get().isSignedIn()) {
-							if (isAfter) {
+							if (isAfter || isResult) {
 								setResponsePage(new SelectCoefficient(hourseRacing));
 							} else {
 								setResponsePage(new ResultPage(hourseRacing));

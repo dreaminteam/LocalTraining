@@ -104,14 +104,15 @@ public class RacingLineResultEditPage extends AbstractPage {
 					warnPanel.warn(getString("page.inputResultRacing.warn"));
 					setResponsePage(editPage);
 				} else {
-
+					
+					List<RacingLine> racingLines=new ArrayList<>();
 					for (RacingLineResult rlr : lineResults) {
 						int position = rlr.positionModel.getObject().intValue();
 						RacingLine racingLine = rlr.racingLine;
 						racingLine.setResult(position);
-						System.out.println(racingLine);
-						racingLineService.update(racingLine);
+						racingLines.add(racingLine);
 					}
+					racingLineService.insert(racingLines);
 
 					RacingLineEditParticipantPage editPage = new RacingLineEditParticipantPage(hourseRacing);
 					editPage.info(getString("all.data.saved"));

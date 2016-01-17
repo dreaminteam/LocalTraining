@@ -201,7 +201,6 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 				}
 			}
 		}
-		System.out.println("getMapAtributes " + result.toString());
 		return result;
 	}
 

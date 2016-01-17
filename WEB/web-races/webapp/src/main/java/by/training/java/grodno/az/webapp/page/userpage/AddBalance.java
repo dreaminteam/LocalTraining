@@ -39,8 +39,8 @@ public class AddBalance extends AbstractPage {
 		Model<Double> balance = new Model<>();
 
 		TextField<Double> textFieldBalance = new TextField<Double>("balance", balance,Double.class);
+
 		textFieldBalance.setRequired(true);
-		textFieldBalance.add(StringValidator.minimumLength(1));
 		form.add(textFieldBalance);
 
 		form.add(new SubmitLink("submit-button") {

@@ -45,6 +45,8 @@
 	<entry key="all.balance.add">Replenish balance</entry>
 	<entry key="all.value">Value</entry>
 	<entry key="all.result.positin">Result position</entry>
+	<entry key="all.delete.inposible">Deleting is not possible. Record has referencing to
+		other table DB</entry>
 
 
 

@@ -44,9 +44,11 @@
 	<entry key="all.balance">Баланс</entry>
 	<entry key="all.balance.add">Пополнить баланс</entry>
 	<entry key="all.value">Значение</entry>
-		<entry key="all.result.positin">Итоговая позиция</entry>
-	
-	
+	<entry key="all.result.positin">Итоговая позиция</entry>
+	<entry key="all.delete.inposible">Удаление невозможно. Запист имеет зависимость с другой
+		таблицей база данных</entry>
+
+
 
 	<entry key="component.logoutInputPanel.logout">Выйти</entry>
 	<entry key="component.logoutInputPanel.registration">Регистрация</entry>

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.training.java.grodno.az.data.dao.CoefficientDao;
 import by.training.java.grodno.az.data.dao.RacingLineDao;
@@ -113,5 +114,14 @@ public class CoefficientServiceImpl implements CoefficientService {
 	@Override
 	public int getCount(Map<String, Object> atributesFinding) {
 		return coefficientDao.getCount(atributesFinding);
+	}
+
+	@Override
+	@Transactional()
+	public void insert(List<Coefficient> list) {
+		for(Coefficient c:list){
+			insertOrUpdate(c);
+		}
+		
 	}
 }

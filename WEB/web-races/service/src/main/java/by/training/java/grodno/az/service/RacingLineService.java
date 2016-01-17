@@ -14,5 +14,6 @@ public interface RacingLineService extends IService<RacingLine> {
 	Participant getParticipant(int participant_id);
 	
 	RacingLineView getView(RacingLine racingLine);
-
+	
+	void insert(List<RacingLine> list);
 }

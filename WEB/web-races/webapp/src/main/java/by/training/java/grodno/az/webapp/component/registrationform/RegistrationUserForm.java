@@ -115,7 +115,7 @@ public class RegistrationUserForm extends Panel {
 		}
 
 		Model<String> roleModel = new Model<>();
-		List<String> choices = Arrays.asList(Role.admin.name().toLowerCase(), Role.player.name().toLowerCase());
+		List<String> choices = Arrays.asList(Role.admin.name().toLowerCase(), Role.player.name().toLowerCase(),Role.bukmeker.name().toLowerCase());
 		DropDownChoice<String> dropDownChoice = new DropDownChoice<>("drop-role", roleModel, choices);
 		dropDownChoice.setRequired(true);
 		form.add(dropDownChoice);

@@ -63,8 +63,9 @@ public class Rate extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Rate [id=" + id + ", value=" + value + ", playerId=" + playerId + ", rateTypeId=" + rateTypeId
-				+ ", coefficientId=" + coefficientId + "]";
+		return "Rate [id=" + id + ", value=" + value + ", coefficientValue=" + coefficientValue + ", playerId="
+				+ playerId + ", rateTypeId=" + rateTypeId + ", coefficientId=" + coefficientId + "]";
 	}
+
 
 }

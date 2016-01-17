@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.training.java.grodno.az.data.dao.RacingLineDao;
 import by.training.java.grodno.az.data.entities.RacingLineView;
@@ -129,4 +130,11 @@ public class RacingLineServiceImpl implements RacingLineService {
 		return racingLineDao.getCount(atributesFinding);
 	}
 
+	@Override
+	@Transactional()
+	public void insert(List<RacingLine> list) {
+		for (RacingLine r : list) {
+			insertOrUpdate(r);
+		}
+	}
 }

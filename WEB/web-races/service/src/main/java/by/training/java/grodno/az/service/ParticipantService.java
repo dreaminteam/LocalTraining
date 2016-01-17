@@ -17,6 +17,8 @@ public interface ParticipantService extends IService<Participant> {
 	
 	ParticipantView getViewById(int participant_id);
 	
+	void insert(List<Participant> list);
+	
 	
 
 }
