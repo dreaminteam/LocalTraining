@@ -17,15 +17,12 @@ import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.service.HourseRacingService;
 import by.training.java.grodno.az.service.RacingLineService;
-import by.training.java.grodno.az.webapp.app.UserSession;
 import by.training.java.grodno.az.webapp.links.AdminLinkRender;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.coefficientpage.CoefficientEditPage;
 import by.training.java.grodno.az.webapp.page.admin.coefficientpage.SelectCoefficient;
 import by.training.java.grodno.az.webapp.page.admin.racinglinepage.RacingLineEditParticipantPage;
 import by.training.java.grodno.az.webapp.page.admin.racinglinepage.RacingLineResultEditPage;
-import by.training.java.grodno.az.webapp.page.loginpage.LoginPage;
-import by.training.java.grodno.az.webapp.page.registrationpage.RegistrationPage;
 import by.training.java.grodno.az.webapp.page.resultpage.ResultPage;
 
 public class HourseRacingPage extends AbstractPage {
@@ -107,29 +104,25 @@ public class HourseRacingPage extends AbstractPage {
 
 				for (RacingLine r : rList) {
 					if (r.getResult() != null) {
-						if (r.getResult() > 0) {
-							isResult = true;
-							break;
-						}
+						isResult = true;
+						break;
 					}
 				}
 
 				if (!isAfter || !isResult) {
 					model.setObject(getString("all.result"));
+				} else {
+					model.setObject(getString("all.rate"));
 				}
 
 				Link link = new Link("select-coefficients-link") {
 
 					@Override
 					public void onClick() {
-						if (UserSession.get().isSignedIn()) {
-							if (isAfter || isResult) {
-								setResponsePage(new SelectCoefficient(hourseRacing));
-							} else {
-								setResponsePage(new ResultPage(hourseRacing));
-							}
+						if (isAfter || isResult) {
+							setResponsePage(new SelectCoefficient(hourseRacing));
 						} else {
-							setResponsePage(LoginPage.class);
+							setResponsePage(new ResultPage(hourseRacing));
 						}
 					}
 				};

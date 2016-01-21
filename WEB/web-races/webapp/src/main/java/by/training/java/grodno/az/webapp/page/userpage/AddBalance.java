@@ -7,7 +7,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.validation.validator.StringValidator;
+import org.apache.wicket.validation.validator.RangeValidator;
 
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
@@ -33,14 +33,15 @@ public class AddBalance extends AbstractPage {
 		add(form);
 
 		Label loginLabel = new Label("user-login-label", getString("all.login") + ": " + user.getLogin());
-		
+
 		form.add(loginLabel);
 
 		Model<Double> balance = new Model<>();
 
-		TextField<Double> textFieldBalance = new TextField<Double>("balance", balance,Double.class);
+		TextField<Double> textFieldBalance = new TextField<Double>("balance", balance, Double.class);
 
 		textFieldBalance.setRequired(true);
+		textFieldBalance.add(new RangeValidator<Double>(0.0, 100000.0));
 		form.add(textFieldBalance);
 
 		form.add(new SubmitLink("submit-button") {

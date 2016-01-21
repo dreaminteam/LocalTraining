@@ -9,8 +9,7 @@ public class Rate extends AbstractEntity {
 	private double value;
 	private double coefficientValue;
 
-	private int playerId;
-	private int rateTypeId;
+	private int userId;
 	private int coefficientId;
 
 	public int getId() {
@@ -29,20 +28,12 @@ public class Rate extends AbstractEntity {
 		this.value = value;
 	}
 
-	public int getPlayerId() {
-		return playerId;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setPlayerId(int playerId) {
-		this.playerId = playerId;
-	}
-
-	public int getRateTypeId() {
-		return rateTypeId;
-	}
-
-	public void setRateTypeId(int rateTypeId) {
-		this.rateTypeId = rateTypeId;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public int getCoefficientId() {
@@ -63,9 +54,8 @@ public class Rate extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Rate [id=" + id + ", value=" + value + ", coefficientValue=" + coefficientValue + ", playerId="
-				+ playerId + ", rateTypeId=" + rateTypeId + ", coefficientId=" + coefficientId + "]";
+		return "Rate [id=" + id + ", value=" + value + ", coefficientValue=" + coefficientValue + ", playerId=" + userId
+				+ ", coefficientId=" + coefficientId + "]";
 	}
-
 
 }

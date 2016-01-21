@@ -5,16 +5,20 @@
 </head>
 
 <wicket:extend>
+	<h1>
+		<wicket:message key="all.balance.add" />
+	</h1><br/>
 	<form class="contact_form" wicket:id="balance-form">
 
 		<ul>
 
-			<h2><span wicket:id="user-login-label"></span></h2>
-			
+			<h2>
+				<span wicket:id="user-login-label"></span>
+			</h2>
+
 
 			<li><label wicket:for="balance"><wicket:message
-						key="all.value" /></label><input type="text"
-				wicket:id="balance" required /></li>
+						key="all.add" /></label><input type="text" wicket:id="balance" required /></li>
 
 
 			<li>

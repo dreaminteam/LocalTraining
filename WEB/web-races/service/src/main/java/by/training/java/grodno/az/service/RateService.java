@@ -13,4 +13,6 @@ public interface RateService extends IService<Rate> {
 	
 	Coefficient getCoefficient(int coefficient_id);
 	
+	void doRate(Rate rate);
+	
 }

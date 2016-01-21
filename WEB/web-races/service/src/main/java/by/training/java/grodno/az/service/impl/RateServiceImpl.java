@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.training.java.grodno.az.data.dao.CoefficientDao;
 import by.training.java.grodno.az.data.dao.PlayerDao;
@@ -14,7 +15,9 @@ import by.training.java.grodno.az.data.model.Coefficient;
 import by.training.java.grodno.az.data.model.Player;
 import by.training.java.grodno.az.data.model.Rate;
 import by.training.java.grodno.az.data.model.RateType;
+import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.RateService;
+import by.training.java.grodno.az.service.UserService;
 
 @Service
 public class RateServiceImpl implements RateService {
@@ -30,6 +33,9 @@ public class RateServiceImpl implements RateService {
 
 	@Autowired
 	private CoefficientDao coefficientDao;
+
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public Rate getById(int id) {
@@ -123,5 +129,18 @@ public class RateServiceImpl implements RateService {
 	@Override
 	public int getCount(Map<String, Object> atributesFinding) {
 		return rateDao.getCount(atributesFinding);
+	}
+
+	@Transactional
+	@Override
+	public void doRate(Rate rate) {
+
+		Double rateValue = rate.getValue();
+		User user = userService.getById(rate.getUserId());
+		Double newUserBalans = user.getBalance() - rateValue;
+		user.setBalance(newUserBalans);
+		rateDao.insert(rate);
+		userService.update(user);
+
 	}
 }

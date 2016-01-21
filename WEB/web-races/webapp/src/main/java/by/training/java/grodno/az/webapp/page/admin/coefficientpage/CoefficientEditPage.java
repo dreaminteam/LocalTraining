@@ -19,6 +19,8 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.validation.validator.RangeValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.googlecode.wicket.kendo.ui.markup.html.link.BookmarkablePageLink;
 
@@ -36,6 +38,7 @@ import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacin
 @AuthorizeInstantiation(value = { "admin" })
 public class CoefficientEditPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(CoefficientEditPage.class);
 	public static final int MAXQUANTITY = 7;
 
 	@Inject
@@ -127,7 +130,8 @@ public class CoefficientEditPage extends AbstractPage {
 						int key = rateLineList.get(q).getId();
 						TextField<Double> field = new TextField<>(id, coefficientView.models.get(key));
 						field.setRequired(true);
-						item.add(field).add(RangeValidator.<Double> range(0.0, 99.0));
+						field.add(new RangeValidator<Double>(1.0, 99.0));
+						item.add(field);
 					} else {
 						TextField<Double> sleepTextField = new TextField<>(String.valueOf(q), new Model<Double>(),
 								Double.class);
@@ -135,16 +139,14 @@ public class CoefficientEditPage extends AbstractPage {
 						item.add(sleepTextField);
 					}
 				}
-
 			}
-
 		});
 
 		form.add(new SubmitLink("coefficient-submit-button") {
 			@Override
 			public void onSubmit() {
 				coefficientService.insert(coefficientsList);
-
+				LOGGER.info("Submit link. Insert list of coefficient to DB");
 				CoefficientEditPage editPage = new CoefficientEditPage(hourseRacing);
 				editPage.info(getString("all.data.saved"));
 				setResponsePage(editPage);

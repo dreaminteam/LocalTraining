@@ -112,10 +112,12 @@ public class RegistrationUserForm extends Panel {
 
 		if (!isNew) {
 			loginTextField.setVisible(false);
+			passwordTextField.setVisible(false);
 		}
 
 		Model<String> roleModel = new Model<>();
-		List<String> choices = Arrays.asList(Role.admin.name().toLowerCase(), Role.player.name().toLowerCase(),Role.bukmeker.name().toLowerCase());
+		List<String> choices = Arrays.asList(Role.admin.name().toLowerCase(), Role.player.name().toLowerCase(),
+				Role.bukmeker.name().toLowerCase());
 		DropDownChoice<String> dropDownChoice = new DropDownChoice<>("drop-role", roleModel, choices);
 		dropDownChoice.setRequired(true);
 		form.add(dropDownChoice);
@@ -132,8 +134,10 @@ public class RegistrationUserForm extends Panel {
 		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-				String pass = service.encryption(user.getPassword());
-				user.setPassword(pass);
+				if (isNew) {
+					String pass = service.encryption(user.getPassword());
+					user.setPassword(pass);
+				}
 				user.setRole(roleModel.getObject());
 				if (!UserSession.get().isSignedIn()) {
 

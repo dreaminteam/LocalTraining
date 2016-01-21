@@ -88,5 +88,6 @@
 	<entry key="page.admin.edit.category">Категория</entry>
 	<entry key="page.login.password.input">Введите логин и пароль</entry>
 	<entry key="page.hourse.addHourse">Добавить новую лошадь</entry>
-
+	<entry key="page.selectCoefficient.insufficient.funds">Недостаточно средст на счете</entry>
+	<entry key="page.selectCoefficient.no.rates">Ставок нет</entry>
 </properties>

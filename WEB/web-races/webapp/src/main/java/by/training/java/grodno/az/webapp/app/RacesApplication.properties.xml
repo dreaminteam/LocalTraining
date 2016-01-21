@@ -89,6 +89,8 @@
 	<entry key="page.admin.edit.category">Category</entry>
 	<entry key="page.login.password.input">Input login and password</entry>
 	<entry key="page.hourse.addHourse">Add new hourse</entry>
+	<entry key="page.selectCoefficient.insufficient.funds">Insufficient funds in the account</entry>
+	<entry key="page.selectCoefficient.no.rates">No rates</entry>
 
 
 
