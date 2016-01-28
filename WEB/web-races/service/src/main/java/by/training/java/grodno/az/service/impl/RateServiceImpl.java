@@ -8,11 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.training.java.grodno.az.data.dao.CoefficientDao;
-import by.training.java.grodno.az.data.dao.PlayerDao;
 import by.training.java.grodno.az.data.dao.RateDao;
 import by.training.java.grodno.az.data.dao.RateTypeDao;
+import by.training.java.grodno.az.data.entities.RateView;
 import by.training.java.grodno.az.data.model.Coefficient;
-import by.training.java.grodno.az.data.model.Player;
 import by.training.java.grodno.az.data.model.Rate;
 import by.training.java.grodno.az.data.model.RateType;
 import by.training.java.grodno.az.data.model.User;
@@ -24,9 +23,6 @@ public class RateServiceImpl implements RateService {
 
 	@Autowired
 	private RateDao rateDao;
-
-	@Autowired
-	private PlayerDao playerDao;
 
 	@Autowired
 	private RateTypeDao rateTypeDao;
@@ -69,11 +65,6 @@ public class RateServiceImpl implements RateService {
 	@Override
 	public void delete(Rate entity) {
 		rateDao.delete(entity);
-	}
-
-	@Override
-	public Player getPlayer(int player_id) {
-		return playerDao.get(player_id);
 	}
 
 	@Override
@@ -142,5 +133,10 @@ public class RateServiceImpl implements RateService {
 		rateDao.insert(rate);
 		userService.update(user);
 
+	}
+
+	@Override
+	public List<RateView> getRateViewList(int hourseRacingId) {
+		return rateDao.getRateViewList(hourseRacingId);
 	}
 }

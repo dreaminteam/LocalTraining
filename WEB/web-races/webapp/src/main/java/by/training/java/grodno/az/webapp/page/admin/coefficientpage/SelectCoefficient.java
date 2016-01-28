@@ -41,6 +41,7 @@ import by.training.java.grodno.az.webapp.app.UserSession;
 import by.training.java.grodno.az.webapp.links.LinkForRole;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacingPage;
+import by.training.java.grodno.az.webapp.page.loginpage.LoginPage;
 import by.training.java.grodno.az.webapp.page.userpage.AddBalance;
 
 public class SelectCoefficient extends AbstractPage {
@@ -70,8 +71,6 @@ public class SelectCoefficient extends AbstractPage {
 
 	private int index;
 
-	
-
 	public SelectCoefficient(HourseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
@@ -80,7 +79,8 @@ public class SelectCoefficient extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		Model<Double> rateValueModel = new Model<Double>(100.0);
+		Double fieldRateValue = 100.0;
+		Model<Double> rateValueModel = new Model<Double>(fieldRateValue);
 
 		List<Rate> rates = new ArrayList<>();
 		List<Coefficient> coefficientsList = new ArrayList<>();
@@ -175,41 +175,45 @@ public class SelectCoefficient extends AbstractPage {
 		};
 		add(balanceLink);
 
-		form.add(new UsersSubmitLink("submit-button") {
+		form.add(new SubmitLink("submit-button") {
 			@Override
 			public void onSubmit() {
-				int userId = Session.get().getMetaData(UserSession.USER_METADATA_KEY).getUser().getId();
+				if (UserSession.get().isSignedIn()) {
+					int userId = Session.get().getMetaData(UserSession.USER_METADATA_KEY).getUser().getId();
 
-				double checkBalance = 0.0;
-				for (Rate rate : rates) {
-					checkBalance += rateValueModel.getObject();
-				}
+					double checkBalance = 0.0;
+					for (Rate rate : rates) {
+						checkBalance += rateValueModel.getObject();
+					}
 
-				if (rates.size() == 0) {
-					SelectCoefficient responsePage = new SelectCoefficient(hourseRacing);
-					responsePage.warn(getString("page.selectCoefficient.no.rates"));
-					setResponsePage(responsePage);
-				} else {
-
-					if (userService.getById(userId).getBalance() < checkBalance) {
+					if (rates.size() == 0) {
 						SelectCoefficient responsePage = new SelectCoefficient(hourseRacing);
-						responsePage.warn(getString("page.selectCoefficient.insufficient.funds"));
+						responsePage.warn(getString("page.selectCoefficient.no.rates"));
 						setResponsePage(responsePage);
-
 					} else {
 
-						for (Rate rate : rates) {
-							rate.setUserId(userId);
-							rate.setValue(rateValueModel.getObject());
-							LOGGER.info("Submit link. Inser or update {}", rate);
-							rateService.doRate(rate);
+						if (userService.getById(userId).getBalance() < checkBalance) {
 							SelectCoefficient responsePage = new SelectCoefficient(hourseRacing);
-							responsePage.info(getString("all.data.saved"));
+							responsePage.warn(getString("page.selectCoefficient.insufficient.funds"));
 							setResponsePage(responsePage);
+
+						} else {
+
+							for (Rate rate : rates) {
+								rate.setUserId(userId);
+								rate.setValue(rateValueModel.getObject());
+								LOGGER.info("Submit link. Inser or update {}", rate);
+								rateService.doRate(rate);
+								SelectCoefficient responsePage = new SelectCoefficient(hourseRacing);
+								responsePage.info(getString("all.data.saved"));
+								setResponsePage(responsePage);
+							}
 						}
 					}
-				}
 
+				} else {
+					setResponsePage(LoginPage.class);
+				}
 			}
 		});
 

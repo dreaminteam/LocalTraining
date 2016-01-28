@@ -1,30 +1,39 @@
 package by.training.java.grodno.az.service.impl;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.training.java.grodno.az.data.dao.UserDao;
+import by.training.java.grodno.az.data.entities.RateView;
+import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.data.model.User;
+import by.training.java.grodno.az.service.RateLineService;
+import by.training.java.grodno.az.service.RateService;
 import by.training.java.grodno.az.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-	public static void main(String[] args) {
-		String password = "admin";
-		System.out.println(new UserServiceImpl().encryption(password));
-	}
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private UserDao userDao;
+
+	@Autowired
+	private RateLineService rateLineService;
+
+	@Autowired
+	private RateService rateService;
 
 	@Override
 	public User getById(int id) {
@@ -130,6 +139,38 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int getCount(Map<String, Object> atributesFinding) {
 		return userDao.getCount(atributesFinding);
+	}
+
+	@Transactional
+	@Override
+	public void winnerCheck(int hourseRacingId) {
+		Map<Integer, Set<Integer>> ratePositionsMap = new HashMap<Integer, Set<Integer>>();
+		List<RateLine> rateLinesList = rateLineService.getAll();
+
+		for (RateLine rl : rateLinesList) {
+			Set<Integer> positionsSet = new HashSet<>();
+			for (String pos : rl.getPositions().split(" ")) {
+				positionsSet.add(Integer.valueOf(pos));
+			}
+			ratePositionsMap.put(rl.getId(), positionsSet);
+		}
+
+		List<RateView> rateViewList = rateService.getRateViewList(hourseRacingId);
+
+		for (RateView rateView : rateViewList) {
+			int rateLineKey = rateView.getRateLineId();
+			int result = rateView.getResult();
+			if (ratePositionsMap.get(rateLineKey).contains(result)) {
+
+				User user = getById(rateView.getUserId());
+				Double winningSum = rateView.getCoefficientValue() * rateView.getValue();
+				Double newBalance = user.getBalance() + winningSum;
+				user.setBalance(newBalance);
+
+				update(user);
+			}
+		}
+
 	}
 
 }

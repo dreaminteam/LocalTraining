@@ -7,5 +7,7 @@ public interface UserService extends IService<User> {
 	String encryption(String source);
 
 	User getByLogPas(String login, String password);
+	
+	void winnerCheck(int hourseRacingId);
 
 }

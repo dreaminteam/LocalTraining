@@ -11,16 +11,19 @@ public class ParticipantViewMapper implements RowMapper<ParticipantView> {
 
 	@Override
 	public ParticipantView mapRow(ResultSet rs, int rowNum) throws SQLException {
-		int id=rs.getInt("p.id");
-		String jockeyFirstName=rs.getString("jockey_firstname");
-		String jockeyLastName=rs.getString("jockey_lastname");
-		String hourseName=rs.getString("hourse_name");
-		ParticipantView pView=new ParticipantView();
+
+		int id = rs.getInt("p.id");
+		String jockeyFirstName = rs.getString("jockey_firstname");
+		String jockeyLastName = rs.getString("jockey_lastname");
+		String hourseName = rs.getString("hourse_name");
+
+		ParticipantView pView = new ParticipantView();
+
 		pView.setParticipantId(id);
 		pView.setJockeyFirstName(jockeyFirstName);
 		pView.setJockeyLastName(jockeyLastName);
 		pView.setHourseName(hourseName);
+
 		return pView;
 	}
-
 }

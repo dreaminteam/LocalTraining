@@ -1,5 +1,6 @@
 package by.training.java.grodno.az.webapp.page.admin.racinglinepage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.service.RacingLineService;
+import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacingPage;
 
@@ -38,6 +40,9 @@ public class RacingLineResultEditPage extends AbstractPage {
 
 	@Inject
 	private ParticipantService participantService;
+
+	@Inject
+	private UserService userService;
 
 	private HourseRacing hourseRacing;
 
@@ -85,8 +90,6 @@ public class RacingLineResultEditPage extends AbstractPage {
 				DropDownChoice<Integer> dropDownChoice = new DropDownChoice<>("drop-position",
 						racingLineResult.positionModel, positionListChoise);
 				dropDownChoice.setRequired(true);
-				// form.add(dropDownChoice).add(RangeValidator.<Integer>range(1,
-				// 99));
 				item.add(dropDownChoice);
 			}
 		});
@@ -104,8 +107,8 @@ public class RacingLineResultEditPage extends AbstractPage {
 					warnPanel.warn(getString("page.inputResultRacing.warn"));
 					setResponsePage(editPage);
 				} else {
-					
-					List<RacingLine> racingLines=new ArrayList<>();
+
+					List<RacingLine> racingLines = new ArrayList<>();
 					for (RacingLineResult rlr : lineResults) {
 						int position = rlr.positionModel.getObject().intValue();
 						RacingLine racingLine = rlr.racingLine;
@@ -113,7 +116,7 @@ public class RacingLineResultEditPage extends AbstractPage {
 						racingLines.add(racingLine);
 					}
 					racingLineService.insert(racingLines);
-
+					userService.winnerCheck(hourseRacing.getId());
 					RacingLineEditParticipantPage editPage = new RacingLineEditParticipantPage(hourseRacing);
 					editPage.info(getString("all.data.saved"));
 					setResponsePage(editPage);
@@ -134,7 +137,8 @@ public class RacingLineResultEditPage extends AbstractPage {
 		return resultList;
 	}
 
-	private class RacingLineResult {
+	private class RacingLineResult implements Serializable {
+		private static final long serialVersionUID = 1L;
 
 		private RacingLineResult() {
 			positionModel = new Model<>();

@@ -34,7 +34,6 @@ public class HourseRacingPage extends AbstractPage {
 
 	@Inject
 	private RacingLineService racingLineService;
-	private boolean isResult = false;
 
 	@Override
 	protected void onInitialize() {
@@ -102,33 +101,48 @@ public class HourseRacingPage extends AbstractPage {
 
 				List<RacingLine> rList = racingLineService.getAll(findingAtributes, "id", true);
 
-				for (RacingLine r : rList) {
-					if (r.getResult() != null) {
-						isResult = true;
-						break;
-					}
-				}
-
-				if (!isAfter || !isResult) {
+				boolean isResult = getIsResult(rList);
+				if (!isAfter) {
 					model.setObject(getString("all.result"));
 				} else {
-					model.setObject(getString("all.rate"));
+					if (isResult) {
+						model.setObject(getString("all.result"));
+					} else {
+						model.setObject(getString("all.rate"));
+					}
 				}
 
 				Link link = new Link("select-coefficients-link") {
 
 					@Override
 					public void onClick() {
-						if (isAfter || isResult) {
-							setResponsePage(new SelectCoefficient(hourseRacing));
-						} else {
+
+						if (!isAfter) {
 							setResponsePage(new ResultPage(hourseRacing));
+						} else {
+							if (isResult) {
+								setResponsePage(new ResultPage(hourseRacing));
+							} else {
+								setResponsePage(new SelectCoefficient(hourseRacing));
+							}
 						}
 					}
 				};
 
 				item.add(link.add(label));
 
+			}
+
+			private boolean getIsResult(List<RacingLine> rList) {
+				boolean result = false;
+				for (RacingLine r : rList) {
+					if (r.getResult() != null) {
+						result = true;
+
+						break;
+					}
+				}
+				return result;
 			}
 		});
 

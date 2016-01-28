@@ -19,17 +19,13 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.validation.validator.EmailAddressValidator;
 import org.apache.wicket.validation.validator.StringValidator;
 
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.app.UserSession;
-import by.training.java.grodno.az.webapp.component.logoutinputpanel.InputPanel;
-import by.training.java.grodno.az.webapp.component.logoutinputpanel.LogoutPanel;
-import by.training.java.grodno.az.webapp.component.menupanel.adminmenupanel.AdminMainMenuPanel;
-import by.training.java.grodno.az.webapp.component.menupanel.playermenupanel.PlayerMainMenuPanel;
 import by.training.java.grodno.az.webapp.enums.Role;
 import by.training.java.grodno.az.webapp.page.homepage.HomePage;
 import by.training.java.grodno.az.webapp.page.registrationpage.RegistrationPage;
@@ -49,6 +45,7 @@ public class RegistrationUserForm extends Panel {
 		isNew = true;
 		this.user.setCreateDate(new Date());
 		this.user.setBalance(startBalance);
+		this.user.setRole("player");
 	}
 
 	public RegistrationUserForm(String id, User user) {
@@ -57,6 +54,7 @@ public class RegistrationUserForm extends Panel {
 			this.user = new User();
 			this.user.setCreateDate(new Date());
 			this.user.setBalance(startBalance);
+			this.user.setRole("player");
 			isNew = true;
 		} else {
 			this.user = user;
@@ -115,7 +113,8 @@ public class RegistrationUserForm extends Panel {
 			passwordTextField.setVisible(false);
 		}
 
-		Model<String> roleModel = new Model<>();
+		PropertyModel<String> roleModel = new PropertyModel<String>(user, "role");
+		System.out.println("roleModel="+roleModel.getObject());
 		List<String> choices = Arrays.asList(Role.admin.name().toLowerCase(), Role.player.name().toLowerCase(),
 				Role.bukmeker.name().toLowerCase());
 		DropDownChoice<String> dropDownChoice = new DropDownChoice<>("drop-role", roleModel, choices);
@@ -124,8 +123,7 @@ public class RegistrationUserForm extends Panel {
 		dropDownChoice.setVisible(false);
 
 		Set<String> role = UserSession.get().getRoles();
-		if (role == null) {
-		} else {
+		if (role != null) {
 			if (role.toString().equalsIgnoreCase(Role.admin.name())) {
 				dropDownChoice.setVisible(true);
 			}
@@ -139,6 +137,7 @@ public class RegistrationUserForm extends Panel {
 					user.setPassword(pass);
 				}
 				user.setRole(roleModel.getObject());
+				System.out.println("user="+user);
 				if (!UserSession.get().isSignedIn()) {
 
 					if (service.insert(user) < 0) {

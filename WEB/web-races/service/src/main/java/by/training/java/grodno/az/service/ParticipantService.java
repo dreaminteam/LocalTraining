@@ -19,6 +19,4 @@ public interface ParticipantService extends IService<Participant> {
 	
 	void insert(List<Participant> list);
 	
-	
-
 }
