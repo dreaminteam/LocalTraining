@@ -1,7 +1,5 @@
 package by.training.java.grodno.az.webapp.page.loginpage;
 
-import javax.inject.Inject;
-
 import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.form.Form;
@@ -11,7 +9,6 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.validation.validator.StringValidator;
 
-import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.app.UserSession;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 import by.training.java.grodno.az.webapp.page.homepage.HomePage;
@@ -19,9 +16,6 @@ import by.training.java.grodno.az.webapp.page.homepage.HomePage;
 public class LoginPage extends AbstractPage {
 
 	private static final long serialVersionUID = 1L;
-
-	@Inject
-	private UserService service;
 
 	@Override
 	protected void onInitialize() {

@@ -13,14 +13,14 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
 
-import by.training.java.grodno.az.data.model.Hourse;
+import by.training.java.grodno.az.data.model.Horse;
 import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.data.model.Participant;
-import by.training.java.grodno.az.service.HourseService;
+import by.training.java.grodno.az.service.HorseService;
 import by.training.java.grodno.az.service.JockeyService;
 import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
-import by.training.java.grodno.az.webapp.renderer.HourseChoiceRenderer;
+import by.training.java.grodno.az.webapp.renderer.HorseChoiceRenderer;
 import by.training.java.grodno.az.webapp.renderer.JockeyChoiceRenderer;
 
 @AuthorizeInstantiation(value = { "admin" })
@@ -31,7 +31,7 @@ public class ParticipantEditPage extends AbstractPage {
 	private JockeyService jockeyService;
 
 	@Inject
-	private HourseService hourseService;
+	private HorseService hourseService;
 
 	@Inject
 	private ParticipantService participantService;
@@ -62,10 +62,10 @@ public class ParticipantEditPage extends AbstractPage {
 		dropDownJockeyChoice.setRequired(true);
 		form.add(dropDownJockeyChoice);
 
-		Model<Hourse> hourseModel = new Model<>();
-		List<Hourse> hourseChoices = hourseService.getAll();
-		DropDownChoice<Hourse> dropDownHourseChoice = new DropDownChoice<>("drop-hourse", hourseModel, hourseChoices,
-				new HourseChoiceRenderer());
+		Model<Horse> hourseModel = new Model<>();
+		List<Horse> hourseChoices = hourseService.getAll();
+		DropDownChoice<Horse> dropDownHourseChoice = new DropDownChoice<>("drop-hourse", hourseModel, hourseChoices,
+				new HorseChoiceRenderer());
 		dropDownHourseChoice.setRequired(true);
 		form.add(dropDownHourseChoice);
 
@@ -83,7 +83,7 @@ public class ParticipantEditPage extends AbstractPage {
 				if (participantService.getAll(findParamerers, null, true).size() == 0) {
 
 					participant.setJockeyId(jockeyId);
-					participant.setHourseId(hourseId);
+					participant.setHorseId(hourseId);
 					participantService.insertOrUpdate(participant);
 					ParticipantEditPage editPage = new ParticipantEditPage();
 					editPage.info(getString("all.data.saved"));

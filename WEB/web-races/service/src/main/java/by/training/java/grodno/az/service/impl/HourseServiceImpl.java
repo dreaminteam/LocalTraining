@@ -7,32 +7,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.training.java.grodno.az.data.dao.HourseDao;
-import by.training.java.grodno.az.data.model.Hourse;
-import by.training.java.grodno.az.service.HourseService;
+import by.training.java.grodno.az.data.model.Horse;
+import by.training.java.grodno.az.service.HorseService;
 
 @Service
-public class HourseServiceImpl implements HourseService {
+public class HourseServiceImpl implements HorseService {
 
 	@Autowired
 	private HourseDao hourseDao;
 
 	@Override
-	public Hourse getById(int id) {
+	public Horse getById(int id) {
 		return hourseDao.get(id);
 	}
 
 	@Override
-	public int insert(Hourse entity) {
+	public int insert(Horse entity) {
 		return hourseDao.insert(entity);
 	}
 
 	@Override
-	public void update(Hourse entity) {
+	public void update(Horse entity) {
 		hourseDao.update(entity);
 	}
 
 	@Override
-	public void insertOrUpdate(Hourse entity) {
+	public void insertOrUpdate(Horse entity) {
 		if (hourseDao.get(entity.getId()) != null) {
 			hourseDao.update(entity);
 		} else {
@@ -46,42 +46,42 @@ public class HourseServiceImpl implements HourseService {
 	}
 
 	@Override
-	public void delete(Hourse entity) {
+	public void delete(Horse entity) {
 		hourseDao.delete(entity);
 	}
 
 	@Override
-	public List<Hourse> getAll() {
+	public List<Horse> getAll() {
 		return hourseDao.getAll();
 	}
 
 	@Override
-	public List<Hourse> getAll(String orderBy, boolean orderType) {
-		List<Hourse> result = hourseDao.getAll(orderBy, orderType);
+	public List<Horse> getAll(String orderBy, boolean orderType) {
+		List<Horse> result = hourseDao.getAll(orderBy, orderType);
 		return result;
 	}
 
 	@Override
-	public List<Hourse> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
+	public List<Horse> getAll(Map<String, Object> atributesFinding, String orderBy, boolean type) {
 		return hourseDao.getAll(atributesFinding, orderBy, type);
 	}
 
 	@Override
-	public List<Hourse> getAll(int first, int count) {
-		List<Hourse> result = hourseDao.getAll(first, count);
+	public List<Horse> getAll(int first, int count) {
+		List<Horse> result = hourseDao.getAll(first, count);
 		return result;
 	}
 
 	@Override
-	public List<Hourse> getAll(int first, int count, String orderBy, boolean orderType) {
-		List<Hourse> result = hourseDao.getAll(first, count, orderBy, orderType);
+	public List<Horse> getAll(int first, int count, String orderBy, boolean orderType) {
+		List<Horse> result = hourseDao.getAll(first, count, orderBy, orderType);
 		return result;
 	}
 
 	@Override
-	public List<Hourse> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
+	public List<Horse> getAll(Map<String, Object> atributesFinding, int first, int count, String orderBy,
 			boolean orderType) {
-		List<Hourse> result = hourseDao.getAll(atributesFinding, first, count, orderBy, orderType);
+		List<Horse> result = hourseDao.getAll(atributesFinding, first, count, orderBy, orderType);
 		return result;
 	}
 

@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.page.admin.hourseracingpage;
+package by.training.java.grodno.az.webapp.page.admin.horseracingpage;
 
 import java.util.Date;
 
@@ -14,25 +14,25 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.validation.validator.StringValidator;
 
-import by.training.java.grodno.az.data.model.HourseRacing;
-import by.training.java.grodno.az.service.HourseRacingService;
+import by.training.java.grodno.az.data.model.HorseRacing;
+import by.training.java.grodno.az.service.HorseRacingService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin" })
-public class HourseRacingEditPage extends AbstractPage {
+public class HorseRacingEditPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private HourseRacingService hourseRacingService;
+	private HorseRacingService hourseRacingService;
 
-	private HourseRacing hourseRacing;
+	private HorseRacing hourseRacing;
 
-	public HourseRacingEditPage() {
+	public HorseRacingEditPage() {
 		super();
-		this.hourseRacing = new HourseRacing();
+		this.hourseRacing = new HorseRacing();
 	}
 
-	public HourseRacingEditPage(HourseRacing hourseRacing) {
+	public HorseRacingEditPage(HorseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
 	}
@@ -41,7 +41,7 @@ public class HourseRacingEditPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		Form<HourseRacing> form = new Form<>("hourse-racing-edit-form", new CompoundPropertyModel<>(hourseRacing));
+		Form<HorseRacing> form = new Form<>("hourse-racing-edit-form", new CompoundPropertyModel<>(hourseRacing));
 		add(form);
 
 		TextField<String> titleTextField = new TextField<String>("title");
@@ -60,7 +60,7 @@ public class HourseRacingEditPage extends AbstractPage {
 
 				hourseRacing.setDate(dateModel.getObject());
 				hourseRacingService.insertOrUpdate(hourseRacing);
-				HourseRacingEditPage editPage = new HourseRacingEditPage();
+				HorseRacingEditPage editPage = new HorseRacingEditPage();
 				editPage.info(getString("all.data.saved"));
 				setResponsePage(editPage);
 
@@ -69,7 +69,7 @@ public class HourseRacingEditPage extends AbstractPage {
 		add(new Link<Void>("hourse-racing-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(HourseRacingPage.class);
+				setResponsePage(HorseRacingPage.class);
 			}
 		});
 	}

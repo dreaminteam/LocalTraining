@@ -2,9 +2,10 @@ package by.training.java.grodno.az.data.model;
 
 import by.training.java.grodno.az.data.entities.AbstractEntity;
 
-public class Hourse extends AbstractEntity {
+public class Horse extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 
-	public Hourse() {
+	public Horse() {
 	}
 
 	private int id;
@@ -28,7 +29,7 @@ public class Hourse extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Hourse [id=" + id + ", name=" + name + "]";
+		return "Horse [id=" + id + ", name=" + name + "]";
 	}
 
 }

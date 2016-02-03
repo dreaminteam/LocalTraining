@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.page.admin.hoursespage;
+package by.training.java.grodno.az.webapp.page.admin.horsespage;
 
 import javax.inject.Inject;
 
@@ -10,25 +10,25 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.validation.validator.StringValidator;
 
-import by.training.java.grodno.az.data.model.Hourse;
-import by.training.java.grodno.az.service.HourseService;
+import by.training.java.grodno.az.data.model.Horse;
+import by.training.java.grodno.az.service.HorseService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin" })
-public class HourseEditPage extends AbstractPage {
+public class HorseEditPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private HourseService hourseService;
+	private HorseService hourseService;
 
-	private Hourse hourse;
+	private Horse hourse;
 
-	public HourseEditPage() {
+	public HorseEditPage() {
 		super();
-		this.hourse = new Hourse();
+		this.hourse = new Horse();
 	}
 
-	public HourseEditPage(Hourse hourse) {
+	public HorseEditPage(Horse hourse) {
 		super();
 		this.hourse = hourse;
 	}
@@ -37,7 +37,7 @@ public class HourseEditPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		Form<Hourse> form = new Form<>("hourse-edit-form", new CompoundPropertyModel<>(hourse));
+		Form<Horse> form = new Form<>("hourse-edit-form", new CompoundPropertyModel<>(hourse));
 		add(form);
 
 		TextField<String> nameTextField = new TextField<String>("name");
@@ -50,7 +50,7 @@ public class HourseEditPage extends AbstractPage {
 			public void onSubmit() {
 
 				hourseService.insertOrUpdate(hourse);
-				HourseEditPage editPage = new HourseEditPage();
+				HorseEditPage editPage = new HorseEditPage();
 				editPage.info("hourse saved");
 				setResponsePage(editPage);
 
@@ -59,7 +59,7 @@ public class HourseEditPage extends AbstractPage {
 		add(new Link<Void>("hourses-page-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(HoursePage.class);
+				setResponsePage(HorsePage.class);
 			}
 		});
 	}

@@ -15,14 +15,14 @@ public class ParticipantViewMapper implements RowMapper<ParticipantView> {
 		int id = rs.getInt("p.id");
 		String jockeyFirstName = rs.getString("jockey_firstname");
 		String jockeyLastName = rs.getString("jockey_lastname");
-		String hourseName = rs.getString("hourse_name");
+		String horseName = rs.getString("horse_name");
 
 		ParticipantView pView = new ParticipantView();
 
 		pView.setParticipantId(id);
 		pView.setJockeyFirstName(jockeyFirstName);
 		pView.setJockeyLastName(jockeyLastName);
-		pView.setHourseName(hourseName);
+		pView.setHorseName(horseName);
 
 		return pView;
 	}

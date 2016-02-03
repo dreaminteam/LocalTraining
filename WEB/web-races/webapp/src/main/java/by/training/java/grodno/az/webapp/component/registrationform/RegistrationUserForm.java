@@ -65,6 +65,7 @@ public class RegistrationUserForm extends Panel {
 	@Inject
 	private UserService service;
 
+	@SuppressWarnings("serial")
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
@@ -114,7 +115,7 @@ public class RegistrationUserForm extends Panel {
 		}
 
 		PropertyModel<String> roleModel = new PropertyModel<String>(user, "role");
-		System.out.println("roleModel="+roleModel.getObject());
+		System.out.println("roleModel=" + roleModel.getObject());
 		List<String> choices = Arrays.asList(Role.admin.name().toLowerCase(), Role.player.name().toLowerCase(),
 				Role.bukmeker.name().toLowerCase());
 		DropDownChoice<String> dropDownChoice = new DropDownChoice<>("drop-role", roleModel, choices);
@@ -137,7 +138,7 @@ public class RegistrationUserForm extends Panel {
 					user.setPassword(pass);
 				}
 				user.setRole(roleModel.getObject());
-				System.out.println("user="+user);
+				System.out.println("user=" + user);
 				if (!UserSession.get().isSignedIn()) {
 
 					if (service.insert(user) < 0) {
@@ -170,7 +171,8 @@ public class RegistrationUserForm extends Panel {
 	}
 
 	@AuthorizeAction(roles = { "admin" }, action = Action.RENDER)
-	private class UsersPageLink extends BookmarkablePageLink {
+	private class UsersPageLink extends BookmarkablePageLink<Object> {
+		private static final long serialVersionUID = 1L;
 
 		public UsersPageLink(String id, Class pageClass) {
 			super(id, pageClass);

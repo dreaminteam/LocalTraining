@@ -6,6 +6,7 @@ import java.util.Date;
 import by.training.java.grodno.az.data.entities.AbstractEntity;
 
 public class User extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 	private String login;
@@ -16,7 +17,6 @@ public class User extends AbstractEntity {
 	private String role;
 	private double balance;
 	private Date createDate;
-//	private Date endDate;
 
 	public String getEmail() {
 		return email;
@@ -91,19 +91,6 @@ public class User extends AbstractEntity {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-
-//	public Date getEndDate() {
-//		if (endDate == null) {
-//			return null;
-//		}
-//		Timestamp timestamp = new Timestamp(endDate.getTime());
-//		timestamp.setNanos(0);
-//		return timestamp;
-//	}
-
-//	public void setEndDate(Date endDate) {
-//		this.endDate = endDate;
-//	}
 
 	@Override
 	public String toString() {

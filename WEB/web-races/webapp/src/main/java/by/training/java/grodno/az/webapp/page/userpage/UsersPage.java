@@ -11,7 +11,6 @@ import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortParam;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.repeater.Item;
@@ -22,21 +21,13 @@ import org.apache.wicket.model.IModel;
 import by.training.java.grodno.az.data.model.User;
 import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
-import by.training.java.grodno.az.webapp.page.admin.jockeyspage.JockeyEditPage;
 import by.training.java.grodno.az.webapp.page.registrationpage.RegistrationPage;
 
 @AuthorizeInstantiation(value = { "admin" })
-public class UsersPage extends AbstractPage{
+public class UsersPage extends AbstractPage {
 
-//	
-//	@Override
-//	protected void onInitialize() {
-//		super.onInitialize();
-//		
-//		add(new BookmarkablePageLink<Void>("registration-page",RegistrationPage.class));
-//		
-//	}
-	
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private UserService userService;
 
@@ -50,22 +41,22 @@ public class UsersPage extends AbstractPage{
 			protected void populateItem(Item<User> item) {
 				final User user = item.getModelObject();
 				item.add(new Label("id"));
-//				item.add(new Label("fName", user.getFirstName()));
-//				item.add(new Label("lName", user.getLastName()));
+				// item.add(new Label("fName", user.getFirstName()));
+				// item.add(new Label("lName", user.getLastName()));
 				item.add(new Label("login"));
 				item.add(new Label("firstName"));
 				item.add(new Label("lastName"));
 				item.add(new Label("email"));
 				item.add(new Label("createDate"));
 				item.add(new Label("role"));
-				
+
 				item.add(new Link("user-edit-link") {
 					@Override
 					public void onClick() {
 						setResponsePage(new RegistrationPage(user));
 					}
 				});
-				
+
 				item.add(new Link("user-delete-link") {
 					@Override
 					public void onClick() {
@@ -81,14 +72,14 @@ public class UsersPage extends AbstractPage{
 		add(new OrderByBorder<Object>("sortId", "id", usersDataProvider));
 		add(new OrderByBorder<Object>("sortfName", "firstName", usersDataProvider));
 		add(new PagingNavigator("paging", dataView));
-		
+
 		add(new Link("user-create-link") {
 			@Override
 			public void onClick() {
 				setResponsePage(new RegistrationPage());
 			}
 		});
-		
+
 	}
 
 	private class UsersDataProvider extends SortableDataProvider<User, Object> {
@@ -106,7 +97,7 @@ public class UsersPage extends AbstractPage{
 			SortOrder currentSort = sortState.getPropertySortOrder(sort.getProperty());
 
 			// TODO sort in service
-			return userService.getAll((int)first, (int)count).iterator();
+			return userService.getAll((int) first, (int) count).iterator();
 		}
 
 		@Override

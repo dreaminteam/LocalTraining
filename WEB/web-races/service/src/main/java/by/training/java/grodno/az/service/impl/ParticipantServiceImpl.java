@@ -11,7 +11,7 @@ import by.training.java.grodno.az.data.dao.HourseDao;
 import by.training.java.grodno.az.data.dao.JockeyDao;
 import by.training.java.grodno.az.data.dao.ParticipantDao;
 import by.training.java.grodno.az.data.entities.ParticipantView;
-import by.training.java.grodno.az.data.model.Hourse;
+import by.training.java.grodno.az.data.model.Horse;
 import by.training.java.grodno.az.data.model.Jockey;
 import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.service.ParticipantService;
@@ -63,7 +63,7 @@ public class ParticipantServiceImpl implements ParticipantService {
 	}
 
 	@Override
-	public Hourse getHourse(int hourse_id) {
+	public Horse getHourse(int hourse_id) {
 		return hourseDao.get(hourse_id);
 	}
 

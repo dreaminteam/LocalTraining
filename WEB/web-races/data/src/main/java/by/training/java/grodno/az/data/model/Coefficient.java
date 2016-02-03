@@ -2,7 +2,8 @@ package by.training.java.grodno.az.data.model;
 
 import by.training.java.grodno.az.data.entities.AbstractEntity;
 
-public class Coefficient extends AbstractEntity{
+public class Coefficient extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 	private double value;
@@ -41,7 +42,9 @@ public class Coefficient extends AbstractEntity{
 		this.racingLineId = racingLineId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -50,8 +53,4 @@ public class Coefficient extends AbstractEntity{
 				+ racingLineId + "]";
 	}
 
-	
-	
-	
-	
 }

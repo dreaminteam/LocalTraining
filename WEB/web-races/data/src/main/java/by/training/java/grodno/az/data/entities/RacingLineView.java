@@ -2,14 +2,14 @@ package by.training.java.grodno.az.data.entities;
 
 import java.io.Serializable;
 
-import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.HorseRacing;
 
 public class RacingLineView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private int racingLineId;
-	private HourseRacing hourseRacing;
+	private HorseRacing horseRacing;
 	private ParticipantView participantView;
 	private Integer rusult;
 
@@ -21,12 +21,12 @@ public class RacingLineView implements Serializable {
 		this.racingLineId = racingLineId;
 	}
 
-	public HourseRacing getHourseRacing() {
-		return hourseRacing;
+	public HorseRacing getHorseRacing() {
+		return horseRacing;
 	}
 
-	public void setHourseRacing(HourseRacing hourseRacing) {
-		this.hourseRacing = hourseRacing;
+	public void setHorseRacing(HorseRacing horseRacing) {
+		this.horseRacing = horseRacing;
 	}
 
 	public ParticipantView getParticipantView() {

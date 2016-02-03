@@ -20,7 +20,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.validation.validator.StringValidator;
 
-import by.training.java.grodno.az.data.model.HourseRacing;
 import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.RateLineService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
@@ -90,7 +89,7 @@ public class RateLineEditPage extends AbstractPage {
 					}
 				}
 				String posStr = stringBuilder.toString();
-				if (posStr.length()==0) {
+				if (posStr.length() == 0) {
 					RateLineEditPage responsePage = new RateLineEditPage(rateLine);
 					responsePage.warn(getString("page.loginpage.data.incorrect"));
 					setResponsePage(responsePage);

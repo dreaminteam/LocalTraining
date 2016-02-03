@@ -2,7 +2,8 @@ package by.training.java.grodno.az.data.model;
 
 import by.training.java.grodno.az.data.entities.AbstractEntity;
 
-public class RateType extends AbstractEntity{
+public class RateType extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 	private String name;
@@ -31,5 +32,5 @@ public class RateType extends AbstractEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }

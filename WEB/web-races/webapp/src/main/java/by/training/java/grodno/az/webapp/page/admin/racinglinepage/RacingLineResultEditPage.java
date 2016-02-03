@@ -23,13 +23,13 @@ import org.apache.wicket.model.Model;
 import com.googlecode.wicket.kendo.ui.markup.html.link.BookmarkablePageLink;
 
 import by.training.java.grodno.az.data.entities.ParticipantView;
-import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.HorseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.service.RacingLineService;
 import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
-import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacingPage;
+import by.training.java.grodno.az.webapp.page.admin.horseracingpage.HorseRacingPage;
 
 @AuthorizeInstantiation(value = { "admin" })
 public class RacingLineResultEditPage extends AbstractPage {
@@ -44,9 +44,9 @@ public class RacingLineResultEditPage extends AbstractPage {
 	@Inject
 	private UserService userService;
 
-	private HourseRacing hourseRacing;
+	private HorseRacing hourseRacing;
 
-	public RacingLineResultEditPage(HourseRacing hourseRacing) {
+	public RacingLineResultEditPage(HorseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
 	}
@@ -126,7 +126,7 @@ public class RacingLineResultEditPage extends AbstractPage {
 			};
 		});
 
-		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
+		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HorseRacingPage.class));
 	}
 
 	private List<Integer> initNumberList(int size) {

@@ -12,8 +12,8 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
-import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacingPage;
-import by.training.java.grodno.az.webapp.page.admin.hoursespage.HoursePage;
+import by.training.java.grodno.az.webapp.page.admin.horseracingpage.HorseRacingPage;
+import by.training.java.grodno.az.webapp.page.admin.horsespage.HorsePage;
 import by.training.java.grodno.az.webapp.page.admin.jockeyspage.JockeysPage;
 import by.training.java.grodno.az.webapp.page.admin.participantspage.ParticipantsPage;
 import by.training.java.grodno.az.webapp.page.ratelinepage.RateLinePage;
@@ -32,9 +32,9 @@ public class EditPage extends AbstractPage {
 
 		links.add(new ActionLink(getString("all.users"), UsersPage.class));
 		links.add(new ActionLink(getString("all.jockeys"), JockeysPage.class));
-		links.add(new ActionLink(getString("all.hourses"), HoursePage.class));
+		links.add(new ActionLink(getString("all.hourses"), HorsePage.class));
 		links.add(new ActionLink(getString("all.participants"), ParticipantsPage.class));
-		links.add(new ActionLink(getString("all.hourse.racings"), HourseRacingPage.class));
+		links.add(new ActionLink(getString("all.hourse.racings"), HorseRacingPage.class));
 		links.add(new ActionLink(getString("all.rateLine"), RateLinePage.class));
 
 		add(new ListView<ActionLink>("action-link", links) {
@@ -43,7 +43,7 @@ public class EditPage extends AbstractPage {
 			protected void populateItem(ListItem<ActionLink> item) {
 				final ActionLink actionLink = item.getModelObject();
 				item.add(new Label("category", actionLink.title));
-				item.add(new BookmarkablePageLink<>("page-link", actionLink.pageClass));
+				item.add(new BookmarkablePageLink<Void>("page-link", actionLink.pageClass));
 
 			}
 		});

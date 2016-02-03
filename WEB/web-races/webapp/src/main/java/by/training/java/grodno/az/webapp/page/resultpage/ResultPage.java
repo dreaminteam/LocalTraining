@@ -16,11 +16,11 @@ import org.apache.wicket.markup.html.list.ListView;
 import com.googlecode.wicket.kendo.ui.markup.html.link.BookmarkablePageLink;
 
 import by.training.java.grodno.az.data.entities.RacingLineView;
-import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.HorseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.service.RacingLineService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
-import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacingPage;
+import by.training.java.grodno.az.webapp.page.admin.horseracingpage.HorseRacingPage;
 
 public class ResultPage extends AbstractPage {
 	private static final long serialVersionUID = 1L;
@@ -28,9 +28,9 @@ public class ResultPage extends AbstractPage {
 	@Inject
 	private RacingLineService racingLineService;
 
-	private HourseRacing hourseRacing;
+	private HorseRacing hourseRacing;
 
-	public ResultPage(HourseRacing hourseRacing) {
+	public ResultPage(HorseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
 	}
@@ -59,11 +59,11 @@ public class ResultPage extends AbstractPage {
 				final RacingLineView racingLineView = item.getModelObject();
 				item.add(new Label("id", racingLineView.getRacingLineId()));
 				item.add(new Label("jockey-name", racingLineView.getParticipantView().getJockeyFirstName()));
-				item.add(new Label("hourse-name", racingLineView.getParticipantView().getHourseName()));
+				item.add(new Label("hourse-name", racingLineView.getParticipantView().getHorseName()));
 				item.add(new Label("result", racingLineView.getRusult()));
 			}
 		});
-		
-		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
+
+		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HorseRacingPage.class));
 	}
 }

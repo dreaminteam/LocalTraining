@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 import com.googlecode.wicket.kendo.ui.markup.html.link.BookmarkablePageLink;
 
 import by.training.java.grodno.az.data.model.Coefficient;
-import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.HorseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.data.model.RateLine;
 import by.training.java.grodno.az.service.CoefficientService;
@@ -33,7 +33,7 @@ import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.service.RacingLineService;
 import by.training.java.grodno.az.service.RateLineService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
-import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacingPage;
+import by.training.java.grodno.az.webapp.page.admin.horseracingpage.HorseRacingPage;
 
 @AuthorizeInstantiation(value = { "admin" })
 public class CoefficientEditPage extends AbstractPage {
@@ -53,13 +53,14 @@ public class CoefficientEditPage extends AbstractPage {
 	@Inject
 	private CoefficientService coefficientService;
 
-	private HourseRacing hourseRacing;
+	private HorseRacing hourseRacing;
 
-	public CoefficientEditPage(HourseRacing hourseRacing) {
+	public CoefficientEditPage(HorseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
 	}
 
+	@SuppressWarnings("serial")
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
@@ -153,7 +154,7 @@ public class CoefficientEditPage extends AbstractPage {
 			};
 		});
 
-		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HourseRacingPage.class));
+		add(new BookmarkablePageLink<Void>("hourse-racing-page-link", HorseRacingPage.class));
 
 	}
 

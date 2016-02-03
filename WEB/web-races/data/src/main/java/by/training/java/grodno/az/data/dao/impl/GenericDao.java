@@ -46,18 +46,17 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		String sql = String.format("SELECT COUNT(*) FROM %s", tableName);
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
-	
+
 	@Override
 	public int getCount(Map<String, Object> atributesFinding) {
 		String atributes = getParametersStringForFinding(atributesFinding);
 		if (atributes.equals("")) {
 			return getCount();
 		}
-		String sql = String.format("SELECT COUNT(*) FROM %s where %s", tableName,atributes);
+		String sql = String.format("SELECT COUNT(*) FROM %s where %s", tableName, atributes);
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
-	
 	/**
 	 * If response is empty then returned empty List<T> with size=0;
 	 */
@@ -229,9 +228,9 @@ public abstract class GenericDao<T extends AbstractEntity> implements Dao<T> {
 		if (mapSource == null) {
 			return "";
 		}
-		Iterator it = mapSource.entrySet().iterator();
+		Iterator<Map.Entry<String, Object>> it = mapSource.entrySet().iterator();
 		while (it.hasNext()) {
-			Map.Entry<String, Object> entry = (Map.Entry) it.next();
+			Map.Entry<String, Object> entry = it.next();
 			result.append(String.format("%s=%s", getNameDBField(entry.getKey()), entry.getValue()));
 			if (it.hasNext()) {
 				result.append(" and ");

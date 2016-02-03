@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
 <wicket:extend>
 
 	<form class="contact_form" wicket:id="coefficient-edit-form">
@@ -13,38 +14,38 @@
 
 
 
-			
-				<div class="tableconteiner coefficient">
-					<table>
 
-						<tbody>
-							<tr>
-								<td><wicket:message key="all.participants"/></td>
-								<td><span wicket:id="title-0"></span></td>
-								<td><span wicket:id="title-1"></span></td>
-								<td><span wicket:id="title-2"></span></td>
-								<td><span wicket:id="title-3"></span></td>
-								<td><span wicket:id="title-4"></span></td>
-								<td><span wicket:id="title-5"></span></td>
-								<td><span wicket:id="title-6"></span></td>
-							</tr>
+			<div class="tableconteiner coefficient">
+				<table>
+
+					<tbody>
+						<tr>
+							<td><wicket:message key="all.participants" /></td>
+							<td><span wicket:id="title-0"></span></td>
+							<td><span wicket:id="title-1"></span></td>
+							<td><span wicket:id="title-2"></span></td>
+							<td><span wicket:id="title-3"></span></td>
+							<td><span wicket:id="title-4"></span></td>
+							<td><span wicket:id="title-5"></span></td>
+							<td><span wicket:id="title-6"></span></td>
+						</tr>
 
 
-							<tr wicket:id="coefficient-list">
-								<td><span wicket:id="participant"></span></td>
-								<td><input wicket:id="0" /></td>
-								<td><input wicket:id="1" /></td>
-								<td><input wicket:id="2" /></td>
-								<td><input wicket:id="3" /></td>
-								<td><input wicket:id="4" /></td>
-								<td><input wicket:id="5" /></td>
-								<td><input wicket:id="6" /></td>
-							</tr>
+						<tr wicket:id="coefficient-list">
+							<td><span wicket:id="participant"></span></td>
+							<td><input wicket:id="0" /></td>
+							<td><input wicket:id="1" /></td>
+							<td><input wicket:id="2" /></td>
+							<td><input wicket:id="3" /></td>
+							<td><input wicket:id="4" /></td>
+							<td><input wicket:id="5" /></td>
+							<td><input wicket:id="6" /></td>
+						</tr>
 
-						</tbody>
-					</table>
-				</div>
-			
+					</tbody>
+				</table>
+			</div>
+
 			<li>
 				<button class="submit" type="submit"
 					wicket:id="coefficient-submit-button">
@@ -62,3 +63,4 @@
 				key="all.hourse.racings" /></span></a>
 
 </wicket:extend>
+</html>

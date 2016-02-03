@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.page.admin.hoursespage;
+package by.training.java.grodno.az.webapp.page.admin.horsespage;
 
 import java.util.List;
 
@@ -10,18 +10,18 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
-import by.training.java.grodno.az.data.model.Hourse;
-import by.training.java.grodno.az.service.HourseService;
+import by.training.java.grodno.az.data.model.Horse;
+import by.training.java.grodno.az.service.HorseService;
 import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
 
 @AuthorizeInstantiation(value = { "admin" })
-public class HoursePage extends AbstractPage {
+public class HorsePage extends AbstractPage {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private HourseService hourseService;
+	private HorseService hourseService;
 
 	@Inject
 	private ParticipantService participantService;
@@ -29,20 +29,20 @@ public class HoursePage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		List<Hourse> allUsers = hourseService.getAll();
+		List<Horse> allUsers = hourseService.getAll();
 
-		add(new ListView<Hourse>("hourses-list", allUsers) {
+		add(new ListView<Horse>("hourses-list", allUsers) {
 			@Override
-			protected void populateItem(ListItem<Hourse> item) {
+			protected void populateItem(ListItem<Horse> item) {
 
-				final Hourse hourse = item.getModelObject();
+				final Horse hourse = item.getModelObject();
 				item.add(new Label("id", hourse.getId()));
 				item.add(new Label("name", hourse.getName()));
 
 				item.add(new Link("hourse-edit-link") {
 					@Override
 					public void onClick() {
-						setResponsePage(new HourseEditPage(hourse));
+						setResponsePage(new HorseEditPage(hourse));
 					}
 				});
 
@@ -52,9 +52,9 @@ public class HoursePage extends AbstractPage {
 					public void onClick() {
 						if (participantService.getHourse(hourse.getId()) == null) {
 							hourseService.delete(hourse);
-							setResponsePage(HoursePage.class);
+							setResponsePage(HorsePage.class);
 						} else {
-							HoursePage editPage = new HoursePage();
+							HorsePage editPage = new HorsePage();
 							editPage.error(getString("all.delete.inposible"));
 							setResponsePage(editPage);
 						}
@@ -67,7 +67,7 @@ public class HoursePage extends AbstractPage {
 		add(new Link("hourse-create-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(new HourseEditPage());
+				setResponsePage(new HorseEditPage());
 			}
 		});
 	}

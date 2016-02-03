@@ -7,7 +7,7 @@ public class Participant extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private int hourseId;
+	private int horseId;
 	private int jockeyId;
 
 	public int getId() {
@@ -18,12 +18,12 @@ public class Participant extends AbstractEntity {
 		this.id = id;
 	}
 
-	public int getHourseId() {
-		return hourseId;
+	public int getHorseId() {
+		return horseId;
 	}
 
-	public void setHourseId(int hourseId) {
-		this.hourseId = hourseId;
+	public void setHorseId(int hourseId) {
+		this.horseId = hourseId;
 	}
 
 	public int getJockeyId() {
@@ -36,7 +36,7 @@ public class Participant extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Participant [id=" + id + ", hourseId=" + hourseId + ", jockeyId=" + jockeyId + "]";
+		return "Participant [id=" + id + ", horseId=" + horseId + ", jockeyId=" + jockeyId + "]";
 	}
 
 }

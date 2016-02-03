@@ -37,7 +37,7 @@ public class ParticipantsPage extends AbstractPage {
 				item.add(new Label("id", participantId));
 				item.add(new Label("jockey",
 						participantView.getJockeyFirstName() + " " + participantView.getJockeyLastName()));
-				item.add(new Label("hourse", participantView.getHourseName()));
+				item.add(new Label("hourse", participantView.getHorseName()));
 
 				item.add(new Link("participant-edit-link") {
 					@Override

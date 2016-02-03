@@ -5,7 +5,8 @@ import java.util.Date;
 
 import by.training.java.grodno.az.data.entities.AbstractEntity;
 
-public class HourseRacing extends AbstractEntity {
+public class HorseRacing extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 	private String title;
@@ -28,7 +29,7 @@ public class HourseRacing extends AbstractEntity {
 	}
 
 	public Date getDate() {
-		if(date==null){
+		if (date == null) {
 			return null;
 		}
 		Timestamp timestamp = new Timestamp(date.getTime());

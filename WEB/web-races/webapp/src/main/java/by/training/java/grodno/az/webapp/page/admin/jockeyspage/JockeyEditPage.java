@@ -22,18 +22,14 @@ public class JockeyEditPage extends AbstractPage {
 	private JockeyService jockeyService;
 
 	private Jockey jockey;
-	private boolean isNew;
-
 	public JockeyEditPage() {
 		super();
 		this.jockey = new Jockey();
-		isNew = true;
 	}
 
 	public JockeyEditPage(Jockey jockey) {
 		super();
 		this.jockey = jockey;
-		isNew = false;
 	}
 
 	@Override

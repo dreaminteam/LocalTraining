@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import by.training.java.grodno.az.data.model.Coefficient;
-import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.HorseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
 import by.training.java.grodno.az.data.model.Rate;
 import by.training.java.grodno.az.data.model.RateLine;
@@ -40,7 +40,7 @@ import by.training.java.grodno.az.service.UserService;
 import by.training.java.grodno.az.webapp.app.UserSession;
 import by.training.java.grodno.az.webapp.links.LinkForRole;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
-import by.training.java.grodno.az.webapp.page.admin.hourseracingpage.HourseRacingPage;
+import by.training.java.grodno.az.webapp.page.admin.horseracingpage.HorseRacingPage;
 import by.training.java.grodno.az.webapp.page.loginpage.LoginPage;
 import by.training.java.grodno.az.webapp.page.userpage.AddBalance;
 
@@ -67,15 +67,16 @@ public class SelectCoefficient extends AbstractPage {
 	@Inject
 	private CoefficientService coefficientService;
 
-	private HourseRacing hourseRacing;
+	private HorseRacing hourseRacing;
 
 	private int index;
 
-	public SelectCoefficient(HourseRacing hourseRacing) {
+	public SelectCoefficient(HorseRacing hourseRacing) {
 		super();
 		this.hourseRacing = hourseRacing;
 	}
 
+	@SuppressWarnings("serial")
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
@@ -137,7 +138,7 @@ public class SelectCoefficient extends AbstractPage {
 			add(new Label(String.format("title-%s", i), title));
 		}
 
-		Form form = new Form<>("rate-form");
+		Form<Void> form = new Form<>("rate-form");
 		add(form);
 		form.setOutputMarkupId(true);
 
@@ -305,7 +306,7 @@ public class SelectCoefficient extends AbstractPage {
 
 		});
 
-		add(new BookmarkablePageLink<Void>("sel-hourse-racing-page-link", HourseRacingPage.class));
+		add(new BookmarkablePageLink<Void>("sel-hourse-racing-page-link", HorseRacingPage.class));
 
 	}
 
@@ -337,6 +338,7 @@ public class SelectCoefficient extends AbstractPage {
 
 	@AuthorizeAction(roles = { "admin", "bukmeker", "player" }, action = Action.ENABLE)
 	private class UsersSubmitLink extends SubmitLink {
+		private static final long serialVersionUID = 1L;
 
 		public UsersSubmitLink(String id) {
 			super(id);

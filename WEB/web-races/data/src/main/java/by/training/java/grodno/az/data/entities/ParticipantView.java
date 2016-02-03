@@ -9,6 +9,7 @@ public class ParticipantView implements Serializable {
 	private int participantId;
 	private String jockeyFirstName;
 	private String jockeyLastName;
+	private String horseName;
 
 	public String getJockeyLastName() {
 		return jockeyLastName;
@@ -17,8 +18,6 @@ public class ParticipantView implements Serializable {
 	public void setJockeyLastName(String jockeyLastName) {
 		this.jockeyLastName = jockeyLastName;
 	}
-
-	private String hourseName;
 
 	public int getParticipantId() {
 		return participantId;
@@ -36,23 +35,23 @@ public class ParticipantView implements Serializable {
 		this.jockeyFirstName = jockeyFirstName;
 	}
 
-	public String getHourseName() {
-		return hourseName;
+	public String getHorseName() {
+		return horseName;
 	}
 
-	public void setHourseName(String hourseName) {
-		this.hourseName = hourseName;
+	public void setHorseName(String horseName) {
+		this.horseName = horseName;
 	}
 
 	public String toStringShort() {
-		return "[Id=" + participantId + ", Jockey=" + jockeyFirstName.charAt(0) +". "+ jockeyLastName + ", Hourse="
-				+ hourseName + "]";
+		return "[Id=" + participantId + ", Jockey=" + jockeyFirstName.charAt(0) +". "+ jockeyLastName + ", Horse="
+				+ horseName + "]";
 	}
 
 	@Override
 	public String toString() {
 		return "ParticipantView [Participant Id=" + participantId + ", Jockey first name=" + jockeyFirstName
-				+ ", Jockey last name=" + jockeyLastName + ", Hourse name=" + hourseName + "]";
+				+ ", Jockey last name=" + jockeyLastName + ", Horse name=" + horseName + "]";
 	}
 
 }

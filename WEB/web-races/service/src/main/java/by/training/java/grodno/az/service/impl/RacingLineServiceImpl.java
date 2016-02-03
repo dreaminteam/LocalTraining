@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.training.java.grodno.az.data.dao.RacingLineDao;
 import by.training.java.grodno.az.data.entities.RacingLineView;
-import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.HorseRacing;
 import by.training.java.grodno.az.data.model.Participant;
 import by.training.java.grodno.az.data.model.RacingLine;
-import by.training.java.grodno.az.service.HourseRacingService;
+import by.training.java.grodno.az.service.HorseRacingService;
 import by.training.java.grodno.az.service.ParticipantService;
 import by.training.java.grodno.az.service.RacingLineService;
 
@@ -23,7 +23,7 @@ public class RacingLineServiceImpl implements RacingLineService {
 	private RacingLineDao racingLineDao;
 
 	@Autowired
-	private HourseRacingService hourseRacingService;
+	private HorseRacingService hourseRacingService;
 
 	@Autowired
 	private ParticipantService participantService;
@@ -63,7 +63,7 @@ public class RacingLineServiceImpl implements RacingLineService {
 	}
 
 	@Override
-	public HourseRacing getHourseRacing(int hourseRacing_id) {
+	public HorseRacing getHourseRacing(int hourseRacing_id) {
 		return hourseRacingService.getById(hourseRacing_id);
 	}
 
@@ -117,7 +117,7 @@ public class RacingLineServiceImpl implements RacingLineService {
 		// transaction
 		RacingLineView result = new RacingLineView();
 		result.setRacingLineId(racingLine.getId());
-		result.setHourseRacing(hourseRacingService.getById(racingLine.getHourseRacingId()));
+		result.setHorseRacing(hourseRacingService.getById(racingLine.getHourseRacingId()));
 		result.setParticipantView(participantService.getViewById(racingLine.getParticipantId()));
 
 		result.setRusult(racingLine.getResult());

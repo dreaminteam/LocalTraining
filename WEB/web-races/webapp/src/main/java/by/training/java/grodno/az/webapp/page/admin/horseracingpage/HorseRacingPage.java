@@ -1,4 +1,4 @@
-package by.training.java.grodno.az.webapp.page.admin.hourseracingpage;
+package by.training.java.grodno.az.webapp.page.admin.horseracingpage;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -13,9 +13,9 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 
-import by.training.java.grodno.az.data.model.HourseRacing;
+import by.training.java.grodno.az.data.model.HorseRacing;
 import by.training.java.grodno.az.data.model.RacingLine;
-import by.training.java.grodno.az.service.HourseRacingService;
+import by.training.java.grodno.az.service.HorseRacingService;
 import by.training.java.grodno.az.service.RacingLineService;
 import by.training.java.grodno.az.webapp.links.AdminLinkRender;
 import by.training.java.grodno.az.webapp.page.abstractpage.AbstractPage;
@@ -25,12 +25,12 @@ import by.training.java.grodno.az.webapp.page.admin.racinglinepage.RacingLineEdi
 import by.training.java.grodno.az.webapp.page.admin.racinglinepage.RacingLineResultEditPage;
 import by.training.java.grodno.az.webapp.page.resultpage.ResultPage;
 
-public class HourseRacingPage extends AbstractPage {
+public class HorseRacingPage extends AbstractPage {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private HourseRacingService hourseRacingService;
+	private HorseRacingService hourseRacingService;
 
 	@Inject
 	private RacingLineService racingLineService;
@@ -39,13 +39,13 @@ public class HourseRacingPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		List<HourseRacing> allHourseRacings = hourseRacingService.getAll();
+		List<HorseRacing> allHourseRacings = hourseRacingService.getAll();
 
-		add(new ListView<HourseRacing>("hourse-racing-list", allHourseRacings) {
+		add(new ListView<HorseRacing>("hourse-racing-list", allHourseRacings) {
 			@Override
-			protected void populateItem(ListItem<HourseRacing> item) {
+			protected void populateItem(ListItem<HorseRacing> item) {
 
-				final HourseRacing hourseRacing = item.getModelObject();
+				final HorseRacing hourseRacing = item.getModelObject();
 
 				boolean isAfter = hourseRacing.getDate().after(new Date());
 
@@ -56,7 +56,7 @@ public class HourseRacingPage extends AbstractPage {
 				item.add(new AdminLinkRender("hourse-racing-edit-link") {
 					@Override
 					public void onClick() {
-						setResponsePage(new HourseRacingEditPage(hourseRacing));
+						setResponsePage(new HorseRacingEditPage(hourseRacing));
 					}
 				});
 
@@ -65,7 +65,7 @@ public class HourseRacingPage extends AbstractPage {
 					@Override
 					public void onClick() {
 						hourseRacingService.delete(hourseRacing);
-						setResponsePage(HourseRacingPage.class);
+						setResponsePage(HorseRacingPage.class);
 					}
 				});
 
@@ -149,7 +149,7 @@ public class HourseRacingPage extends AbstractPage {
 		add(new AdminLinkRender("hourse-racing-create-link") {
 			@Override
 			public void onClick() {
-				setResponsePage(new HourseRacingEditPage());
+				setResponsePage(new HorseRacingEditPage());
 			}
 		});
 	}
